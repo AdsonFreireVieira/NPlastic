@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Lazy;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring" , uses = {ItensMapper.class,Clientesmapper.class})
+@Mapper(componentModel = "spring" , uses = {Clientesmapper.class})
 public interface PedidoMapper {
 
     @Lazy
