@@ -16,5 +16,5 @@ public interface IPedidoService {
 
     public PedidoResponse buscarPorId(int id);
 
-    public PedidoResponse deletarPedido(int id);
+    public String deletarPedido(int id);
 }

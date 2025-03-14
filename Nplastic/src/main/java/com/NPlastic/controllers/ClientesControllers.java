@@ -1,7 +1,5 @@
 package com.NPlastic.controllers;
 
-
-
 import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
 import com.NPlastic.service.ServiceUser.ClientesService;
@@ -30,8 +28,6 @@ public class ClientesControllers {
                             .buildAndExpand(clientesRequestDTO.getId())
                             .toUri())
                     .body(userResponseDTO);
-
-
     }
         return ResponseEntity.notFound().build();
 }

@@ -6,9 +6,10 @@ import com.NPlastic.dto.DtoPedido.PedidoResponse;
 import com.NPlastic.mapper.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class PedidoImpl implements  IPedidoService{
 
     @Autowired
@@ -39,11 +40,12 @@ public class PedidoImpl implements  IPedidoService{
 
     @Override
     public PedidoResponse buscarPorId(int id) {
-        return null;
+
+        return PedidoMapper.INSTANCE.convertToPedidoResponse(pedidoRepository.findById(id).orElse(null));
     }
 
     @Override
-    public PedidoResponse deletarPedido(int id) {
-        return null;
+    public String deletarPedido(int id) {
+        return "REMOVIDO";
     }
 }
