@@ -20,7 +20,8 @@ public class ClienteServiceEmpl implements ClientesService{
     @Override
     public ClientesResponseDTO criar(ClientesRequestDTO clientesRequestDTO) {
 
-        Clientes cliente = (Clientes) Clientesmapper.INSTANCE.toCliente(clientesRequestDTO);
+        Clientes cliente = Clientesmapper.INSTANCE.toCliente(clientesRequestDTO);
+
         return  Clientesmapper.INSTANCE.toResponseDto(repository.save(cliente));
     }
 

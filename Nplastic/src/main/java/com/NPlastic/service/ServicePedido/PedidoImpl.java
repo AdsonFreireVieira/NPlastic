@@ -1,5 +1,6 @@
 package com.NPlastic.service.ServicePedido;
 
+import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
 import com.NPlastic.dto.DtoPedido.PedidoRequest;
 import com.NPlastic.dto.DtoPedido.PedidoResponse;
@@ -20,6 +21,10 @@ public class PedidoImpl implements  IPedidoService{
 
         Pedido pedido = PedidoMapper.INSTANCE.convertToPedido(pedidoRequest);
 
+        for(Itens_Pedido itens : pedido.getItens()){
+
+            itens.setPedido(pedido);
+        }
          pedidoRepository.save(pedido);
 
         return PedidoMapper.INSTANCE.convertToPedidoResponse(pedido);

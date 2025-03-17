@@ -2,6 +2,7 @@ package com.NPlastic.controllers;
 
 import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
+import com.NPlastic.service.ServiceUser.ClienteServiceEmpl;
 import com.NPlastic.service.ServiceUser.ClientesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,8 @@ import java.util.List;
 public class ClientesControllers {
 
     @Autowired
-    private ClientesService service;
+    private ClienteServiceEmpl service;
+
     @PostMapping
     public ResponseEntity<ClientesResponseDTO> criarUser(@RequestBody ClientesRequestDTO clientesRequestDTO) {
 

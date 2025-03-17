@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Lazy;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring" , uses = {Clientesmapper.class})
+@Mapper(componentModel = "spring")
 public interface PedidoMapper {
 
-    @Lazy
+
     PedidoMapper INSTANCE = Mappers.getMapper(PedidoMapper.class);
 
     @Mapping(source = "id",target = "id")
@@ -23,15 +23,12 @@ public interface PedidoMapper {
     @Mapping(source = "itensRequestList",target = "itens")
     @Mapping(source = "clientesRequest",target ="clientes")
 
-
     Pedido  convertToPedido(PedidoRequest pedidoRequest);
 
     @Mapping(source ="data",target = "data")
     @Mapping(source ="status",target = "status")
     @Mapping(source ="itens",target = "itensResponseList")
     @Mapping(source ="clientes",target = "clientesResponse")
-
-
     PedidoResponse convertToPedidoResponse(Pedido pedido);
 
     List<PedidoResponse> ConvertListResponse(List<Pedido> pedidoList);

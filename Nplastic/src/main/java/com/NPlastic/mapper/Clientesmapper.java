@@ -30,6 +30,7 @@ public interface  Clientesmapper {
     @Mapping(source = "telefone", target = "telefone")
     @Mapping(source = "senha", target = "senha")
     @Mapping(source = "data", target = "data")
+
    ClientesResponseDTO toResponseDto(Clientes user);
 
 
