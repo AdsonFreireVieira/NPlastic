@@ -34,10 +34,6 @@ public class Produto {
     @Column
     private double valorKg;
 
-    @OneToMany(mappedBy = "produto")
-    private List<Itens_Pedido> itens;
-
-
     public Integer getId_Produto() {
         return id_Produto;
     }

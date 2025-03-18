@@ -34,10 +34,6 @@ public class Clientes {
    private List<Endereco> endereco;
 
 
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL)
-    private List<Pedido>pedidoList;
-
-
     public Integer getId() {
         return id;
     }

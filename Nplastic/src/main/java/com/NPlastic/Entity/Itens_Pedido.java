@@ -21,11 +21,11 @@ public class Itens_Pedido {
     @Column
     private double valorItens;
 
-   @ManyToOne
+   @ManyToOne(cascade = CascadeType.ALL)
    @JoinColumn(name ="id_Produto")
    private Produto produto;
 
-   @ManyToOne
+   @ManyToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "Pedido")
    private Pedido pedido;
 
