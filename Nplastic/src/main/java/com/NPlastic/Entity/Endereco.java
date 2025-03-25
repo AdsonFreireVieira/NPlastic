@@ -7,19 +7,24 @@ import jakarta.persistence.*;
 public class Endereco {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Column
     private Integer id;
 
+    @Column
     private String numero;
 
+    @Column
     private  int cep;
 
+    @Column
     private String cidade;
 
+    @Column
     private String Bairro;
 
+    @Column
     private String estado;
 
     @ManyToOne

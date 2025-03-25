@@ -15,6 +15,7 @@ public class ServiceEnderecoImpl implements  IEndereco {
 
     @Autowired
     private EnderecoRepository repository;
+
     @Override
     public EnderecoResponse CriarEndereco(EnderecoRequest request) {
 
@@ -32,7 +33,7 @@ public class ServiceEnderecoImpl implements  IEndereco {
 
     @Override
     public List<EnderecoResponse> listarEndereco() {
-        return EnderecoMapper.INSTANCE.toListResponse( (List<Endereco>)repository.findAll());
+        return EnderecoMapper.INSTANCE.toListResponse((List<Endereco>) repository.findAll());
     }
 
     @Override

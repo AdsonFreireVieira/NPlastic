@@ -1,5 +1,6 @@
 package com.NPlastic.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -23,8 +24,8 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
     private List<Itens_Pedido> itens;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Cliente_id")
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Clientes clientes;
 
     public Integer getId() {

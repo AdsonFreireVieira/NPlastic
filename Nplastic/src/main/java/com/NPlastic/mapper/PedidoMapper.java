@@ -23,7 +23,7 @@ public interface PedidoMapper {
     @Mapping(source = "itensRequestList",target = "itens")
     @Mapping(source = "clientesRequest",target ="clientes")
 
-    Pedido  convertToPedido(PedidoRequest pedidoRequest);
+    Pedido convertToPedido(PedidoRequest pedidoRequest);
 
     @Mapping(source ="data",target = "data")
     @Mapping(source ="status",target = "status")
@@ -33,3 +33,4 @@ public interface PedidoMapper {
 
     List<PedidoResponse> ConvertListResponse(List<Pedido> pedidoList);
 }
+

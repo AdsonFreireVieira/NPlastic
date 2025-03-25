@@ -9,9 +9,10 @@ import java.util.List;
 @Table(name="tbl_Clientes")
 public class Clientes {
 
-    @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Id
     @Column
     private Integer id;
 

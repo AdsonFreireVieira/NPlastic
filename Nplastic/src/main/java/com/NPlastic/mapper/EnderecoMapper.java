@@ -12,8 +12,7 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {Clientesmapper.class})
 public interface EnderecoMapper {
 
- EnderecoMapper INSTANCE = Mappers.getMapper(EnderecoMapper.class);
-
+EnderecoMapper INSTANCE = Mappers.getMapper(EnderecoMapper.class);
  @Mapping(source = "id", target = "id")
  @Mapping(source = "numero", target = "numero")
  @Mapping(source = "cep", target = "cep")

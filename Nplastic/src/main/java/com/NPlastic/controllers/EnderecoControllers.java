@@ -1,9 +1,8 @@
 package com.NPlastic.controllers;
 
-import com.NPlastic.Entity.Endereco;
 import com.NPlastic.dto.dtoEndereco.EnderecoRequest;
 import com.NPlastic.dto.dtoEndereco.EnderecoResponse;
-import com.NPlastic.mapper.EnderecoMapper;
+import com.NPlastic.service.ServiceEndereco.IEndereco;
 import com.NPlastic.service.ServiceEndereco.ServiceEnderecoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/endereco")
+@RequestMapping("/enderecos")
 public class EnderecoControllers {
 
     @Autowired
@@ -46,7 +45,7 @@ public class EnderecoControllers {
             return ResponseEntity.notFound().build();
         }
     }
-       @GetMapping
+    @GetMapping
     public ResponseEntity <List<EnderecoResponse>> listarEndereco(){
 
         return ResponseEntity.ok().body(service.listarEndereco());

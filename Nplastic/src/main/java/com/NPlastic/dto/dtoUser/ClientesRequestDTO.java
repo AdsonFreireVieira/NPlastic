@@ -51,10 +51,6 @@ public class ClientesRequestDTO {
         this.senha = senha;
     }
 
-    @Override
-    public String toString() {
-        return "ClientesRequestDTO{}";
-    }
 
     public LocalDate getData() {
         return data;
