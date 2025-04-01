@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {Clientesmapper.class})
+@Mapper(componentModel = "spring")
 public interface EnderecoMapper {
 
 EnderecoMapper INSTANCE = Mappers.getMapper(EnderecoMapper.class);

@@ -12,7 +12,7 @@ public class Itens_Request {
 
     private double valorItens;
 
-    private ProdutoRequest produtoRequest;
+    private  ProdutoRequest produtoRequest;
 
     private PedidoRequest pedidoRequest;
 

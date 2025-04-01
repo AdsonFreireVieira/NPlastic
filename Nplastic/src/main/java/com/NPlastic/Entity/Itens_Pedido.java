@@ -2,7 +2,6 @@ package com.NPlastic.Entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 @Entity
 @Table(name = "tbl_Itens")
 public class Itens_Pedido {
@@ -21,19 +20,19 @@ public class Itens_Pedido {
     @Column
     private double valorItens;
 
-   @ManyToOne()
-   @JoinColumn(name ="id_Produto")
-   private Produto produto;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 
-   @ManyToOne
-   @JoinColumn(name = "Pedido")
-   private Pedido pedido;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 
-    public Produto getProduto() {
+    public Produto getProdutoResponse() {
         return produto;
     }
 
-    public void setProduto(Produto produto) {
+    public void setProdutoResponse(Produto produto) {
         this.produto = produto;
     }
 
@@ -41,7 +40,7 @@ public class Itens_Pedido {
         return pedido;
     }
 
-    public void setPedido(Pedido pedido) {
+    public void setPedido(Pedido pedidoResponse) {
         this.pedido = pedido;
     }
 

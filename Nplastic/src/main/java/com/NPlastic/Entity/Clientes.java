@@ -31,7 +31,7 @@ public class Clientes {
     @Column
     private LocalDate data;
 
-    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente")
    private List<Endereco> endereco;
 
 

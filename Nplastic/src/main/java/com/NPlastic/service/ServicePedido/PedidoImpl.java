@@ -4,13 +4,15 @@ import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
 import com.NPlastic.dto.DtoPedido.PedidoRequest;
 import com.NPlastic.dto.DtoPedido.PedidoResponse;
+import com.NPlastic.dto.ItensDto.Itens_Request;
 import com.NPlastic.mapper.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Component
+@Service
 public class PedidoImpl implements  IPedidoService{
 
     @Autowired
@@ -20,10 +22,14 @@ public class PedidoImpl implements  IPedidoService{
 
         Pedido pedido = PedidoMapper.INSTANCE.convertToPedido(pedidoRequest);
 
+
         for(Itens_Pedido itens : pedido.getItens()){
+
 
             itens.setPedido(pedido);
         }
+
+
          pedidoRepository.save(pedido);
 
         return PedidoMapper.INSTANCE.convertToPedidoResponse(pedido);
