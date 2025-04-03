@@ -1,18 +1,18 @@
 package com.NPlastic.service.ServicePedido;
 
-import com.NPlastic.dto.DtoPedido.PedidoResponse;
+import com.NPlastic.Entity.Pedido;
 
 import java.util.List;
 
 public interface IPedidoService {
 
-    public PedidoResponse criarPedido(PedidoResponse pedidoResponse);
+    public Pedido criarPedido(Pedido pedido);
 
-    public PedidoResponse alterarPedido(PedidoResponse pedidoResponse);
+    public Pedido alterarPedido(Pedido pedido);
 
-    public List<PedidoResponse> listarPedido();
+    public List<Pedido> listarPedido();
 
-    public PedidoResponse buscarPorId(int id);
+    public Pedido buscarPorId(int id);
 
     public String deletarPedido(int id);
 }

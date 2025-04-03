@@ -1,7 +1,6 @@
 package com.NPlastic.Entity;
 
-import com.NPlastic.dto.ItensDto.Itens_Response;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -23,7 +22,7 @@ public class Pedido {
     private String status;
 
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
-    private List<Itens_Response> itens;
+    private List<Itens_Pedido> itens;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")

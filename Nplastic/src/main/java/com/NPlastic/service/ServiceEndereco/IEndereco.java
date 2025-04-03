@@ -1,7 +1,7 @@
 package com.NPlastic.service.ServiceEndereco;
 
 import com.NPlastic.Entity.Endereco;
-import com.NPlastic.dto.dtoEndereco.EnderecoResponse;
+
 
 import java.util.List;
 

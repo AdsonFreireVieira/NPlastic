@@ -1,8 +1,6 @@
 package com.NPlastic.service.serviceProduto;
 
 import com.NPlastic.Entity.Produto;
-import com.NPlastic.dto.dtoProduto.ProdutoResponse;
-import com.NPlastic.mapper.ProdutoMapper;
 import com.NPlastic.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,28 +14,26 @@ public class ServiceProdutoImpl implements IProduto{
     private ProdutoRepository repository;
 
     @Override
-    public ProdutoResponse criarProduto(ProdutoResponse produtoResponse) {
+    public Produto criarProduto(Produto produto) {
 
-        Produto produtos = ProdutoMapper.INSTANCE.toEntity(produtoResponse);
-        return ProdutoMapper.INSTANCE.toDTO(repository.save(produtos));
+        return repository.save(produto);
     }
 
     @Override
-    public ProdutoResponse AtualizaProduto(ProdutoResponse produtoResponse) {
+    public Produto AtualizaProduto(Produto  produto) {
 
-        Produto produto = ProdutoMapper.INSTANCE.toEntity(produtoResponse);
-        return ProdutoMapper.INSTANCE.toDTO(repository.save(produto));
+        return repository.save(produto);
 
     }
 
     @Override
-    public List<ProdutoResponse> listarProdutos() {
-        return ProdutoMapper.INSTANCE.toListResponse((List<Produto>)repository.findAll());
+    public List<Produto> listarProdutos() {
+        return (List<Produto>)repository.findAll();
     }
 
     @Override
-    public ProdutoResponse buscarPorId(int id) {
-        return ProdutoMapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
+    public Produto buscarPorId(int id) {
+        return repository.findById(id).orElse(null);
     }
 
     @Override

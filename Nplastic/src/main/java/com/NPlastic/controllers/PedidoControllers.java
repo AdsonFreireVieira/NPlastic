@@ -1,6 +1,6 @@
 package com.NPlastic.controllers;
 
-import com.NPlastic.dto.DtoPedido.PedidoResponse;
+import com.NPlastic.Entity.Pedido;
 import com.NPlastic.service.ServicePedido.PedidoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,31 +17,31 @@ public class PedidoControllers {
 
 
     @PostMapping
-    public ResponseEntity<PedidoResponse> criarPedido(@RequestBody PedidoResponse pedidoResponse){
+    public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido pedido){
 
 
 
-        return ResponseEntity.ok().body(service.criarPedido(pedidoResponse));
+        return ResponseEntity.ok().body(service.criarPedido(pedido));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoResponse> atualizarPedido(@RequestBody PedidoResponse pedidoResponse,
+    public ResponseEntity<Pedido> atualizarPedido(@RequestBody Pedido pedido,
                                                           @PathVariable int id){
 
-        if(pedidoResponse != null){
+        if(pedido != null){
 
-            return ResponseEntity.ok().body(service.alterarPedido(pedidoResponse));
+            return ResponseEntity.ok().body(service.alterarPedido(pedido));
         }
         return  ResponseEntity.notFound().build();
 
     }
     @GetMapping
-    public ResponseEntity<List<PedidoResponse>> listarPedido(){
+    public ResponseEntity<List<Pedido>> listarPedido(){
 
         return ResponseEntity.ok().body( service.listarPedido());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoResponse> buscarPorID( @PathVariable int id){
+    public ResponseEntity<Pedido> buscarPorID( @PathVariable int id){
 
         return ResponseEntity.ok().body(service.buscarPorId(id));
     }

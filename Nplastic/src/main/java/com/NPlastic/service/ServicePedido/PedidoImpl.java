@@ -12,41 +12,31 @@ public class PedidoImpl implements  IPedidoService{
 
     @Autowired
     PedidoRepository pedidoRepository;
+
     @Override
-    public PedidoResponse criarPedido(PedidoResponse pedidoResponse) {
+    public Pedido criarPedido(Pedido pedido) {
+        return  pedidoRepository.save(pedido);
 
-        Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoResponse);
-
-
-        for(Itens_Pedido itens : pedido.getItens()){
+    }
 
 
-            itens.setPedido(pedido);
-        }
+
+    @Override
+    public Pedido alterarPedido(Pedido pedido) {
 
 
-         pedidoRepository.save(pedido);
-
-        return PedidoMapper.INSTANCE.toDTO(pedido);
+        return pedidoRepository.save(pedido);
     }
 
     @Override
-    public PedidoResponse alterarPedido(PedidoResponse pedidoResponse) {
-
-        Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoResponse);
-
-        return PedidoMapper.INSTANCE.toDTO(pedidoRepository.save(pedido));
+    public List<Pedido> listarPedido() {
+        return (List<Pedido>) pedidoRepository.findAll();
     }
 
     @Override
-    public List<PedidoResponse> listarPedido() {
-        return PedidoMapper.INSTANCE.ConvertListResponse((List<Pedido>) pedidoRepository.findAll());
-    }
+    public Pedido buscarPorId(int id) {
 
-    @Override
-    public PedidoResponse buscarPorId(int id) {
-
-        return PedidoMapper.INSTANCE.toDTO(pedidoRepository.findById(id).orElse(null));
+        return pedidoRepository.findById(id).orElse(null);
     }
 
     @Override

@@ -1,11 +1,10 @@
 package com.NPlastic.controllers;
 
-import com.NPlastic.dto.dtoProduto.ProdutoResponse;
+import com.NPlastic.Entity.Produto;
 import com.NPlastic.service.serviceProduto.ServiceProdutoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -17,36 +16,30 @@ public class ProdutoControllers {
     private ServiceProdutoImpl service;
 
     @PostMapping
-    public ResponseEntity<ProdutoResponse> criarProduto(@RequestBody ProdutoResponse produtoResponse){
+    public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {
 
-        ProdutoResponse response = service.criarProduto(produtoResponse);
+        return ResponseEntity.ok(service.criarProduto(produto));
 
-        if(response != null){
-            return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                    .buildAndExpand(produtoResponse.getId_Produto())
-                    .toUri()).body(response);
 
-        }
-        return  ResponseEntity.notFound().build();
     }
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponse> atualizaProduto(@RequestBody ProdutoResponse produtoResponse,
+    public ResponseEntity<Produto> atualizaProduto(@RequestBody Produto produto,
                                                            @PathVariable int id){
-        produtoResponse.setId_Produto(id);
+        produto.setId_Produto(id);
 
-        if(produtoResponse != null) {
-            return ResponseEntity.ok().body(service.AtualizaProduto(produtoResponse));
+        if(produto != null) {
+            return ResponseEntity.ok().body(service.AtualizaProduto(produto));
         }
         return ResponseEntity.notFound().build();
 
     }
     @GetMapping
-    public ResponseEntity <List<ProdutoResponse>> listarProduto(){
+    public ResponseEntity <List<Produto>> listarProduto(){
 
         return ResponseEntity.ok().body(service.listarProdutos());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoResponse>buscarPorId(@PathVariable int id){
+    public ResponseEntity<Produto>buscarPorId(@PathVariable int id){
 
         return ResponseEntity.ok().body(service.buscarPorId(id));
     }
@@ -56,16 +49,3 @@ public class ProdutoControllers {
         return ResponseEntity.ok().body(service.deletarProduto(id));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
