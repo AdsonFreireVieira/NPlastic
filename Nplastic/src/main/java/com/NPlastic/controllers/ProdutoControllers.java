@@ -1,6 +1,5 @@
 package com.NPlastic.controllers;
 
-import com.NPlastic.dto.dtoProduto.ProdutoRequest;
 import com.NPlastic.dto.dtoProduto.ProdutoResponse;
 import com.NPlastic.service.serviceProduto.ServiceProdutoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +17,25 @@ public class ProdutoControllers {
     private ServiceProdutoImpl service;
 
     @PostMapping
-    public ResponseEntity<ProdutoResponse> criarProduto(@RequestBody ProdutoRequest request){
+    public ResponseEntity<ProdutoResponse> criarProduto(@RequestBody ProdutoResponse produtoResponse){
 
-        ProdutoResponse response = service.criarProduto(request);
+        ProdutoResponse response = service.criarProduto(produtoResponse);
 
         if(response != null){
             return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                    .buildAndExpand(request.getId_Produto())
+                    .buildAndExpand(produtoResponse.getId_Produto())
                     .toUri()).body(response);
 
         }
         return  ResponseEntity.notFound().build();
     }
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoResponse> atualizaProduto(@RequestBody ProdutoRequest produtoRequest,
+    public ResponseEntity<ProdutoResponse> atualizaProduto(@RequestBody ProdutoResponse produtoResponse,
                                                            @PathVariable int id){
-        produtoRequest.setId_Produto(id);
+        produtoResponse.setId_Produto(id);
 
-        if(produtoRequest != null) {
-            return ResponseEntity.ok().body(service.AtualizaProduto(produtoRequest));
+        if(produtoResponse != null) {
+            return ResponseEntity.ok().body(service.AtualizaProduto(produtoResponse));
         }
         return ResponseEntity.notFound().build();
 

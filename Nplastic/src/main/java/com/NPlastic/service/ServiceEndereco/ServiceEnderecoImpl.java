@@ -1,7 +1,6 @@
 package com.NPlastic.service.ServiceEndereco;
 
 import com.NPlastic.Entity.Endereco;
-import com.NPlastic.dto.dtoEndereco.EnderecoRequest;
 import com.NPlastic.dto.dtoEndereco.EnderecoResponse;
 import com.NPlastic.mapper.EnderecoMapper;
 import com.NPlastic.repository.EnderecoRepository;
@@ -17,18 +16,18 @@ public class ServiceEnderecoImpl implements  IEndereco {
     private EnderecoRepository repository;
 
     @Override
-    public EnderecoResponse CriarEndereco(EnderecoRequest request) {
+    public EnderecoResponse CriarEndereco(EnderecoResponse response) {
 
-        Endereco endereco = EnderecoMapper.INSTANCE.toEndereco(request);
+        Endereco endereco = EnderecoMapper.INSTANCE.toEntity(response);
 
-        return EnderecoMapper.INSTANCE.toResponse( repository.save(endereco));
+        return EnderecoMapper.INSTANCE.toDTO( repository.save(endereco));
     }
 
     @Override
-    public EnderecoResponse atualizarEndereco(EnderecoRequest request) {
-        Endereco endereco = EnderecoMapper.INSTANCE.toEndereco(request);
+    public EnderecoResponse atualizarEndereco(EnderecoResponse enderecoResponse) {
+        Endereco endereco = EnderecoMapper.INSTANCE.toEntity(enderecoResponse);
 
-        return EnderecoMapper.INSTANCE.toResponse( repository.save(endereco));
+        return EnderecoMapper.INSTANCE.toDTO( repository.save(endereco));
     }
 
     @Override
@@ -38,7 +37,7 @@ public class ServiceEnderecoImpl implements  IEndereco {
 
     @Override
     public EnderecoResponse BuscarPorId(int id) {
-        return EnderecoMapper.INSTANCE.toResponse(repository.findById(id).orElse(null));
+        return EnderecoMapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
     }
 
     @Override

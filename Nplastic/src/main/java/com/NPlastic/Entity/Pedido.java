@@ -22,7 +22,6 @@ public class Pedido {
     private String status;
 
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("pedido")
     private List<Itens_Pedido> itens;
 
     @ManyToOne

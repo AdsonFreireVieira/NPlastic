@@ -2,13 +2,10 @@ package com.NPlastic.service.ServicePedido;
 
 import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
-import com.NPlastic.dto.DtoPedido.PedidoRequest;
 import com.NPlastic.dto.DtoPedido.PedidoResponse;
-import com.NPlastic.dto.ItensDto.Itens_Request;
 import com.NPlastic.mapper.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +15,9 @@ public class PedidoImpl implements  IPedidoService{
     @Autowired
     PedidoRepository pedidoRepository;
     @Override
-    public PedidoResponse criarPedido(PedidoRequest pedidoRequest) {
+    public PedidoResponse criarPedido(PedidoResponse pedidoResponse) {
 
-        Pedido pedido = PedidoMapper.INSTANCE.convertToPedido(pedidoRequest);
+        Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoResponse);
 
 
         for(Itens_Pedido itens : pedido.getItens()){
@@ -32,15 +29,15 @@ public class PedidoImpl implements  IPedidoService{
 
          pedidoRepository.save(pedido);
 
-        return PedidoMapper.INSTANCE.convertToPedidoResponse(pedido);
+        return PedidoMapper.INSTANCE.toDTO(pedido);
     }
 
     @Override
-    public PedidoResponse alterarPedido(PedidoRequest pedidoRequest) {
+    public PedidoResponse alterarPedido(PedidoResponse pedidoResponse) {
 
-        Pedido pedido = PedidoMapper.INSTANCE.convertToPedido(pedidoRequest);
+        Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoResponse);
 
-        return PedidoMapper.INSTANCE.convertToPedidoResponse(pedidoRepository.save(pedido));
+        return PedidoMapper.INSTANCE.toDTO(pedidoRepository.save(pedido));
     }
 
     @Override
@@ -51,7 +48,7 @@ public class PedidoImpl implements  IPedidoService{
     @Override
     public PedidoResponse buscarPorId(int id) {
 
-        return PedidoMapper.INSTANCE.convertToPedidoResponse(pedidoRepository.findById(id).orElse(null));
+        return PedidoMapper.INSTANCE.toDTO(pedidoRepository.findById(id).orElse(null));
     }
 
     @Override

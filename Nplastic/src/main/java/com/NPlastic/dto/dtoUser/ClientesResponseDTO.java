@@ -1,8 +1,18 @@
 package com.NPlastic.dto.dtoUser;
 
+import com.NPlastic.Entity.Endereco;
+import com.NPlastic.Entity.Pedido;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class ClientesResponseDTO {
+
+    private Integer id;
 
     private String nome;
 
@@ -14,6 +24,11 @@ public class ClientesResponseDTO {
 
     private LocalDate data;
 
+    private List<Endereco> enderecoList;
+
+    private List<Pedido> pedidoList;
+
+
     public ClientesResponseDTO(String nome, String email, String telefone, String senha, LocalDate data) {
         this.nome = nome;
         this.email = email;
@@ -23,6 +38,30 @@ public class ClientesResponseDTO {
     }
 
     public ClientesResponseDTO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Endereco> getEnderecoList() {
+        return enderecoList;
+    }
+
+    public void setEnderecoList(List<Endereco> enderecoList) {
+        this.enderecoList = enderecoList;
+    }
+
+    public List<Pedido> getPedidoList() {
+        return pedidoList;
+    }
+
+    public void setPedidoList(List<Pedido> pedidoList) {
+        this.pedidoList = pedidoList;
     }
 
     public String getNome() {

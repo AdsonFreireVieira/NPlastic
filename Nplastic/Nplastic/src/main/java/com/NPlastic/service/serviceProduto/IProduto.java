@@ -1,6 +1,5 @@
 package com.NPlastic.service.serviceProduto;
 
-import com.NPlastic.dto.dtoProduto.ProdutoRequest;
 import com.NPlastic.dto.dtoProduto.ProdutoResponse;
 
 import java.util.List;

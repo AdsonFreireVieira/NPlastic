@@ -1,14 +1,13 @@
 package com.NPlastic.service.ServiceUser;
 
-import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
 import java.util.List;
 
 public interface ClientesService {
 
-    public ClientesResponseDTO criar(ClientesRequestDTO userRequestDTO);
+    public ClientesResponseDTO criar(ClientesResponseDTO clientesResponseDTO);
 
-    public ClientesResponseDTO update(ClientesRequestDTO userRequestDTO);
+    public ClientesResponseDTO update(ClientesResponseDTO clientesResponseDTO);
 
     public List<ClientesResponseDTO> ListarUser();
 

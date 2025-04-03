@@ -16,7 +16,7 @@ public class Endereco {
     private String numero;
 
     @Column
-    private  int cep;
+    private int cep;
 
     @Column
     private String cidade;
@@ -29,7 +29,7 @@ public class Endereco {
 
     @ManyToOne
     @JoinColumn(name = "Cliente_id")
-    private Clientes cliente;
+    private Clientes clientes;
 
 
     public Endereco() {
@@ -83,11 +83,11 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public Clientes getCliente() {
-        return cliente;
+    public Clientes getClientes() {
+        return clientes;
     }
 
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 }

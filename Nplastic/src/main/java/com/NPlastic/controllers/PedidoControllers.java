@@ -1,6 +1,5 @@
 package com.NPlastic.controllers;
 
-import com.NPlastic.dto.DtoPedido.PedidoRequest;
 import com.NPlastic.dto.DtoPedido.PedidoResponse;
 import com.NPlastic.service.ServicePedido.PedidoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +17,19 @@ public class PedidoControllers {
 
 
     @PostMapping
-    public ResponseEntity<PedidoResponse> criarPedido(@RequestBody PedidoRequest pedidoRequest){
+    public ResponseEntity<PedidoResponse> criarPedido(@RequestBody PedidoResponse pedidoResponse){
 
 
 
-        return ResponseEntity.ok().body(service.criarPedido(pedidoRequest));
+        return ResponseEntity.ok().body(service.criarPedido(pedidoResponse));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<PedidoResponse> atualizarPedido(@RequestBody PedidoRequest pedidoRequest,
+    public ResponseEntity<PedidoResponse> atualizarPedido(@RequestBody PedidoResponse pedidoResponse,
                                                           @PathVariable int id){
 
-        if(pedidoRequest != null){
+        if(pedidoResponse != null){
 
-            return ResponseEntity.ok().body(service.alterarPedido(pedidoRequest));
+            return ResponseEntity.ok().body(service.alterarPedido(pedidoResponse));
         }
         return  ResponseEntity.notFound().build();
 

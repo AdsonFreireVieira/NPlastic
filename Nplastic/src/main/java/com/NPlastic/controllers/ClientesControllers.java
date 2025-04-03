@@ -1,6 +1,5 @@
 package com.NPlastic.controllers;
 
-import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
 import com.NPlastic.service.ServiceUser.ClienteServiceEmpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,28 +17,28 @@ public class ClientesControllers {
     private ClienteServiceEmpl service;
 
     @PostMapping
-    public ResponseEntity<ClientesResponseDTO> criarUser(@RequestBody ClientesRequestDTO clientesRequestDTO) {
+    public ResponseEntity<ClientesResponseDTO> criarUser(@RequestBody ClientesResponseDTO clientesResponseDTO) {
 
-        if (clientesRequestDTO != null) {
+        if (clientesResponseDTO != null) {
 
-            ClientesResponseDTO userResponseDTO = service.criar(clientesRequestDTO);
+            ClientesResponseDTO userResponseDTO = service.criar(clientesResponseDTO);
 
             return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                             .path("/{id}")
-                            .buildAndExpand(clientesRequestDTO.getId())
+                            .buildAndExpand(clientesResponseDTO.getId())
                             .toUri())
                     .body(userResponseDTO);
     }
         return ResponseEntity.notFound().build();
 }
         @PutMapping("/{id}")
-        public ResponseEntity<ClientesResponseDTO> updateUSer (@RequestBody ClientesRequestDTO clientesRequestDTO,
+        public ResponseEntity<ClientesResponseDTO> updateUSer (@RequestBody ClientesResponseDTO clientesResponseDTO,
         @PathVariable int id){
 
-            clientesRequestDTO.setId(id);
-            if (clientesRequestDTO != null) {
+            clientesResponseDTO.setId(id);
+            if (clientesResponseDTO != null) {
 
-                return ResponseEntity.ok().body(service.update(clientesRequestDTO));
+                return ResponseEntity.ok().body(service.update(clientesResponseDTO));
             }
 
             return ResponseEntity.notFound().build();

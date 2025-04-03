@@ -3,7 +3,6 @@ package com.NPlastic.mapper;
 
 
 import com.NPlastic.Entity.Clientes;
-import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,24 +16,12 @@ public interface  Clientesmapper {
 
     Clientesmapper INSTANCE = Mappers.getMapper(Clientesmapper.class);
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "nome", target = "nome")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "telefone", target = "telefone")
-    @Mapping(source = "senha", target = "senha")
-    @Mapping(source = "data", target = "data")
-    Clientes toCliente(ClientesRequestDTO userRequestDTO);
+    Clientes toEntity(ClientesResponseDTO clientesResponseDTO);
 
-    @Mapping(source = "nome", target = "nome")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "telefone", target = "telefone")
-    @Mapping(source = "senha", target = "senha")
-    @Mapping(source = "data", target = "data")
-
-   ClientesResponseDTO toResponseDto(Clientes user);
+    ClientesResponseDTO toDTO(Clientes clientes);
 
 
-     List<ClientesResponseDTO> toListResponseDto(List<Clientes>  cliente);
+     List<ClientesResponseDTO> toDTOLIst(List<Clientes>  cliente);
 
         }
 

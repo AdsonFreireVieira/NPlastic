@@ -2,6 +2,7 @@ package com.NPlastic.dto.dtoProduto;
 
 public class ProdutoResponse {
 
+    private Integer id_Produto;
 
     private String nome;
 
@@ -16,6 +17,14 @@ public class ProdutoResponse {
     private int estoque;
 
     private double valorKg;
+
+    public Integer getId_Produto() {
+        return id_Produto;
+    }
+
+    public void setId_Produto(Integer id_Produto) {
+        this.id_Produto = id_Produto;
+    }
 
     public String getNome() {
         return nome;

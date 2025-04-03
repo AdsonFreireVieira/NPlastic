@@ -34,9 +34,6 @@ public class Produto {
     @Column
     private double valorKg;
 
-    @OneToMany(mappedBy ="produto")
-    private List<Itens_Pedido> itens;
-
     public Integer getId_Produto() {
         return id_Produto;
     }
@@ -104,11 +101,4 @@ public class Produto {
         this.valorKg = valorKg;
     }
 
-    public List<Itens_Pedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<Itens_Pedido> itens) {
-        this.itens = itens;
-    }
 }

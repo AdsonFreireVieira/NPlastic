@@ -1,15 +1,14 @@
 package com.NPlastic.service.ServiceEndereco;
 
-import com.NPlastic.dto.dtoEndereco.EnderecoRequest;
 import com.NPlastic.dto.dtoEndereco.EnderecoResponse;
 
 import java.util.List;
 
 public interface IEndereco {
 
-    public EnderecoResponse CriarEndereco(EnderecoRequest request);
+    public EnderecoResponse CriarEndereco(EnderecoResponse request);
 
-    public EnderecoResponse atualizarEndereco(EnderecoRequest request);
+    public EnderecoResponse atualizarEndereco(EnderecoResponse request);
 
     public List<EnderecoResponse> listarEndereco();
 

@@ -1,7 +1,6 @@
 package com.NPlastic.service.serviceProduto;
 
 import com.NPlastic.Entity.Produto;
-import com.NPlastic.dto.dtoProduto.ProdutoRequest;
 import com.NPlastic.dto.dtoProduto.ProdutoResponse;
 import com.NPlastic.mapper.ProdutoMapper;
 import com.NPlastic.repository.ProdutoRepository;

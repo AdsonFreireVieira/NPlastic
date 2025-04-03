@@ -1,26 +1,32 @@
 package com.NPlastic.dto.DtoPedido;
 
-import com.NPlastic.dto.ItensDto.Itens_Request;
+import com.NPlastic.Entity.Clientes;
+import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.dto.ItensDto.Itens_Response;
-import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class PedidoResponse {
 
+    private Integer Id;
+
     private LocalDate data;
 
     private String status;
 
-    private List<Itens_Response> itensResponseList;
+    private List<Itens_Pedido> itens;
 
-    private ClientesResponseDTO clientesResponse;
+    private Clientes clientes;
 
+    public Integer getId() {
+        return Id;
+    }
 
-    public PedidoResponse(LocalDate data) {
-        this.data = data;
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public LocalDate getData() {
@@ -39,19 +45,19 @@ public class PedidoResponse {
         this.status = status;
     }
 
-    public List<Itens_Response> getItensResponseList() {
-        return itensResponseList;
+    public List<Itens_Pedido> getItens() {
+        return itens;
     }
 
-    public void setItensResponseList(List<Itens_Response> itensResponseList) {
-        this.itensResponseList = itensResponseList;
+    public void setItens(List<Itens_Pedido> itens) {
+        this.itens = itens;
     }
 
-    public ClientesResponseDTO getClientesResponse() {
-        return clientesResponse;
+    public Clientes getClientes() {
+        return clientes;
     }
 
-    public void setClientesResponse(ClientesResponseDTO clientesResponse) {
-        this.clientesResponse = clientesResponse;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 }

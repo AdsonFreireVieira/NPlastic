@@ -1,7 +1,6 @@
 package com.NPlastic.service.ServiceEndereco;
 
 import com.NPlastic.Entity.Endereco;
-import com.NPlastic.dto.dtoEndereco.EnderecoRequest;
 import com.NPlastic.dto.dtoEndereco.EnderecoResponse;
 import com.NPlastic.mapper.EnderecoMapper;
 import com.NPlastic.repository.EnderecoRepository;

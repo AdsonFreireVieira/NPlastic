@@ -1,8 +1,6 @@
 package com.NPlastic.controllers;
 
-import com.NPlastic.dto.dtoEndereco.EnderecoRequest;
 import com.NPlastic.dto.dtoEndereco.EnderecoResponse;
-import com.NPlastic.service.ServiceEndereco.IEndereco;
 import com.NPlastic.service.ServiceEndereco.ServiceEnderecoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +17,13 @@ public class EnderecoControllers {
     private ServiceEnderecoImpl service;
 
     @PostMapping
-    public ResponseEntity<EnderecoResponse> criarEndereco(@RequestBody EnderecoRequest enderecoRequest){
+    public ResponseEntity<EnderecoResponse> criarEndereco(@RequestBody EnderecoResponse enderecoResponse){
 
-        if(enderecoRequest != null){
-             EnderecoResponse enderecoResponse = service.CriarEndereco(enderecoRequest);
+        if(enderecoResponse != null){
+                            service.CriarEndereco(enderecoResponse);
 
             return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}").buildAndExpand(enderecoRequest.getId()).toUri()).body(enderecoResponse);
+                    .path("/{id}").buildAndExpand(enderecoResponse.getId()).toUri()).body(enderecoResponse);
 
         }else {
             return ResponseEntity.notFound().build();
@@ -33,13 +31,13 @@ public class EnderecoControllers {
 
     }
     @PutMapping("/{id}")
-    public ResponseEntity<EnderecoResponse> atualizarEnderco(@RequestBody EnderecoRequest enderecoRequest , @PathVariable int id) {
+    public ResponseEntity<EnderecoResponse> atualizarEnderco(@RequestBody EnderecoResponse enderecoResponse , @PathVariable int id) {
 
-        enderecoRequest.setId(id);
+        enderecoResponse.setId(id);
 
-        if (enderecoRequest != null) {
+        if (enderecoResponse != null) {
 
-            return ResponseEntity.ok().body(service.atualizarEndereco(enderecoRequest));
+            return ResponseEntity.ok().body(service.atualizarEndereco(enderecoResponse));
         } else {
 
             return ResponseEntity.notFound().build();
