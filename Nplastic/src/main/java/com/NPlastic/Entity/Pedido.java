@@ -1,5 +1,6 @@
 package com.NPlastic.Entity;
 
+import com.NPlastic.dto.ItensDto.Itens_Response;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -22,7 +23,7 @@ public class Pedido {
     private String status;
 
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
-    private List<Itens_Pedido> itens;
+    private List<Itens_Response> itens;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -58,13 +59,5 @@ public class Pedido {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public List<Itens_Pedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<Itens_Pedido> itens) {
-        this.itens = itens;
     }
 }

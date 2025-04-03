@@ -1,8 +1,7 @@
 package com.NPlastic.service.ServiceUser;
 
 import com.NPlastic.Entity.Clientes;
-import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
-import com.NPlastic.mapper.Clientesmapper;
+
 
 import com.NPlastic.repository.ClientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +16,21 @@ public class ClienteServiceEmpl implements ClientesService{
     private ClientesRepository repository;
 
     @Override
-    public ClientesResponseDTO criar(ClientesResponseDTO clientesResponseDTO) {
+    public Clientes criar(Clientes clientes) {
 
-        Clientes cliente = Clientesmapper.INSTANCE.toEntity(clientesResponseDTO);
 
-        return  Clientesmapper.INSTANCE.toDTO(repository.save(cliente));
+        return  repository.save(clientes);
     }
 
     @Override
-    public ClientesResponseDTO update(ClientesResponseDTO clientesResponseDTO) {
+    public Clientes update(Clientes clientes) {
 
-        Clientes cliente = Clientesmapper.INSTANCE.toEntity(clientesResponseDTO);
-        return  Clientesmapper.INSTANCE.toDTO(repository.save(cliente));
+        return  repository.save(clientes);
     }
 
     @Override
-    public List<ClientesResponseDTO> ListarUser() {
-        return Clientesmapper.INSTANCE.toDTOLIst((List<Clientes>)repository.findAll());
+    public List<Clientes> ListarUser() {
+        return(List<Clientes>)repository.findAll();
     }
 
     @Override
@@ -43,7 +40,7 @@ public class ClienteServiceEmpl implements ClientesService{
     }
 
     @Override
-    public ClientesResponseDTO BuscarPorID(int id) {
-        return Clientesmapper.INSTANCE.toDTO(repository.findById(id).orElse(null));
+    public Clientes BuscarPorID(int id) {
+        return  repository.findById(id).orElse(null);
     }
 }

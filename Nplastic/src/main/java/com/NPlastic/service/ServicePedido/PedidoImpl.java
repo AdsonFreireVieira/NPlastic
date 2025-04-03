@@ -2,8 +2,6 @@ package com.NPlastic.service.ServicePedido;
 
 import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
-import com.NPlastic.dto.DtoPedido.PedidoResponse;
-import com.NPlastic.mapper.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
