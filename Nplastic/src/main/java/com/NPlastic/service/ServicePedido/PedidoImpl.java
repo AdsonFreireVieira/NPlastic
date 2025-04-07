@@ -15,6 +15,12 @@ public class PedidoImpl implements  IPedidoService{
 
     @Override
     public Pedido criarPedido(Pedido pedido) {
+
+        for(Itens_Pedido item : pedido.getItens()){
+
+            item.setPedido(pedido);
+        }
+
         return  pedidoRepository.save(pedido);
 
     }

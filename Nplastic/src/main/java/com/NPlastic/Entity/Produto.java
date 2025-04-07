@@ -26,7 +26,7 @@ public class Produto {
     private String cor;
 
     @Column
-    private Double Peso;
+    private Double peso;
 
     @Column
     private int estoque;
@@ -86,11 +86,11 @@ public class Produto {
     }
 
     public Double getPeso() {
-        return Peso;
+        return peso;
     }
 
     public void setPeso(Double peso) {
-        Peso = peso;
+        this.peso = peso;
     }
 
     public double getValorKg() {

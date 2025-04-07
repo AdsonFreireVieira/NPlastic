@@ -31,11 +31,9 @@ public class Clientes {
     @Column
     private LocalDate data;
 
-    @OneToMany(mappedBy = "clientes" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "clientes")
    private List<Endereco> enderecoList;
 
-    @OneToMany(mappedBy = "clientes",cascade = CascadeType.ALL)
-    private List<Pedido> pedidoList;
 
     public List<Endereco> getEnderecoList() {
         return enderecoList;
@@ -43,14 +41,6 @@ public class Clientes {
 
     public void setEnderecoList(List<Endereco> enderecoList) {
         this.enderecoList = enderecoList;
-    }
-
-    public List<Pedido> getPedidoList() {
-        return pedidoList;
-    }
-
-    public void setPedidoList(List<Pedido> pedidoList) {
-        this.pedidoList = pedidoList;
     }
 
     public Integer getId() {

@@ -19,9 +19,13 @@ public class PedidoControllers {
     @PostMapping
     public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido pedido){
 
+        Pedido res = service.criarPedido(pedido);
+        if (res != null){
 
+            return  ResponseEntity.ok(res);
+        }
 
-        return ResponseEntity.ok().body(service.criarPedido(pedido));
+        return ResponseEntity.notFound().build();
     }
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> atualizarPedido(@RequestBody Pedido pedido,

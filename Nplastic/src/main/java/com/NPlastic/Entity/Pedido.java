@@ -1,6 +1,7 @@
 package com.NPlastic.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -22,9 +23,10 @@ public class Pedido {
     private String status;
 
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("pedido")
     private List<Itens_Pedido> itens;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "cliente_id")
     private Clientes clientes;
 
@@ -54,6 +56,14 @@ public class Pedido {
 
     public void setClientes(Clientes clientes) {
         this.clientes = clientes;
+    }
+
+    public List<Itens_Pedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Itens_Pedido> itens) {
+        this.itens = itens;
     }
 
     public void setStatus(String status) {

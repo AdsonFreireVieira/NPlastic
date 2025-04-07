@@ -1,5 +1,6 @@
 package com.NPlastic.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,18 +15,16 @@ public class Itens_Pedido {
     @Column
     private int quantidade;
 
-    @Column
-    private  int totalItens;
-
-    @Column
+        @Column
     private double valorItens;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
+    @ManyToOne()
+    @JoinColumn( name = "pedido_id")
     private Pedido pedido;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name ="produto_id")
+    @JsonIgnoreProperties("itens")
     private Produto produto;
 
     public Produto getProduto() {
@@ -67,14 +66,6 @@ public class Itens_Pedido {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public int getTotalItens() {
-        return totalItens;
-    }
-
-    public void setTotalItens(int totalItens) {
-        this.totalItens = totalItens;
     }
 
     public double getValorItens() {
