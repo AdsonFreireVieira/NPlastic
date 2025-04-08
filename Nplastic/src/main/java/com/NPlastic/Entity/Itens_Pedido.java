@@ -15,42 +15,18 @@ public class Itens_Pedido {
     @Column
     private int quantidade;
 
-        @Column
+    @Column
     private double valorItens;
 
     @ManyToOne()
-    @JoinColumn( name = "pedido_id")
+    @JoinColumn(name = "pedido")
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn(name ="produto_id")
+    @JoinColumn(name = "produto_id")
     @JsonIgnoreProperties("itens")
     private Produto produto;
 
-    public Produto getProduto() {
-        return produto;
-
-        }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    public Produto getProdutoResponse() {
-        return produto;
-    }
-
-    public void setProdutoResponse(Produto produto) {
-        this.produto = produto;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedidoResponse) {
-        this.pedido = pedido;
-    }
 
     public Integer getId_Itens() {
         return id_Itens;
@@ -75,4 +51,21 @@ public class Itens_Pedido {
     public void setValorItens(double valorItens) {
         this.valorItens = valorItens;
     }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 }
+

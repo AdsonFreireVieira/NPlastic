@@ -31,18 +31,6 @@ public class Clientes {
     @Column
     private LocalDate data;
 
-    @OneToMany(mappedBy = "clientes")
-   private List<Endereco> enderecoList;
-
-
-    public List<Endereco> getEnderecoList() {
-        return enderecoList;
-    }
-
-    public void setEnderecoList(List<Endereco> enderecoList) {
-        this.enderecoList = enderecoList;
-    }
-
     public Integer getId() {
         return id;
     }
