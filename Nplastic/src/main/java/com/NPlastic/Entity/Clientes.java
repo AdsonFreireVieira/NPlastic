@@ -11,7 +11,6 @@ public class Clientes {
 
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Id
     @Column
     private Integer id;
