@@ -1,5 +1,7 @@
 package com.NPlastic.controllers;
 
+import com.NPlastic.Dto.ClientesDto.ClientesRequest;
+import com.NPlastic.Dto.ClientesDto.ClientesResponse;
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.service.ServiceUser.ClienteServiceEmpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,35 +18,35 @@ public class ClientesControllers {
     private ClienteServiceEmpl service;
 
     @PostMapping
-    public ResponseEntity<Clientes> criarUser(@RequestBody Clientes clientes) {
+    public ResponseEntity<ClientesResponse> criarUser(@RequestBody ClientesRequest clientesRequest) {
 
-        if (clientes != null) {
+        if (clientesRequest != null) {
 
-            service.criar(clientes);
+           return ResponseEntity.ok(service.criar(clientesRequest));
 
         }
         return ResponseEntity.notFound().build();
 }
         @PutMapping("/{id}")
-        public ResponseEntity<Clientes> updateUSer (@RequestBody Clientes clientes,
+        public ResponseEntity<ClientesResponse> updateUSer (@RequestBody ClientesRequest clientesRequest,
         @PathVariable int id){
 
-          clientes.setId(id);
-            if (clientes != null) {
+          clientesRequest.setId(id);
+            if (clientesRequest != null) {
 
-                return ResponseEntity.ok().body(service.update(clientes));
+                return ResponseEntity.ok().body(service.update(clientesRequest));
             }
 
             return ResponseEntity.notFound().build();
         }
         @GetMapping
-        public ResponseEntity<List<Clientes>> listarTodos() {
+        public ResponseEntity<List<ClientesResponse>> listarTodos() {
 
             return ResponseEntity.ok().body(service.ListarUser());
         }
 
         @GetMapping("/{id}")
-        public ResponseEntity<Clientes> buscarPorId (@PathVariable int id){
+        public ResponseEntity<ClientesResponse> buscarPorId (@PathVariable int id){
 
             return ResponseEntity.ok().body(service.BuscarPorID(id));
         }

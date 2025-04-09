@@ -1,8 +1,11 @@
 package com.NPlastic.service.ServiceUser;
 
+import com.NPlastic.Dto.ClientesDto.ClientesRequest;
+import com.NPlastic.Dto.ClientesDto.ClientesResponse;
 import com.NPlastic.Entity.Clientes;
 
 
+import com.NPlastic.Mappers.ClientesMapper;
 import com.NPlastic.repository.ClientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,31 +19,34 @@ public class ClienteServiceEmpl implements ClientesService{
     private ClientesRepository repository;
 
     @Override
-    public Clientes criar(Clientes clientes) {
+    public ClientesResponse criar(ClientesRequest clientesRequest) {
 
+        Clientes clientes =  ClientesMapper.INSTANCE.toEntity(clientesRequest);
 
-        return  repository.save(clientes);
+        return ClientesMapper.INSTANCE.toDto(repository.save(clientes));
     }
 
     @Override
-    public Clientes update(Clientes clientes) {
+    public ClientesResponse update(ClientesRequest clientesRequests) {
 
-        return  repository.save(clientes);
+        Clientes clientes =  ClientesMapper.INSTANCE.toEntity(clientesRequests);
+
+        return ClientesMapper.INSTANCE.toDto(repository.save(clientes));
     }
 
     @Override
-    public List<Clientes> ListarUser() {
-        return(List<Clientes>)repository.findAll();
+    public List<ClientesResponse> ListarUser() {
+        return ClientesMapper.INSTANCE.convertListResponse((List<Clientes>)repository.findAll());
     }
 
     @Override
     public void deletarUser(int id) {
 
-          repository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
-    public Clientes BuscarPorID(int id) {
-        return  repository.findById(id).orElse(null);
+    public ClientesResponse BuscarPorID(int id) {
+        return ClientesMapper.INSTANCE.toDto( repository.findById(id).orElse(null));
     }
 }
