@@ -1,5 +1,7 @@
 package com.NPlastic.controllers;
 
+import com.NPlastic.Dto.EnderecoDto.EnderecoRequest;
+import com.NPlastic.Dto.EnderecoDto.EnderecoResponse;
 import com.NPlastic.Entity.Endereco;
 import com.NPlastic.service.ServiceEndereco.ServiceEnderecoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,11 @@ public class EnderecoControllers {
     private ServiceEnderecoImpl service;
 
     @PostMapping
-    public ResponseEntity<Endereco> criarEndereco(@RequestBody Endereco endereco){
+    public ResponseEntity<EnderecoResponse> criarEndereco(@RequestBody EnderecoRequest enderecoRequest){
 
-        if(endereco != null){
-                            service.CriarEndereco(endereco);
+        if(enderecoRequest != null){
 
-            return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}").buildAndExpand(endereco.getId()).toUri()).body(endereco);
+            return ResponseEntity.ok().body(service.CriarEndereco(enderecoRequest));
 
         }else {
             return ResponseEntity.notFound().build();
@@ -31,27 +31,27 @@ public class EnderecoControllers {
 
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Endereco> atualizarEnderco(@RequestBody Endereco endereco , @PathVariable int id) {
+    public ResponseEntity<EnderecoResponse> atualizarEnderco(@RequestBody EnderecoRequest enderecoRequest , @PathVariable int id) {
 
-        endereco.setId(id);
+        enderecoRequest.setId(id);
 
-        if (endereco != null) {
+        if (enderecoRequest != null) {
 
-            return ResponseEntity.ok().body(service.atualizarEndereco(endereco));
+            return ResponseEntity.ok().body(service.atualizarEndereco(enderecoRequest));
         } else {
 
             return ResponseEntity.notFound().build();
         }
     }
     @GetMapping
-    public ResponseEntity <List<Endereco>> listarEndereco(){
+    public ResponseEntity <List<EnderecoResponse>> listarEndereco(){
 
         return ResponseEntity.ok().body(service.listarEndereco());
 
         }
 
      @GetMapping("/{id}")
-    public ResponseEntity<Endereco> buscarPorId(@PathVariable int id){
+    public ResponseEntity<EnderecoResponse> buscarPorId(@PathVariable int id){
 
         return ResponseEntity.ok().body(service.BuscarPorId(id));
      }
