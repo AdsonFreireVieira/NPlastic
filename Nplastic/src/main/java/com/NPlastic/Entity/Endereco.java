@@ -22,7 +22,7 @@ public class Endereco {
     private String cidade;
 
     @Column
-    private String Bairro;
+    private String bairro;
 
     @Column
     private String estado;
@@ -68,12 +68,11 @@ public class Endereco {
     }
 
     public String getBairro() {
-        return Bairro;
+        return bairro;
     }
 
-
     public void setBairro(String bairro) {
-        Bairro = bairro;
+        this.bairro = bairro;
     }
 
     public String getEstado() {

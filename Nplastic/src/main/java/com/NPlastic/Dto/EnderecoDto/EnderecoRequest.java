@@ -16,7 +16,7 @@ public class EnderecoRequest {
     private String cidade;
 
 
-    private String Bairro;
+    private String bairro;
 
 
     private String estado;
@@ -60,11 +60,11 @@ public class EnderecoRequest {
     }
 
     public String getBairro() {
-        return Bairro;
+        return bairro;
     }
 
     public void setBairro(String bairro) {
-        Bairro = bairro;
+        this.bairro = bairro;
     }
 
     public String getEstado() {
