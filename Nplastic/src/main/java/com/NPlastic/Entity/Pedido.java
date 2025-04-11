@@ -2,6 +2,7 @@ package com.NPlastic.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,28 +15,28 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column
-    private Integer Id;
+    private Integer id;
 
     @Column
     private LocalDate data;
 
     @Column
     private String status;
-
-    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL,orphanRemoval = true)
-    @JsonIgnoreProperties("pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Itens_Pedido> itens;
+
 
     @ManyToOne()
     @JoinColumn(name = "cliente_id")
     private Clientes clientes;
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public LocalDate getData() {

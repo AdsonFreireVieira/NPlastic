@@ -1,33 +1,24 @@
-package com.NPlastic.Entity;
+package com.NPlastic.Dto.ItensDto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.NPlastic.Entity.Pedido;
+import com.NPlastic.Entity.Produto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-@Entity
-@Table(name = "tbl_Itens")
-public class Itens_Pedido {
+public class Itens_Response {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column
     private Integer id_Itens;
 
-    @Column
+
     private int quantidade;
 
-    @Column
-    private double valorItens;
+      private double valorItens;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido")
-    @JsonBackReference
     private Pedido pedido;
 
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
     private Produto produto;
-
 
     public Integer getId_Itens() {
         return id_Itens;
@@ -69,4 +60,3 @@ public class Itens_Pedido {
         this.produto = produto;
     }
 }
-

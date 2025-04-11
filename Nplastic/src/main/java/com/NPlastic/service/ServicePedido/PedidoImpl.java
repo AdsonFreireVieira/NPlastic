@@ -1,7 +1,10 @@
 package com.NPlastic.service.ServicePedido;
 
+import com.NPlastic.Dto.PedidoDto.PedidoRequest;
+import com.NPlastic.Dto.PedidoDto.PedidoResponse;
 import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
+import com.NPlastic.Mappers.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,39 +17,47 @@ public class PedidoImpl implements  IPedidoService{
     PedidoRepository pedidoRepository;
 
     @Override
-    public Pedido criarPedido(Pedido pedido) {
+    public PedidoResponse criarPedido(PedidoRequest pedidoRequest) {
 
-        for(Itens_Pedido item : pedido.getItens()){
+        Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoRequest);
+
+        for(Itens_Pedido item : pedidoRequest.getItens()){
 
             item.setPedido(pedido);
         }
 
-        return  pedidoRepository.save(pedido);
+        return PedidoMapper.INSTANCE.toDto(pedidoRepository.save(pedido));
 
     }
 
-
-
     @Override
-    public Pedido alterarPedido(Pedido pedido) {
+    public PedidoResponse alterarPedido(PedidoRequest pedidoRequest) {
 
+        Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoRequest);
 
-        return pedidoRepository.save(pedido);
+        for(Itens_Pedido item : pedidoRequest.getItens()){
+
+            item.setPedido(pedido);
+        }
+
+        return PedidoMapper.INSTANCE.toDto(pedidoRepository.save(pedido));
+
     }
 
     @Override
-    public List<Pedido> listarPedido() {
-        return (List<Pedido>) pedidoRepository.findAll();
+    public List<PedidoResponse> listarPedido() {
+        return  PedidoMapper.INSTANCE.convertListDto((List < Pedido >) pedidoRepository.findAll());
     }
 
     @Override
-    public Pedido buscarPorId(int id) {
+    public PedidoResponse buscarPorId(int id) {
 
-        return pedidoRepository.findById(id).orElse(null);
+        return PedidoMapper.INSTANCE.toDto(pedidoRepository.findById(id).orElse(null));
     }
 
     @Override
     public String deletarPedido(int id) {
+
         return "REMOVIDO";
     }
 }
