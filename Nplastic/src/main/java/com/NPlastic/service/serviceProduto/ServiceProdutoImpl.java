@@ -1,6 +1,9 @@
 package com.NPlastic.service.serviceProduto;
 
+import com.NPlastic.Dto.ProdutosDto.ProdutoRequest;
+import com.NPlastic.Dto.ProdutosDto.ProdutoResponse;
 import com.NPlastic.Entity.Produto;
+import com.NPlastic.Mappers.ProdutoMapper;
 import com.NPlastic.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,26 +17,31 @@ public class ServiceProdutoImpl implements IProduto{
     private ProdutoRepository repository;
 
     @Override
-    public Produto criarProduto(Produto produto) {
+    public ProdutoResponse criarProduto(ProdutoRequest produtoRequest) {
 
-        return repository.save(produto);
+        Produto produto =ProdutoMapper.INSTANCE.toEntity(produtoRequest);
+
+        return ProdutoMapper.INSTANCE.toDto( repository.save(produto));
     }
 
     @Override
-    public Produto AtualizaProduto(Produto  produto) {
+    public ProdutoResponse AtualizaProduto(ProdutoRequest  produtoRequesto) {
 
-        return repository.save(produto);
+        Produto produto = ProdutoMapper.INSTANCE.toEntity(produtoRequesto);
+        return ProdutoMapper.INSTANCE.toDto(repository.save(produto));
 
     }
 
     @Override
-    public List<Produto> listarProdutos() {
-        return (List<Produto>)repository.findAll();
+    public List<ProdutoResponse> listarProdutos() {
+
+        return ProdutoMapper.INSTANCE.convertListDto((List<Produto>)repository.findAll());
     }
 
     @Override
-    public Produto buscarPorId(int id) {
-        return repository.findById(id).orElse(null);
+    public ProdutoResponse buscarPorId(int id) {
+
+        return ProdutoMapper.INSTANCE.toDto(repository.findById(id).orElse(null));
     }
 
     @Override

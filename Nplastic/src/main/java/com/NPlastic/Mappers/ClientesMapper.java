@@ -24,7 +24,7 @@ public interface ClientesMapper {
     Clientes toEntity(ClientesRequest clientesRequest);
 
     @Mapping(target = "nome",source = "nome")
-    @Mapping(target = "email",source = "nome")
+    @Mapping(target = "email",source = "email")
     @Mapping(target = "telefone",source = "telefone")
     @Mapping(target = "senha",source = "senha")
     @Mapping(target = "data",source = "data")

@@ -1,5 +1,7 @@
 package com.NPlastic.controllers;
 
+import com.NPlastic.Dto.ProdutosDto.ProdutoRequest;
+import com.NPlastic.Dto.ProdutosDto.ProdutoResponse;
 import com.NPlastic.Entity.Produto;
 import com.NPlastic.service.serviceProduto.ServiceProdutoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,30 +18,30 @@ public class ProdutoControllers {
     private ServiceProdutoImpl service;
 
     @PostMapping
-    public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {
+    public ResponseEntity<ProdutoResponse> criarProduto(@RequestBody ProdutoRequest produto) {
 
         return ResponseEntity.ok(service.criarProduto(produto));
 
 
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizaProduto(@RequestBody Produto produto,
+    public ResponseEntity<ProdutoResponse> atualizaProduto(@RequestBody ProdutoRequest produtoRequest,
                                                            @PathVariable int id){
-        produto.setId_Produto(id);
+        produtoRequest.setId_Produto(id);
 
-        if(produto != null) {
-            return ResponseEntity.ok().body(service.AtualizaProduto(produto));
+        if(produtoRequest != null) {
+            return ResponseEntity.ok().body(service.AtualizaProduto(produtoRequest));
         }
         return ResponseEntity.notFound().build();
 
     }
     @GetMapping
-    public ResponseEntity <List<Produto>> listarProduto(){
+    public ResponseEntity <List<ProdutoResponse>> listarProduto(){
 
         return ResponseEntity.ok().body(service.listarProdutos());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Produto>buscarPorId(@PathVariable int id){
+    public ResponseEntity<ProdutoResponse>buscarPorId(@PathVariable int id){
 
         return ResponseEntity.ok().body(service.buscarPorId(id));
     }

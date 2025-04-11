@@ -1,18 +1,18 @@
 package com.NPlastic.service.serviceProduto;
 
-import com.NPlastic.Entity.Produto;
-
+import com.NPlastic.Dto.ProdutosDto.ProdutoRequest;
+import com.NPlastic.Dto.ProdutosDto.ProdutoResponse;
 import java.util.List;
 
 public interface IProduto {
 
-    public Produto criarProduto(Produto produto);
+    public  ProdutoResponse criarProduto(ProdutoRequest produtoRequest);
 
-    public Produto AtualizaProduto(Produto produto );
+    public ProdutoResponse AtualizaProduto(ProdutoRequest produtoRequest );
 
-    public List<Produto> listarProdutos();
+    public List<ProdutoResponse> listarProdutos();
 
-    public Produto buscarPorId(int id);
+    public ProdutoResponse buscarPorId(int id);
 
     public String deletarProduto(int id);
 }
