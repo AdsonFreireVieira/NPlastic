@@ -13,6 +13,10 @@ public class PedidoResponse {
 
     private String status;
 
+    private int quantidade;
+
+    private double valorTotal;
+
     private List<Itens_Pedido> itens;
 
     private Clientes clientes;
@@ -44,6 +48,22 @@ public class PedidoResponse {
 
     public Clientes getClientes() {
         return clientes;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public void setClientes(Clientes clientes) {

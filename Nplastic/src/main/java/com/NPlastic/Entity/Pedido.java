@@ -21,6 +21,12 @@ public class Pedido {
     private LocalDate data;
 
     @Column
+    private int quantidade;
+
+    @Column
+    private double valorTotal;
+
+    @Column
     private String status;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -33,6 +39,22 @@ public class Pedido {
 
     public Integer getId() {
         return id;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public void setId(Integer id) {

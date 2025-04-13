@@ -23,8 +23,19 @@ public class PedidoImpl implements  IPedidoService{
 
         for(Itens_Pedido item : pedidoRequest.getItens()){
 
+            item.setQuantidade(item.getProduto().getQuantidade());
+            item.setValorItens(item.getProduto().getQuantidade()* item.getProduto().getValorKg());
+
+            pedido.setQuantidade(pedido.getItens().size());
+            pedido.setValorTotal(item.getValorItens());
+
             item.setPedido(pedido);
+
+
         }
+
+
+
 
         return PedidoMapper.INSTANCE.toDto(pedidoRepository.save(pedido));
 
@@ -36,6 +47,8 @@ public class PedidoImpl implements  IPedidoService{
         Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoRequest);
 
         for(Itens_Pedido item : pedidoRequest.getItens()){
+
+
 
             item.setPedido(pedido);
         }

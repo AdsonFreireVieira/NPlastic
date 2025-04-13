@@ -14,6 +14,10 @@ public class PedidoRequest {
 
     private LocalDate data;
 
+    private int quantidade;
+
+    private double valorTotal;
+
     private String status;
 
     private List<Itens_Pedido> itens;
@@ -38,6 +42,22 @@ public class PedidoRequest {
 
     public String getStatus() {
         return status;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public void setStatus(String status) {
