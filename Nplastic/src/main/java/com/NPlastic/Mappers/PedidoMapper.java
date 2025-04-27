@@ -29,7 +29,6 @@ public interface PedidoMapper {
     @Mapping(target = "status", source = "status")
     @Mapping(target = "quantidade", source = "quantidade")
     @Mapping(target = "valorTotal", source = "valorTotal")
-
     @Mapping(target = "itens", source = "itens")
     @Mapping(target = "clientes", source = "clientes")
 

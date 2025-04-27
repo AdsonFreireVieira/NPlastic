@@ -4,14 +4,16 @@ import com.NPlastic.Dto.PedidoDto.PedidoRequest;
 import com.NPlastic.Dto.PedidoDto.PedidoResponse;
 import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
+import com.NPlastic.Entity.Produto;
 import com.NPlastic.Mappers.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
+import com.NPlastic.service.ServicePedido.config.configuracaoItensPedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class PedidoImpl implements  IPedidoService{
+public class PedidoImpl implements  IPedidoService {
 
     @Autowired
     PedidoRepository pedidoRepository;
@@ -21,19 +23,15 @@ public class PedidoImpl implements  IPedidoService{
 
         Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoRequest);
 
-        for(Itens_Pedido item : pedidoRequest.getItens()){
-
-            item.setQuantidade(item.getProduto().getQuantidade());
-            item.setValorItens(item.getProduto().getQuantidade()* item.getProduto().getValorKg());
+        for (Itens_Pedido item : pedidoRequest.getItens()) {
 
             pedido.setQuantidade(pedido.getItens().size());
-            pedido.setValorTotal(item.getValorItens());
 
             item.setPedido(pedido);
 
-
         }
-
+        pedido.getItens().stream().forEach(itensPedido ->
+                itensPedido.setValorItens(itensPedido.getProduto().getValorKg()*11));
 
 
 
@@ -46,12 +44,11 @@ public class PedidoImpl implements  IPedidoService{
 
         Pedido pedido = PedidoMapper.INSTANCE.toEntity(pedidoRequest);
 
-        for(Itens_Pedido item : pedidoRequest.getItens()){
 
+        pedidoRequest.getItens().stream().forEach(item -> item.setPedido(pedido));
 
+        pedido.getItens().stream().forEach(itensPedido -> itensPedido.getProduto().getValorKg());
 
-            item.setPedido(pedido);
-        }
 
         return PedidoMapper.INSTANCE.toDto(pedidoRepository.save(pedido));
 

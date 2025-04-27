@@ -10,16 +10,11 @@ public class ClientesResponse {
 
     private String email;
 
-
     private String telefone;
 
     private String senha;
 
-
     private LocalDate data;
-
-    public ClientesResponse() {
-    }
 
     public String getNome() {
         return nome;

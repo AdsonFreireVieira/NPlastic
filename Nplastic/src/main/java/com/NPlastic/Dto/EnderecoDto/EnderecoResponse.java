@@ -1,24 +1,17 @@
 package com.NPlastic.Dto.EnderecoDto;
 
 import com.NPlastic.Entity.Clientes;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 public class EnderecoResponse {
 
 
-
     private String numero;
-
 
     private int cep;
 
-
     private String cidade;
 
-
-    private String Bairro;
+    private String bairro;
 
 
     private String estado;
@@ -27,6 +20,9 @@ public class EnderecoResponse {
 
     public String getNumero() {
         return numero;
+    }
+
+    public EnderecoResponse() {
     }
 
     public void setNumero(String numero) {
@@ -50,11 +46,11 @@ public class EnderecoResponse {
     }
 
     public String getBairro() {
-        return Bairro;
+        return bairro;
     }
 
     public void setBairro(String bairro) {
-        Bairro = bairro;
+        this.bairro = bairro;
     }
 
     public String getEstado() {

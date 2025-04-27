@@ -2,7 +2,7 @@ package com.NPlastic.Dto.PedidoDto;
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.Entity.Itens_Pedido;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,9 +14,12 @@ public class PedidoRequest {
 
     private LocalDate data;
 
+
     private int quantidade;
 
+
     private double valorTotal;
+
 
     private String status;
 
@@ -40,10 +43,6 @@ public class PedidoRequest {
         this.data = data;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
@@ -58,6 +57,10 @@ public class PedidoRequest {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setStatus(String status) {

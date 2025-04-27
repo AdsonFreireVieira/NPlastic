@@ -12,20 +12,18 @@ public class ClientesRequest {
 
     private String email;
 
-
     private String telefone;
-
 
     private String senha;
 
+
     private LocalDate data;
-
-
-    public ClientesRequest() {
-    }
 
     public Integer getId() {
         return id;
+    }
+
+    public ClientesRequest() {
     }
 
     public void setId(Integer id) {

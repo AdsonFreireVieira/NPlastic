@@ -6,21 +6,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 public class EnderecoRequest {
-
     private Integer id;
 
     private String numero;
 
+
     private int cep;
 
-    private String cidade;
 
+    private String cidade;
 
     private String bairro;
 
 
     private String estado;
-
 
     private Clientes clientes;
 
