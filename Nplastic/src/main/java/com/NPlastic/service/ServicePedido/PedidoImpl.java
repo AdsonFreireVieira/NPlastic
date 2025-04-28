@@ -7,16 +7,22 @@ import com.NPlastic.Entity.Pedido;
 import com.NPlastic.Entity.Produto;
 import com.NPlastic.Mappers.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
+import com.NPlastic.repository.ProdutoRepository;
 import com.NPlastic.service.ServicePedido.config.configuracaoItensPedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class PedidoImpl implements  IPedidoService {
 
     @Autowired
     PedidoRepository pedidoRepository;
+
+  @Autowired
+    configuracaoItensPedido configuracao;
 
     @Override
     public PedidoResponse criarPedido(PedidoRequest pedidoRequest) {
@@ -29,9 +35,16 @@ public class PedidoImpl implements  IPedidoService {
 
             item.setPedido(pedido);
 
+
+            item.setProduto(configuracao.retornaProdutoCadastrado(pedido));
+
+
+            item.setValorItens(configuracao.calculaValorProduto(pedido));
+
         }
-        pedido.getItens().stream().forEach(itensPedido ->
-                itensPedido.setValorItens(itensPedido.getProduto().getValorKg()*11));
+
+
+           pedido.setValorTotal(configuracao.calculaValorTotal(pedido));
 
 
 

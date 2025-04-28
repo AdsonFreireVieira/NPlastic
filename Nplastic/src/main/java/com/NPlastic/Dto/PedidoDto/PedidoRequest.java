@@ -14,12 +14,9 @@ public class PedidoRequest {
 
     private LocalDate data;
 
-
     private int quantidade;
 
-
     private double valorTotal;
-
 
     private String status;
 
