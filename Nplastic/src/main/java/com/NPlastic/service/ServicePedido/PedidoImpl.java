@@ -35,17 +35,11 @@ public class PedidoImpl implements  IPedidoService {
 
             item.setPedido(pedido);
 
-
             item.setProduto(configuracao.retornaProdutoCadastrado(pedido));
-
-
-            item.setValorItens(configuracao.calculaValorProduto(pedido));
+           item.setValorItens(item.getQuantidade() * configuracao.calculaValorProduto(pedido));
+            pedido.setValorTotal(configuracao.calculaValorTotal(pedido));
 
         }
-
-
-           pedido.setValorTotal(configuracao.calculaValorTotal(pedido));
-
 
 
         return PedidoMapper.INSTANCE.toDto(pedidoRepository.save(pedido));

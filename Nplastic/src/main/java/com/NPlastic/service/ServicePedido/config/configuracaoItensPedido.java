@@ -26,7 +26,16 @@ public class configuracaoItensPedido {
 
     public double calculaValorProduto(Pedido pedido) {
 
-        return pedido.getItens().stream().mapToDouble(itensPedido -> itensPedido.getProduto().getValorKg() * itensPedido.getProduto().getPeso()).sum();
+        for(Itens_Pedido itens : pedido.getItens()){
+
+            int id = itens.getProduto().getId_Produto();
+               Produto produto = repository.findById(id).orElse(null);
+          return   produto.getValorKg()* produto.getPeso();
+
+
+
+        }
+        return 0;
     }
 
     public Produto retornaProdutoCadastrado(Pedido pedido) {
