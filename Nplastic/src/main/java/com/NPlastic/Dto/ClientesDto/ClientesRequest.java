@@ -19,6 +19,15 @@ public class ClientesRequest {
 
     private LocalDate data;
 
+    public ClientesRequest(Integer id, String nome, String email, String telefone, String senha, LocalDate data) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.data = data;
+    }
+
     public Integer getId() {
         return id;
     }

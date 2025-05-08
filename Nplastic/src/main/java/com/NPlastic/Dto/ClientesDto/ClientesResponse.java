@@ -20,6 +20,14 @@ public class ClientesResponse {
         return nome;
     }
 
+    public ClientesResponse(String nome, String email, String telefone, String senha, LocalDate data) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.data = data;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }

@@ -30,6 +30,9 @@ public class Clientes {
     @Column
     private LocalDate data;
 
+    public Clientes() {
+    }
+
     public Clientes(Integer id, String nome, String email, String telefone, String senha, LocalDate data) {
         this.id = id;
         this.nome = nome;
