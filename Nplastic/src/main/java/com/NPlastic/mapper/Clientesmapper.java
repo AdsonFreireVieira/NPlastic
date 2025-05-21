@@ -3,7 +3,6 @@ package com.NPlastic.mapper;
 
 
 import com.NPlastic.Entity.Clientes;
-import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

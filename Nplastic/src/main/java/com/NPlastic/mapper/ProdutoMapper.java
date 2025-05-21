@@ -1,7 +1,6 @@
 package com.NPlastic.mapper;
 
 import com.NPlastic.Entity.Produto;
-import com.NPlastic.dto.dtoProduto.ProdutoRequest;
 import com.NPlastic.dto.dtoProduto.ProdutoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

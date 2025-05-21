@@ -1,7 +1,6 @@
 package com.NPlastic.mapper;
 
 import com.NPlastic.Entity.Endereco;
-import com.NPlastic.dto.dtoEndereco.EnderecoRequest;
 import com.NPlastic.dto.dtoEndereco.EnderecoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

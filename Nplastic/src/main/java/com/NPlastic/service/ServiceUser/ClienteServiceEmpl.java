@@ -1,7 +1,6 @@
 package com.NPlastic.service.ServiceUser;
 
 import com.NPlastic.Entity.Clientes;
-import com.NPlastic.dto.dtoUser.ClientesRequestDTO;
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
 import com.NPlastic.mapper.Clientesmapper;
 
