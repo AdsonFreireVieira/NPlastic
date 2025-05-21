@@ -60,12 +60,15 @@
 			<version>${org.mapstruct.version}</version>
 		</dependency>
 
+<<<<<<< HEAD:pom.xml
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.1.0</version>
 		</dependency>
 
+=======
+>>>>>>> fefb70f1e83e1e72ac672e5557ca9e1a6d65f5dc:Nplastic/pom.xml
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>

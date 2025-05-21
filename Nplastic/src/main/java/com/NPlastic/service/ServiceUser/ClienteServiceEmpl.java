@@ -1,9 +1,16 @@
 package com.NPlastic.service.ServiceUser;
 
+import com.NPlastic.Dto.ClientesDto.ClientesRequest;
+import com.NPlastic.Dto.ClientesDto.ClientesResponse;
 import com.NPlastic.Entity.Clientes;
+<<<<<<< HEAD
 import com.NPlastic.dto.dtoUser.ClientesResponseDTO;
 import com.NPlastic.mapper.Clientesmapper;
+=======
+>>>>>>> fefb70f1e83e1e72ac672e5557ca9e1a6d65f5dc
 
+
+import com.NPlastic.Mappers.ClientesMapper;
 import com.NPlastic.repository.ClientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,32 +24,34 @@ public class ClienteServiceEmpl implements ClientesService{
     private ClientesRepository repository;
 
     @Override
-    public ClientesResponseDTO criar(ClientesRequestDTO clientesRequestDTO) {
+    public ClientesResponse criar(ClientesRequest clientesRequest) {
 
-        Clientes cliente = (Clientes) Clientesmapper.INSTANCE.toCliente(clientesRequestDTO);
-        return  Clientesmapper.INSTANCE.toResponseDto(repository.save(cliente));
+        Clientes clientes =  ClientesMapper.INSTANCE.toEntity(clientesRequest);
+
+        return ClientesMapper.INSTANCE.toDto(repository.save(clientes));
     }
 
     @Override
-    public ClientesResponseDTO update(ClientesRequestDTO userRequestDTO) {
+    public ClientesResponse update(ClientesRequest clientesRequests) {
 
-        Clientes cliente = Clientesmapper.INSTANCE.toCliente(userRequestDTO);
-        return  Clientesmapper.INSTANCE.toResponseDto(repository.save(cliente));
+        Clientes clientes =  ClientesMapper.INSTANCE.toEntity(clientesRequests);
+
+        return ClientesMapper.INSTANCE.toDto(repository.save(clientes));
     }
 
     @Override
-    public List<ClientesResponseDTO> ListarUser() {
-        return Clientesmapper.INSTANCE.toListResponseDto((List<Clientes>)repository.findAll());
+    public List<ClientesResponse> ListarUser() {
+        return ClientesMapper.INSTANCE.convertListResponse((List<Clientes>)repository.findAll());
     }
 
     @Override
     public void deletarUser(int id) {
 
-          repository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
-    public ClientesResponseDTO BuscarPorID(int id) {
-        return Clientesmapper.INSTANCE.toResponseDto(repository.findById(id).orElse(null));
+    public ClientesResponse BuscarPorID(int id) {
+        return ClientesMapper.INSTANCE.toDto( repository.findById(id).orElse(null));
     }
 }
