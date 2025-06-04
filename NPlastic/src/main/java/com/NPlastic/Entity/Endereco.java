@@ -34,4 +34,7 @@ public class Endereco {
     
     @Column
     private String bairro;
+
+    @ManyToOne
+    private Clientes clientes;
 }

@@ -1,7 +1,6 @@
 package com.NPlastic.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,5 +13,22 @@ import lombok.Setter;
 @Table
 public class Produto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
+
+    @Column
+    private String nome;
+
+    @Column
+    private String cor;
+
+    @Column
+    private double peso;
+
+    @Column
+    private String validade;
+
+
 }
