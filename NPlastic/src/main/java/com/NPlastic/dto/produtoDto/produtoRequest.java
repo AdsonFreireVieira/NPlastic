@@ -1,0 +1,25 @@
+package com.NPlastic.dto.produtoDto;
+
+import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+
+public class produtoRequest {
+    private Integer id;
+
+    private String nome;
+
+    private String cor;
+
+    private double peso;
+
+    private String medida;
+
+    private String validade;
+
+}

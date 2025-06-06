@@ -25,6 +25,9 @@ public class Produto {
     private String cor;
 
     @Column
+    private String medida;
+
+    @Column
     private double peso;
 
     @Column
