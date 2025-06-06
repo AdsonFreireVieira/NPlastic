@@ -23,6 +23,6 @@ public class pedidoResponse {
 
     private List<Itens_Pedido> itens;
 
-    private Clientes cliente;
+    private Clientes clientes;
 
 }

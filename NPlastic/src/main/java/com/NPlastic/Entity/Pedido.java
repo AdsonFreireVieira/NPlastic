@@ -34,7 +34,7 @@ public class Pedido {
     private List<Itens_Pedido> itens;
 
     @ManyToOne
-    private Clientes cliente;
+    private Clientes clientes;
 
 
 }

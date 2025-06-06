@@ -29,6 +29,6 @@ public class pedidoRequest {
 
     private List<Itens_Pedido> itens;
 
-    private Clientes cliente;
+    private Clientes clientes;
 
 }
