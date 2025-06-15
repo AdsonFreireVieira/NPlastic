@@ -12,14 +12,13 @@ public interface EnderecoMappers {
 
     EnderecoMappers INSTANCE = Mappers.getMapper(EnderecoMappers.class);
 
-    @Mapping(source = "Id", target = "Id")
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "nomeRua", target = "nomeRua")
     @Mapping(source = "numero", target = "numero")
     @Mapping(source = "cidade", target = "cidade")
     @Mapping(source = "cep", target = "cep")
     @Mapping(source = "bairro", target = "bairro")
     @Mapping(source = "clientes", target = "clientes")
-
     Endereco toEntity(enderecoRequest enderecoRequest);
 
     @Mapping(source = "nomeRua", target = "nomeRua")

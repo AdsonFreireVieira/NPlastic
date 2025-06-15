@@ -5,7 +5,6 @@ import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ClienteService {
 
@@ -15,7 +14,7 @@ public interface ClienteService {
 
     List<clientesResponse> listarClientes();
 
-    Optional<clientesResponse> buscarPorId(int id);
+    clientesResponse buscarPorId(int id);
 
     String deletarCliente(int id);
 }

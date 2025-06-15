@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "Spring")
 public interface pedidoMappers {
 
-    @Mapping(source="Id",target = "Id")
+    @Mapping(source="id",target = "id")
     @Mapping(source="data",target = "data")
     @Mapping(source="valorTotal",target = "valorTotal")
     @Mapping(source="quantidadeItensTotal",target = "quantidadeItensTotal")
@@ -18,7 +18,6 @@ public interface pedidoMappers {
 
  Pedido toEntity(pedidoRequest pedidoRequest);
 
-    @Mapping(source="Id",target = "Id")
     @Mapping(source="data",target = "data")
     @Mapping(source="valorTotal",target = "valorTotal")
     @Mapping(source="quantidadeItensTotal",target = "quantidadeItensTotal")

@@ -5,50 +5,47 @@ import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.mappers.clientesMappers;
 import com.NPlastic.repository.ClientesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+public class clienteServiceImpl implements ClienteService {
 
-public class clienteServiceImpl implements ClienteService{
+    @Autowired
+    private ClientesRepository clientesRepository;
+    @Autowired
+    private  clientesMappers clientesMappers;
 
-    private final ClientesRepository clientesRepository;
-
-
-
-    public clienteServiceImpl(ClientesRepository clientesRepository) {
-        this.clientesRepository = clientesRepository;
-    }
 
     @Override
     public clientesResponse novoCliente(clientesRequest clienteRequest) {
 
-        Clientes cliente  = clientesMappers.INSTANCE.toEntity(clienteRequest);
+        Clientes cliente  = clientesMappers.toEntity(clienteRequest);
         clientesRepository.save(cliente);
 
-        return clientesMappers.INSTANCE.ToDto(cliente);
+        return clientesMappers.toDto(cliente);
     }
 
     @Override
     public clientesResponse alterarCliente(clientesRequest clientesRequest) {
 
-        Clientes clientes = clientesMappers.INSTANCE.toEntity(clientesRequest);
+        Clientes clientes = clientesMappers.toEntity(clientesRequest);
 
         clientesRepository.save(clientes);
 
-        return clientesMappers.INSTANCE.ToDto(clientes);
+        return clientesMappers.toDto(clientes);
     }
 
     @Override
     public List<clientesResponse> listarClientes() {
-        return clientesMappers.INSTANCE.toListDto((List<Clientes>) clientesRepository.findAll());
+        return clientesMappers.toListDto((List<Clientes>) clientesRepository.findAll());
     }
 
     @Override
-    public Optional<clientesResponse> buscarPorId(int id) {
-        return clientesRepository.findById(id).map(clientesMappers.INSTANCE::ToDto);
+    public clientesResponse buscarPorId(int id) {
+        return clientesMappers.toDto(clientesRepository.findById(id).orElse(null));
 
     }
 

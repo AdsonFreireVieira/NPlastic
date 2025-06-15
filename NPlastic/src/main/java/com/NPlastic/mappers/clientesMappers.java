@@ -7,28 +7,19 @@ import com.NPlastic.dto.clientesDto.clientesResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 
-@Mapper(componentModel = "Spring")
+@Mapper(componentModel = "spring")
 public interface clientesMappers {
 
-    clientesMappers INSTANCE  = Mappers.getMapper(clientesMappers.class);
+    clientesMappers INSTANCE = Mappers.getMapper(clientesMappers.class);
 
 
-    @Mapping(source = "Id", target = "Id")
-    @Mapping(source = "nomeEmpresa", target = "nomeEmpresa")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "Role", target = "Role")
+    Clientes toEntity(clientesRequest clientesRequest);
 
-        Clientes toEntity(clientesRequest clientesRequest);
-
-    @Mapping(source = "nomeEmpresa", target = "nomeEmpresa")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "Role", target = "Role")
-
-    clientesResponse ToDto(Clientes clientes);
+    clientesResponse toDto(Clientes clientes);
 
     List<clientesResponse> toListDto(List<Clientes> clientesList);
 
