@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "Spring")
 public interface EnderecoMappers {
 
@@ -29,5 +31,7 @@ public interface EnderecoMappers {
     @Mapping(source = "clientes", target = "clientes")
 
     enderecoResponse toDto(Endereco endereco);
+
+    List<enderecoResponse> toList(List<Endereco> enderecoList);
 
 }
