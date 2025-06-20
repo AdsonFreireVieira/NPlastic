@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class clienteServiceImpl implements ClienteService {
@@ -22,20 +23,26 @@ public class clienteServiceImpl implements ClienteService {
     @Override
     public clientesResponse novoCliente(clientesRequest clienteRequest) {
 
-        Clientes cliente  = clientesMappers.toEntity(clienteRequest);
-        clientesRepository.save(cliente);
+       try{
 
-        return clientesMappers.toDto(cliente);
+            Clientes cliente = clientesMappers.toEntity(clienteRequest);
+
+            return clientesMappers.toDto(clientesRepository.save(cliente));
+
+       }catch (Exception e){
+           throw new RuntimeException("Erro");
+       }
     }
 
     @Override
-    public clientesResponse alterarCliente(clientesRequest clientesRequest) {
+    public Optional<clientesResponse> alterarCliente(clientesRequest clientesRequest) {
 
         Clientes clientes = clientesMappers.toEntity(clientesRequest);
 
-        clientesRepository.save(clientes);
+        clientesResponse response = clientesMappers.toDto(clientesRepository.save( clientes));
 
-        return clientesMappers.toDto(clientes);
+        return Optional.ofNullable(response);
+
     }
 
     @Override
@@ -44,13 +51,13 @@ public class clienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public clientesResponse buscarPorId(int id) {
+    public Optional<clientesResponse> buscarPorId(int id) {
         return clientesMappers.toDto(clientesRepository.findById(id).orElse(null));
 
     }
 
     @Override
-    public String deletarCliente(int id) {
+    public Boolean deletarCliente(int id) {
 
         return "Removido";
 

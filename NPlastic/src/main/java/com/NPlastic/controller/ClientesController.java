@@ -1,9 +1,11 @@
 package com.NPlastic.controller;
 
+import com.NPlastic.Entity.Pedido;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,23 +15,34 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/clientes")
 public class ClientesController {
-    @Autowired
-    private  clienteServiceImpl clienteService;
+    private final clienteServiceImpl clienteService;
+
+    public ClientesController(clienteServiceImpl clienteService) {
+        this.clienteService = clienteService;
+    }
 
     @PostMapping
     public ResponseEntity<clientesResponse> criarNovo(@RequestBody clientesRequest clientes) {
-        return ResponseEntity.ok(clienteService.novoCliente(clientes));
+
+        clientesResponse clientesResponse = clienteService.novoCliente(clientes);
+
+        return  ResponseEntity.status(HttpStatus.CREATED).body(clientesResponse);
+
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<clientesResponse> alterarCliente(@RequestBody clientesRequest clientes, @PathVariable int id) {
-        return ResponseEntity.ok(clienteService.alterarCliente(clientes));
+
+        return  clienteService.alterarCliente(clientes).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+
+
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<clientesResponse> buscarporId(@PathVariable int id) {
+    public ResponseEntity<clientesResponse> buscarporId(@PathVariable int id , @RequestBody clientesRequest clientesRequest) {
 
-        return ResponseEntity.ok().body(clienteService.buscarPorId(id));
+
 
     }
 

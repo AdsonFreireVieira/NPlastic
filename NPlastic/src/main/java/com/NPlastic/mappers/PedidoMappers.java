@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "Spring")
-public interface pedidoMappers {
+public interface PedidoMappers {
 
     @Mapping(source="id",target = "id")
     @Mapping(source="data",target = "data")
