@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "Spring")
 public interface produtoMapper {
 
@@ -28,4 +30,6 @@ public interface produtoMapper {
     @Mapping(source = "peso", target = "peso")
     @Mapping(source = "validade", target = "validade")
     produtoResponse toDto(Produto produto);
+
+    List<produtoResponse> toList(List<Produto> produtoList);
 }

@@ -16,5 +16,8 @@ public interface ClienteService {
 
     Optional<clientesResponse> buscarPorId(int id);
 
-    Boolean deletarCliente(int id);
+    String
+
+
+    deletarCliente(int id);
 }

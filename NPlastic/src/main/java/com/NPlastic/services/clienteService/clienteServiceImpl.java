@@ -52,12 +52,12 @@ public class clienteServiceImpl implements ClienteService {
 
     @Override
     public Optional<clientesResponse> buscarPorId(int id) {
-        return clientesMappers.toDto(clientesRepository.findById(id).orElse(null));
+        return clientesRepository.findById(id).map(clientesMappers::toDto);
 
     }
 
     @Override
-    public Boolean deletarCliente(int id) {
+    public String deletarCliente(int id) {
 
         return "Removido";
 

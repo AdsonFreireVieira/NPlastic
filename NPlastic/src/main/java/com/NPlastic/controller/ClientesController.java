@@ -6,6 +6,7 @@ import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,16 +37,16 @@ public class ClientesController {
         return  clienteService.alterarCliente(clientes).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 
 
-
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<clientesResponse> buscarporId(@PathVariable int id , @RequestBody clientesRequest clientesRequest) {
+    public ResponseEntity<clientesResponse> buscarporId(@PathVariable int id) {
 
+        Optional<clientesResponse> response = clienteService.buscarPorId(id);
 
-
+        return response.map(clientes -> new ResponseEntity<>(clientes, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
     @GetMapping
     public ResponseEntity<List<clientesResponse>> listarClientes() {
         return ResponseEntity.ok(clienteService.listarClientes());
