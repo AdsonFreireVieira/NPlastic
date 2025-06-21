@@ -10,7 +10,7 @@ public interface EnderecoService {
 
     public enderecoResponse novo(enderecoRequest request);
 
-    public enderecoResponse alterar(enderecoRequest request);
+    public Optional<enderecoResponse> atualizar(int id ,enderecoRequest request);
 
     public Optional<enderecoResponse> buscarPorId(int id);
 

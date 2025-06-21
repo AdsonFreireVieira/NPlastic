@@ -5,6 +5,7 @@ import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -31,6 +32,8 @@ public interface EnderecoMappers {
     @Mapping(source = "clientes", target = "clientes")
 
     enderecoResponse toDto(Endereco endereco);
+
+    Endereco atualizarEntity(enderecoRequest request, @MappingTarget Endereco endereco);
 
     List<enderecoResponse> toList(List<Endereco> enderecoList);
 
