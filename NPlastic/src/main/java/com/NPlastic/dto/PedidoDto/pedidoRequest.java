@@ -2,6 +2,7 @@ package com.NPlastic.dto.PedidoDto;
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.Entity.Itens_Pedido;
+import com.NPlastic.Entity.Pedido;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,10 @@ public class pedidoRequest {
     private List<Itens_Pedido> itens;
 
     private Clientes clientes;
+
+    public List<Itens_Pedido> getItens() {
+        return itens;
+    }
 
     public Integer getId() {
         return Id;
@@ -51,10 +56,6 @@ public class pedidoRequest {
 
     public void setQuantidadeItensTotal(int quantidadeItensTotal) {
         this.quantidadeItensTotal = quantidadeItensTotal;
-    }
-
-    public List<Itens_Pedido> getItens() {
-        return itens;
     }
 
     public void setItens(List<Itens_Pedido> itens) {

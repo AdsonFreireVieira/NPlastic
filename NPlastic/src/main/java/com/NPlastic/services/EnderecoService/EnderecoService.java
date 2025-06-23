@@ -14,7 +14,7 @@ public interface EnderecoService {
 
     public Optional<enderecoResponse> buscarPorId(int id);
 
-    public String deletar(int id);
+    public  void deletar(int id);
 
     public List<enderecoResponse> listarEndereco();
 }

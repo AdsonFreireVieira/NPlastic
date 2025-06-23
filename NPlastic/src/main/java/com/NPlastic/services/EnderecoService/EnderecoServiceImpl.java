@@ -5,11 +5,14 @@ import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
 import com.NPlastic.mappers.EnderecoMappers;
 import com.NPlastic.repository.EnderecoRepository;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
+@Service
 public class EnderecoServiceImpl  implements  EnderecoService {
 
     private final EnderecoRepository repository;
@@ -51,8 +54,11 @@ public class EnderecoServiceImpl  implements  EnderecoService {
     }
 
     @Override
-    public String deletar(int id) {
-        return "removido";
+    public  void deletar(int id) {
+
+        buscarPorId(id).orElseThrow(()->  new RuntimeException("Nao localizado"));
+
+
     }
 
     @Override

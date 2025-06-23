@@ -1,10 +1,13 @@
 package com.NPlastic.services.pedidoService;
 
+import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
 import com.NPlastic.dto.PedidoDto.pedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
 import com.NPlastic.mappers.PedidoMappers;
 import com.NPlastic.repository.PedidoRepository;
+
+import java.util.Optional;
 
 public class pedidoServiceImpl implements  pedidoService{
 
@@ -21,10 +24,16 @@ public class pedidoServiceImpl implements  pedidoService{
     @Override
     public pedidoResponse cadastrarNovo(pedidoRequest request) {
 
-        Pedido pedido = pedidoMappers.toEntity(request);
+        Pedido pedido  = pedidoMappers.toEntity(request);
 
-        return pedidoMappers.toDTo(pedidoRepository.save(pedido));
+        for (Itens_Pedido itens : pedido.getItens()){
+
+            itens.setPedido(pedido);
+        }
+
+        return pedidoMappers.toDTo(pedido);
     }
+
 
     @Override
     public pedidoResponse alterarPedido(pedidoRequest request) {
@@ -35,8 +44,8 @@ public class pedidoServiceImpl implements  pedidoService{
     }
 
     @Override
-    public pedidoResponse buscarPedidoPorId(Integer id) {
+    public Optional<pedidoResponse> buscarPedidoPorId(Integer id) {
 
-        return pedidoMappers.toDTo(pedidoRepository.findById(id).orElse(null));
+        return pedidoRepository.findById(id).map(pedidoMappers::toDTo);
     }
 }

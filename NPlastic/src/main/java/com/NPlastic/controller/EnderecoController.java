@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/produtos")
 public class EnderecoController {
@@ -42,6 +44,16 @@ public class EnderecoController {
 
 
     }
+    @GetMapping
+    public ResponseEntity  <List<enderecoResponse>> listarEndereco(){
 
+        return ResponseEntity.status(HttpStatus.OK).body(enderecoService.listarEndereco());
+    }
+ @DeleteMapping("/{id}")
+   public   ResponseEntity<?>  deletar(int id){
 
+        enderecoService.deletar(id);
+        return  ResponseEntity.status(HttpStatus.OK).build();
+
+   }
 }
