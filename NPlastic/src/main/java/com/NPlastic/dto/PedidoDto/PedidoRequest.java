@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class pedidoRequest {
+public class PedidoRequest {
 
     private Integer Id;
 

@@ -2,11 +2,12 @@ package com.NPlastic.services.pedidoService;
 
 import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
-import com.NPlastic.dto.PedidoDto.pedidoRequest;
+import com.NPlastic.dto.PedidoDto.PedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
 import com.NPlastic.mappers.PedidoMappers;
 import com.NPlastic.repository.PedidoRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class pedidoServiceImpl implements  pedidoService{
@@ -22,7 +23,7 @@ public class pedidoServiceImpl implements  pedidoService{
 
 
     @Override
-    public pedidoResponse cadastrarNovo(pedidoRequest request) {
+    public pedidoResponse cadastrarNovo(PedidoRequest request) {
 
         Pedido pedido  = pedidoMappers.toEntity(request);
 
@@ -36,16 +37,23 @@ public class pedidoServiceImpl implements  pedidoService{
 
 
     @Override
-    public pedidoResponse alterarPedido(pedidoRequest request) {
+    public pedidoResponse alterarPedido(PedidoRequest request , int id) {
 
-        Pedido pedido = pedidoMappers.toEntity(request);
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Encontrado"));
 
-        return pedidoMappers.toDTo(pedidoRepository.save(pedido));
+        Pedido pedidoAtualizado = pedidoMappers.atualizarEntity(request,pedido);
+
+        return pedidoMappers.toDTo(pedidoRepository.save(pedidoAtualizado));
     }
 
     @Override
     public Optional<pedidoResponse> buscarPedidoPorId(Integer id) {
 
         return pedidoRepository.findById(id).map(pedidoMappers::toDTo);
+    }
+
+    @Override
+    public List<pedidoResponse> listarPedido() {
+        return pedidoMappers.toListResponse((List<Pedido>) pedidoRepository.findAll());
     }
 }

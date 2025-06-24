@@ -66,4 +66,5 @@ public class EnderecoServiceImpl  implements  EnderecoService {
 
         return enderecoMappers.toList((List<Endereco>) repository.findAll());
     }
+
 }
