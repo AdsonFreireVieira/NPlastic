@@ -47,6 +47,6 @@ public class PedidoController {
     @GetMapping
     public ResponseEntity <List<pedidoResponse>> listarPedido(){
 
-        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.)
+        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.listarPedido());
     }
 }
