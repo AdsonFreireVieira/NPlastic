@@ -6,10 +6,12 @@ import com.NPlastic.dto.PedidoDto.PedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
 import com.NPlastic.mappers.PedidoMappers;
 import com.NPlastic.repository.PedidoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class pedidoServiceImpl implements  pedidoService{
 
     private final PedidoRepository pedidoRepository;

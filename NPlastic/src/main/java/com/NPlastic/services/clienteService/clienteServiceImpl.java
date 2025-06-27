@@ -35,11 +35,13 @@ public class clienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Optional<clientesResponse> alterarCliente(clientesRequest clientesRequest) {
+    public Optional<clientesResponse> alterarCliente(clientesRequest clientesRequest, int id) {
 
-        Clientes clientes = clientesMappers.toEntity(clientesRequest);
+        Clientes clientes = clientesRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localizado"));
 
-        clientesResponse response = clientesMappers.toDto(clientesRepository.save( clientes));
+        Clientes clienteAtualizado = clientesMappers.atualizarCliente(clientesRequest,clientes);
+
+        clientesResponse response = clientesMappers.toDto(clientesRepository.save(clienteAtualizado));
 
         return Optional.ofNullable(response);
 

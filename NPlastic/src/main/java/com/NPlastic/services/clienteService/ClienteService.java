@@ -10,7 +10,7 @@ public interface ClienteService {
 
     clientesResponse novoCliente(clientesRequest clienteRequest);
 
-   Optional <clientesResponse> alterarCliente(clientesRequest clientesRequest);
+   Optional <clientesResponse> alterarCliente(clientesRequest clientesRequest, int id);
 
     List<clientesResponse> listarClientes();
 

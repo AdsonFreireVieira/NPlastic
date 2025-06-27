@@ -5,10 +5,11 @@ import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.NPlastic.dto.produtoDto.produtoResponse;
 import com.NPlastic.mappers.produtoMapper;
 import com.NPlastic.repository.ProdutoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class produtoServiceImpl implements  produtoService{
 
     private final ProdutoRepository produtoRepository;
@@ -29,10 +30,10 @@ public class produtoServiceImpl implements  produtoService{
     @Override
     public produtoResponse alterarPedido(produtoRequest produtoRequest, Integer id) {
 
-        produtoRequest.setId(id);
+          Produto produto = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Localizado"));
 
-        Produto produto = produtoMappers.toEntity(produtoRequest);
-        return produtoMappers.toDto(produto);
+        Produto produtoAtualizado = produtoMappers.atualizarProduto(produtoRequest,produto);
+        return produtoMappers.toDto(produtoAtualizado);
     }
 
     @Override

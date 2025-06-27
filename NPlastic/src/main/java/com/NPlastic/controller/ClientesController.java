@@ -1,12 +1,9 @@
 package com.NPlastic.controller;
 
-import com.NPlastic.Entity.Pedido;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +31,7 @@ public class ClientesController {
     @PutMapping("/{id}")
     public ResponseEntity<clientesResponse> alterarCliente(@RequestBody clientesRequest clientes, @PathVariable int id) {
 
-        return  clienteService.alterarCliente(clientes).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return  clienteService.alterarCliente(clientes,id ).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 
 
     }

@@ -1,11 +1,10 @@
 package com.NPlastic.mappers;
 
-import ch.qos.logback.core.model.ComponentModel;
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 
@@ -23,5 +22,5 @@ public interface clientesMappers {
 
     List<clientesResponse> toListDto(List<Clientes> clientesList);
 
-
+    Clientes atualizarCliente(clientesRequest request,@MappingTarget Clientes cliente);
 }
