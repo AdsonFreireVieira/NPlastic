@@ -6,10 +6,12 @@ import com.NPlastic.dto.PedidoDto.pedidoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 
-@Mapper(componentModel = "Spring")
+@Mapper(    componentModel = "spring"
+        ,nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface PedidoMappers {
 
     @Mapping(source="id",target = "id")

@@ -3,9 +3,8 @@ package com.NPlastic.services.clienteService;
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
-import com.NPlastic.mappers.clientesMappers;
+import com.NPlastic.mappers.ClientesMapper;
 import com.NPlastic.repository.ClientesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,20 +13,23 @@ import java.util.Optional;
 @Service
 public class clienteServiceImpl implements ClienteService {
 
-    @Autowired
-    private ClientesRepository clientesRepository;
-    @Autowired
-    private  clientesMappers clientesMappers;
+  private final ClientesRepository clientesRepository;
 
+  private final ClientesMapper clientesMapper;
+
+    public clienteServiceImpl(ClientesRepository clientesRepository, ClientesMapper clientesMapper) {
+        this.clientesRepository = clientesRepository;
+        this.clientesMapper = clientesMapper;
+    }
 
     @Override
     public clientesResponse novoCliente(clientesRequest clienteRequest) {
 
        try{
 
-            Clientes cliente = clientesMappers.toEntity(clienteRequest);
+            Clientes cliente = clientesMapper.toEntity(clienteRequest);
 
-            return clientesMappers.toDto(clientesRepository.save(cliente));
+            return clientesMapper.toDto(clientesRepository.save(cliente));
 
        }catch (Exception e){
            throw new RuntimeException("Erro");
@@ -37,24 +39,29 @@ public class clienteServiceImpl implements ClienteService {
     @Override
     public Optional<clientesResponse> alterarCliente(clientesRequest clientesRequest, int id) {
 
-        Clientes clientes = clientesRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localizado"));
+        Clientes clientes = clientesRepository.findById(id).
+                orElseThrow(()->new RuntimeException("Nao Localizado"));
 
-        Clientes clienteAtualizado = clientesMappers.atualizarCliente(clientesRequest,clientes);
+        clientesMapper.atualizarCliente(clientesRequest,clientes);
 
-        clientesResponse response = clientesMappers.toDto(clientesRepository.save(clienteAtualizado));
 
-        return Optional.ofNullable(response);
+        clientesRepository.save(clientes);
+
+        Clientes clientesAtualizado = clientesRepository.findById(id).
+                orElseThrow(()->new RuntimeException("Nao Localizado"));
+
+        return Optional.ofNullable(clientesMapper.toDto(clientesAtualizado));
 
     }
 
     @Override
     public List<clientesResponse> listarClientes() {
-        return clientesMappers.toListDto((List<Clientes>) clientesRepository.findAll());
+        return clientesMapper.toListDto((List<Clientes>) clientesRepository.findAll());
     }
 
     @Override
     public Optional<clientesResponse> buscarPorId(int id) {
-        return clientesRepository.findById(id).map(clientesMappers::toDto);
+        return clientesRepository.findById(id).map(clientesMapper::toDto);
 
     }
 

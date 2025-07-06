@@ -3,18 +3,16 @@ package com.NPlastic.mappers;
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
-
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
-public interface clientesMappers {
-
-    clientesMappers INSTANCE = Mappers.getMapper(clientesMappers.class);
-
+@Mapper(componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+public interface ClientesMapper {
 
     Clientes toEntity(clientesRequest clientesRequest);
 
@@ -22,5 +20,6 @@ public interface clientesMappers {
 
     List<clientesResponse> toListDto(List<Clientes> clientesList);
 
-    Clientes atualizarCliente(clientesRequest request,@MappingTarget Clientes cliente);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void atualizarCliente( clientesRequest request,@MappingTarget Clientes cliente);
 }

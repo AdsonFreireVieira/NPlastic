@@ -6,11 +6,13 @@ import com.NPlastic.dto.enderecoDto.enderecoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(componentModel = "Spring")
+@Mapper(   componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface EnderecoMappers {
 
     EnderecoMappers INSTANCE = Mappers.getMapper(EnderecoMappers.class);
