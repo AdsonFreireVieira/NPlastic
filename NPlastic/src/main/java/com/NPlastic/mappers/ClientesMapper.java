@@ -3,10 +3,7 @@ package com.NPlastic.mappers;
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -21,5 +18,14 @@ public interface ClientesMapper {
     List<clientesResponse> toListDto(List<Clientes> clientesList);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void atualizarCliente( clientesRequest request,@MappingTarget Clientes cliente);
+    void atualizarCliente( @MappingTarget clientesRequest request, Clientes cliente);
+
+    @Condition
+    @Named("valorNaoNullo")
+    default  Boolean   valorNaoNullo(Object valor){
+        if(valor instanceof String){
+            return valor != null && !((String) valor).trim().isEmpty();
+        }
+        return valor!=null;
+    }
 }
