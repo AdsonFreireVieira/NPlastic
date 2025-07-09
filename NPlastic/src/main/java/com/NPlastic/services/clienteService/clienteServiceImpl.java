@@ -39,18 +39,14 @@ public class clienteServiceImpl implements ClienteService {
     @Override
     public Optional<clientesResponse> alterarCliente(clientesRequest clientesRequest, int id) {
 
-        Clientes clientes = clientesRepository.findById(id).
-                orElseThrow(()->new RuntimeException("Nao Localizado"));
+        Clientes cliente = clientesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não localizado"));
 
-        clientesMapper.atualizarCliente(clientesRequest,clientes);
+        clientesMapper.atualizarCliente(clientesRequest, cliente);
 
+        Clientes clienteAtualizado = clientesRepository.save(cliente);
 
-        clientesRepository.save(clientes);
-
-        Clientes clientesAtualizado = clientesRepository.findById(id).
-                orElseThrow(()->new RuntimeException("Nao Localizado"));
-
-        return Optional.ofNullable(clientesMapper.toDto(clientesAtualizado));
+        return Optional.of(clientesMapper.toDto(clienteAtualizado));
 
     }
 
