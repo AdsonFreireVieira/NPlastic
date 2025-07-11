@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/enderecos")
 public class EnderecoController {
 
     private final EnderecoServiceImpl enderecoService;
@@ -49,7 +49,7 @@ public class EnderecoController {
 
         return ResponseEntity.status(HttpStatus.OK).body(enderecoService.listarEndereco());
     }
- @DeleteMapping("/{id}")
+     @DeleteMapping("/{id}")
    public   ResponseEntity<?>  deletar(int id){
 
         enderecoService.deletar(id);
