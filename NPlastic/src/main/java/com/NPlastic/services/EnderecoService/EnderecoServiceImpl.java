@@ -37,12 +37,12 @@ public class EnderecoServiceImpl  implements  EnderecoService {
 
     Endereco endereco =repository.findById(id).orElseThrow(()-> new RuntimeException("Nao Encontrado"));
 
-    enderecoMappers.atualizarEntity(request,endereco);
+    enderecoMappers.atualizarEntity(request, endereco);
 
-    repository.save(endereco);
+   Endereco enderecoAtualizado = repository.save(endereco);
 
 
-      return Optional.ofNullable(enderecoMappers.toDto(endereco));
+      return Optional.ofNullable(enderecoMappers.toDto(enderecoAtualizado));
 
     }
 

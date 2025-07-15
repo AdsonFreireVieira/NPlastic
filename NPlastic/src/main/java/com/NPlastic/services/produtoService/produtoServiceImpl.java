@@ -24,6 +24,7 @@ public class produtoServiceImpl implements  produtoService{
     public produtoResponse cadastrarNovo(produtoRequest produtoRequest) {
 
         Produto produto =  produtoMappers.toEntity(produtoRequest);
+        produtoRepository.save(produto);
         return produtoMappers.toDto(produto);
     }
 
@@ -32,8 +33,9 @@ public class produtoServiceImpl implements  produtoService{
 
           Produto produto = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Localizado"));
 
-        Produto produtoAtualizado = produtoMappers.atualizarProduto(produtoRequest,produto);
-        return produtoMappers.toDto(produtoAtualizado);
+         produtoMappers.atualizarProduto(produtoRequest,produto);
+         produtoRepository.save(produto);
+        return produtoMappers.toDto(produto);
     }
 
     @Override

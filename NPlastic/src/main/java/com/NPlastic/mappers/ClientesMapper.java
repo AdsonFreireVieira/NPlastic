@@ -7,13 +7,14 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+@Mapper(componentModel = "spring",
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ClientesMapper {
 
-    @Mapping(source = "nomeEmpresa", target = "nomeEmpresa", conditionQualifiedByName = "valorNaoNulo")
-    @Mapping(source = "email", target = "email", conditionQualifiedByName = "valorNaoNulo")
-    @Mapping(source = "senha", target = "senha", conditionQualifiedByName = "valorNaoNulo")
-    @Mapping(source = "role", target = "role", conditionQualifiedByName = "valorNaoNulo")
+    @Mapping(source = "nomeEmpresa", target = "nomeEmpresa")
+    @Mapping(source = "email", target = "email")
+    @Mapping(source = "senha", target = "senha")
+    @Mapping(source = "role", target = "role")
     Clientes toEntity(clientesRequest clientesRequest);
 
     clientesResponse toDto(Clientes clientes);
