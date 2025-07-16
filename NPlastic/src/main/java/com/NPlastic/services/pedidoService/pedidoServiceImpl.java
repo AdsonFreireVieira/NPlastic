@@ -34,6 +34,10 @@ public class pedidoServiceImpl implements  pedidoService{
             itens.setPedido(pedido);
         }
 
+        pedidoRepository.save(pedido);
+
+
+
         return pedidoMappers.toDTo(pedido);
     }
 

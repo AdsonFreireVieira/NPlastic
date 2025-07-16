@@ -1,5 +1,6 @@
 package com.NPlastic.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,8 +19,9 @@ public class Itens_Pedido {
     @JoinColumn(name ="produto_id")
     private Produto produto;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "pedido")
+    @JsonBackReference
     private Pedido pedido;
 
     public Integer getId() {
