@@ -1,5 +1,6 @@
 package com.NPlastic.controller;
 
+import com.NPlastic.Exception.ClienteException;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
@@ -31,7 +32,7 @@ public class ClientesController {
     @PutMapping("/{id}")
     public ResponseEntity<clientesResponse> alterarCliente(@RequestBody clientesRequest clientes, @PathVariable int id) {
 
-        return  clienteService.alterarCliente(clientes,id ).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return  clienteService.alterarCliente(clientes,id ).map(ResponseEntity::ok).orElseThrow(()-> new ClienteException(" Erro ALteracao "));
 
 
     }
@@ -42,7 +43,7 @@ public class ClientesController {
         Optional<clientesResponse> response = clienteService.buscarPorId(id);
 
         return response.map(clientes -> new ResponseEntity<>(clientes, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ClienteException("Cliente Nao Encontrado "));
     }
     @GetMapping
     public ResponseEntity<List<clientesResponse>> listarClientes() {
