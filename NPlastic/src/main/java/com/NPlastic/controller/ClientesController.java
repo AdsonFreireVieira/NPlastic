@@ -32,7 +32,8 @@ public class ClientesController {
     @PutMapping("/{id}")
     public ResponseEntity<clientesResponse> alterarCliente(@RequestBody clientesRequest clientes, @PathVariable int id) {
 
-        return  clienteService.alterarCliente(clientes,id ).map(ResponseEntity::ok).orElseThrow(()-> new ClienteException(" Erro ALteracao "));
+        return  clienteService.alterarCliente(clientes,id )
+                .map(ResponseEntity::ok).orElseThrow(()-> new ClienteException(" Erro ALteracao "));
 
 
     }

@@ -14,7 +14,6 @@ public interface ClientesMapper {
     @Mapping(source = "nomeEmpresa", target = "nomeEmpresa")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "senha", target = "senha")
-    @Mapping(source = "role", target = "role")
     Clientes toEntity(clientesRequest clientesRequest);
 
     clientesResponse toDto(Clientes clientes);
@@ -24,7 +23,6 @@ public interface ClientesMapper {
     @Mapping(source = "nomeEmpresa", target = "nomeEmpresa", conditionQualifiedByName = "valorNaoNulo")
     @Mapping(source = "email", target = "email", conditionQualifiedByName = "valorNaoNulo")
     @Mapping(source = "senha", target = "senha", conditionQualifiedByName = "valorNaoNulo")
-    @Mapping(source = "role", target = "role", conditionQualifiedByName = "valorNaoNulo")
     void atualizarCliente(clientesRequest request, @MappingTarget Clientes cliente);
 
     @Condition

@@ -1,5 +1,7 @@
 package com.NPlastic.controller;
 
+import com.NPlastic.Entity.Produto;
+import com.NPlastic.Exception.ProdutoException;
 import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.NPlastic.dto.produtoDto.produtoResponse;
 import com.NPlastic.services.produtoService.produtoServiceImpl;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos")
@@ -35,14 +38,22 @@ public class ProdutoController {
     @GetMapping("{id}")
     ResponseEntity<produtoResponse> buscarPorId(@PathVariable int id){
 
-    return ResponseEntity.status(HttpStatus.OK).body(produtoService.buscarPorId(id).orElseThrow(()-> new RuntimeException("Nao Encontrado")));
+    return ResponseEntity.status(HttpStatus.OK).body(produtoService.buscarPorId(id).orElseThrow(()->
+            new ProdutoException("Produto Nao Encontrado")));
 
     }
     @DeleteMapping("/{id}")
     ResponseEntity<String> deletar(@PathVariable int id){
 
-        return ResponseEntity.status(HttpStatus.OK).body(produtoService.deletar(id));
-    }
+        Optional<produtoResponse> produtodDeletar = produtoService.buscarPorId(id);
+
+        if(produtodDeletar.isPresent()){
+            produtoService.deletar(id);
+
+            return ResponseEntity.ok().body("Deletado Com Sucesso");
+        }
+        return  ResponseEntity.ok().body("Nao Localizado");
+        }
 
     @GetMapping
     ResponseEntity <List<produtoResponse>> listarProduto(){

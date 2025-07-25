@@ -14,10 +14,10 @@ public class ExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(NPlasticException.class)
-    public ResponseEntity<String> handleErroGeral(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Erro interno do servidor: " + ex.getMessage());
-    }
+  @org.springframework.web.bind.annotation.ExceptionHandler(ProdutoException.class)
+    public ResponseEntity<String> handleProdutoNaoEncontrado(NPlasticException ex){
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+  }
 
 }

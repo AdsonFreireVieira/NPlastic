@@ -1,5 +1,6 @@
 package com.NPlastic.controller;
 
+import com.NPlastic.Exception.PedidoException;
 import com.NPlastic.dto.PedidoDto.PedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
 import com.NPlastic.repository.PedidoRepository;
@@ -40,7 +41,7 @@ public class PedidoController {
     public ResponseEntity<pedidoResponse>buscarPorId(@PathVariable int id){
 
        return ResponseEntity.status(HttpStatus.OK).body(pedidoService.buscarPedidoPorId(id).
-               orElseThrow(()-> new RuntimeException(" Nao Encontrado")));
+               orElseThrow(()-> new PedidoException(" Nao Encontrado")));
 
     }
 

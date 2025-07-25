@@ -1,6 +1,7 @@
 package com.NPlastic.controller;
 
 
+import com.NPlastic.Exception.enderecoException;
 import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
 import com.NPlastic.services.EnderecoService.EnderecoServiceImpl;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/enderecos")
@@ -33,7 +35,7 @@ public class EnderecoController {
             , @PathVariable Integer id) {
 
         return enderecoService.atualizar(id, enderecoRequest).map(ResponseEntity::ok).
-                orElseGet(() -> ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+                orElseThrow( ()-> new enderecoException("Endereco Nao Encontrado"));
 
     }
     @GetMapping("/{id}")
@@ -52,8 +54,17 @@ public class EnderecoController {
      @DeleteMapping("/{id}")
    public   ResponseEntity<?>  deletar(int id){
 
-        enderecoService.deletar(id);
-        return  ResponseEntity.status(HttpStatus.OK).build();
+         Optional<enderecoResponse> enderecoDelete  = enderecoService.buscarPorId(id);
+
+         if(enderecoDelete.isPresent()){
+
+             enderecoService.deletar(id);
+
+             return  ResponseEntity.ok().body("Deletado");
+
+         }
+
+        return  ResponseEntity.ok().body("Nao localizado");
 
    }
 }

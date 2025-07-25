@@ -20,8 +20,7 @@ public class Clientes {
     @Column
     private String senha;
 
-    @Column
-    private String role;
+
 
     public Clientes() {
     }
@@ -58,11 +57,4 @@ public class Clientes {
         this.senha = senha;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
