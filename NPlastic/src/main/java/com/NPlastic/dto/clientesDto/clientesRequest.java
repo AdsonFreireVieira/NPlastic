@@ -1,5 +1,10 @@
 package com.NPlastic.dto.clientesDto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class clientesRequest {
 
    private Integer id;
@@ -10,7 +15,6 @@ public class clientesRequest {
 
     private String senha;
 
-    private String  role;
 
 
     public Integer getId() {

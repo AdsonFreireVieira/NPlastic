@@ -1,4 +1,8 @@
 package com.NPlastic.dto.clientesDto;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class clientesResponse {
 
     private String nomeEmpresa;
@@ -7,7 +11,6 @@ public class clientesResponse {
 
     private String senha;
 
-    private String role;
 
     public clientesResponse() {
     }

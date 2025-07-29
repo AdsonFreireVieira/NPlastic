@@ -1,7 +1,9 @@
 package com.NPlastic.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Entity
 @Table(name = "Clientes")
 public class Clientes {
