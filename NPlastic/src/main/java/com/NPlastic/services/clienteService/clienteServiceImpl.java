@@ -25,15 +25,12 @@ public class clienteServiceImpl implements ClienteService {
     @Override
     public clientesResponse novoCliente(clientesRequest clienteRequest) {
 
-       try{
 
             Clientes cliente = clientesMapper.toEntity(clienteRequest);
 
             return clientesMapper.toDto(clientesRepository.save(cliente));
 
-       }catch (Exception e){
-           throw new RuntimeException("Erro");
-       }
+
     }
 
     @Override
