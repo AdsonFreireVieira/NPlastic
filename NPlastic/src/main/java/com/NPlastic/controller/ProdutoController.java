@@ -1,6 +1,5 @@
 package com.NPlastic.controller;
 
-import com.NPlastic.Entity.Produto;
 import com.NPlastic.Exception.ProdutoException;
 import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.NPlastic.dto.produtoDto.produtoResponse;
@@ -31,7 +30,7 @@ public class ProdutoController {
     @PutMapping("/{id}")
     ResponseEntity<produtoResponse> alterar(@RequestBody produtoRequest produtoRequest , @PathVariable int id){
 
-        produtoResponse produtoResponse = produtoService.alterarPedido(produtoRequest,id);
+        produtoResponse produtoResponse = produtoService.alterarProduto(produtoRequest,id).orElseThrow(()-> new ProdutoException("Produto Nao Localizado"));
 
         return ResponseEntity.status(HttpStatus.OK).body(produtoResponse);
     }

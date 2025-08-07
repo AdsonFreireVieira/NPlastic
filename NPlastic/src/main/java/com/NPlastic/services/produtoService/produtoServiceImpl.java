@@ -30,13 +30,13 @@ public class produtoServiceImpl implements  produtoService{
     }
 
     @Override
-    public produtoResponse alterarPedido(produtoRequest produtoRequest, Integer id) {
+    public Optional<produtoResponse> alterarProduto(produtoRequest produtoRequest, Integer id) {
 
           Produto produto = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Localizado"));
 
          produtoMappers.atualizarProduto(produtoRequest,produto);
          produtoRepository.save(produto);
-        return produtoMappers.toDto(produto);
+        return Optional.of(produtoMappers.toDto(produto));
     }
 
     @Override
@@ -51,6 +51,7 @@ public class produtoServiceImpl implements  produtoService{
 
     @Override
     public String deletar(int id) {
+        produtoRepository.deleteById(id);
         return "removido";
     }
 }

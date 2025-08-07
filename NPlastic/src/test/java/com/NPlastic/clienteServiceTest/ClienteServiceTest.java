@@ -5,6 +5,7 @@ import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.mappers.ClientesMapper;
 import com.NPlastic.repository.ClientesRepository;
+import com.NPlastic.services.clienteService.ClienteService;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,13 +14,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ClienteServiceTest {
@@ -81,7 +83,75 @@ public class ClienteServiceTest {
 
                 verify(mappers).atualizarCliente(request, clienteExistente);
             }
+
+            @Test
+            @DisplayName("testeListClientes")
+    void testarListClientes(){
+
+        List<clientesResponse> responseList = new ArrayList<>();
+
+        Clientes clientes = new Clientes(1,"NLimp","Nlimp@Gmail.com","sadfrffsd");
+        Clientes clientes1 = new Clientes(1,"NLimp","Nlimp@Gmail.com","sadfrffsd");
+
+        clientesResponse response = new clientesResponse("NLimp","Nlimp@Gmail.com","sadfrffsd");
+        clientesResponse response1 = new clientesResponse("NLimp","Nlimp@Gmail.com","sadfrffsd");
+
+
+                List<Clientes> listClientes = new ArrayList<>();
+                listClientes.add(clientes);
+                listClientes.add(clientes1);
+
+        List<clientesResponse> listResponse = new ArrayList<>();
+
+        listResponse.add(response1);
+        listResponse.add(response);
+
+        when(repository.findAll()).thenReturn(listClientes);
+        when(mappers.toListDto(listClientes)).thenReturn(listResponse);
+
+        List<clientesResponse> listResult = service.listarClientes();
+
+        assertEquals(2 , listResult.size());
+
+
+            }
+        @Test
+        @DisplayName("Retorna Por ID")
+        void testarBuscarPorId(){
+
+        int id =1;
+        Clientes cliente = new Clientes(1,"NLimp","NLimp@Gmail","wecdcdasd");
+
+        clientesResponse response = new clientesResponse("NLimp","NLimp@Gmail","wedcdccc");
+
+        when(repository.findById(id)).thenReturn(Optional.of(cliente));
+        when(mappers.toDto(cliente)).thenReturn(response);
+
+
+           Optional<clientesResponse> responseResult = service.buscarPorId(id);
+
+           assertEquals("NLimp",responseResult.get().getNomeEmpresa());
+
+
         }
+
+        @Test
+        @DisplayName("testaDeletarUsuario")
+
+       void testarDeleteUsuario(){
+
+        int id =1;
+        Clientes cliente = new Clientes(1,"NLimp","NLimp@gmail.com","dassdfdsf");
+
+        String msg = service.deletarCliente(id);
+
+        assertEquals("Removido",msg);
+
+
+
+        }
+
+            }
 
 
 

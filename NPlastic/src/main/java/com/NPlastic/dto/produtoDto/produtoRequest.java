@@ -1,6 +1,10 @@
 package com.NPlastic.dto.produtoDto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class produtoRequest {
     private Integer id;
 

@@ -1,5 +1,10 @@
 package com.NPlastic.dto.produtoDto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class produtoResponse {
 

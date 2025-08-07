@@ -60,7 +60,7 @@ public class clienteServiceImpl implements ClienteService {
 
     @Override
     public String deletarCliente(int id) {
-
+        clientesRepository.deleteById(id);
         return "Removido";
 
     }

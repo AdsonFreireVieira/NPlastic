@@ -1,6 +1,5 @@
 package com.NPlastic.services.produtoService;
 
-import com.NPlastic.Entity.Produto;
 import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.NPlastic.dto.produtoDto.produtoResponse;
 
@@ -11,7 +10,7 @@ public interface produtoService {
 
     produtoResponse cadastrarNovo(produtoRequest produtoRequest);
 
-    produtoResponse alterarPedido(produtoRequest produtoRequest , Integer id);
+   Optional< produtoResponse> alterarProduto(produtoRequest produtoRequest , Integer id);
 
     List<produtoResponse> listarProduto();
 
