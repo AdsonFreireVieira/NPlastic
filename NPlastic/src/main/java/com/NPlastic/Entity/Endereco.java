@@ -1,9 +1,13 @@
 package com.NPlastic.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table
+@NoArgsConstructor
+@AllArgsConstructor
 public class Endereco {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

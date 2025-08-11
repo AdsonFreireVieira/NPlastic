@@ -3,7 +3,11 @@ package com.NPlastic.dto.enderecoDto;
 import com.NPlastic.Entity.Clientes;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class enderecoRequest {
 
     private Integer id;

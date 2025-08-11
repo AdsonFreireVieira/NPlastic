@@ -1,10 +1,13 @@
 package com.NPlastic.dto.enderecoDto;
 
 import com.NPlastic.Entity.Clientes;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class enderecoResponse {
 
-    private Integer Id;
 
     private String nomeRua;
 
@@ -18,13 +21,7 @@ public class enderecoResponse {
 
     private Clientes clientes;
 
-    public Integer getId() {
-        return Id;
-    }
 
-    public void setId(Integer id) {
-        Id = id;
-    }
 
     public String getNomeRua() {
         return nomeRua;

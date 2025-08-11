@@ -54,10 +54,10 @@ public class EnderecoServiceImpl  implements  EnderecoService {
     }
 
     @Override
-    public  void deletar(int id) {
+    public   void deletar(int id) {
 
         buscarPorId(id).orElseThrow(()->  new RuntimeException("Nao localizado"));
-
+         repository.deleteById(id);
 
     }
 

@@ -22,7 +22,6 @@ public interface EnderecoMappers {
     @Mapping(source = "clientes", target = "clientes")
     Endereco toEntity(enderecoRequest enderecoRequest);
 
-    @Mapping(source = "id", target = "id")
     @Mapping(source = "nomeRua", target = "nomeRua" )
     @Mapping(source = "numero", target = "numero")
     @Mapping(source = "cidade", target = "cidade")
