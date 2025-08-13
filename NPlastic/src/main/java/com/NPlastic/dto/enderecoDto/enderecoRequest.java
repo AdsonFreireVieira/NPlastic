@@ -24,6 +24,8 @@ public class enderecoRequest {
 
     private Clientes clientes;
 
+
+
     public Integer getId() {
         return id;
     }

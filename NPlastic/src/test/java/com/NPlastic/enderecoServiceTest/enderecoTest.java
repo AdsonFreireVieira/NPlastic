@@ -8,6 +8,7 @@ import com.NPlastic.mappers.EnderecoMappers;
 import com.NPlastic.repository.EnderecoRepository;
 import com.NPlastic.services.EnderecoService.EnderecoServiceImpl;
 import org.hibernate.internal.util.collections.CollectionHelper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,138 +16,126 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class enderecoTest {
+        @Mock
+        private EnderecoRepository repository;
 
-    @InjectMocks
-    private EnderecoServiceImpl service;
+        @Mock
+        private EnderecoMappers mappers;
 
-    @Mock
-    private EnderecoMappers mappers;
+        @InjectMocks
+        private EnderecoServiceImpl service;
 
-    @Mock
-    private EnderecoRepository repository;
+        private Clientes cliente;
+        private Endereco endereco;
+        private enderecoRequest request;
+        private enderecoResponse response;
 
-    @Mock
-    private Clientes cliente;
+        @BeforeEach
+        void setUp() {
+            cliente = new Clientes(1, "Nome", "email@teste.com", "senha");
+            endereco = new Endereco(2, "Rua A", 100, "SP", "12345678", "Bairro X", cliente);
+            request = new enderecoRequest(2,"Rua A", 100, "SP", "12345678", "Bairro X", cliente);
+            response = new enderecoResponse("Rua A", 100, "SP", "12345678", "Bairro X", cliente);
+        }
 
+        @Test
+        void deveSalvarNovoEndereco() {
+            when(mappers.toEntity(request)).thenReturn(endereco);
+            when(repository.save(endereco)).thenReturn(endereco);
+            when(mappers.toDto(endereco)).thenReturn(response);
 
-    @Test
-    @DisplayName("CriarEndereco")
-    void CriarEndereco() {
+            enderecoResponse result = service.novo(request);
 
-        Clientes clientes = new Clientes(2, "NLimp", "NLimp@Gmail.com", "sewqrewew");
+            assertEquals("Rua A", result.getNomeRua());
+            verify(mappers).toEntity(request);
+            verify(repository).save(endereco);
+            verify(mappers).toDto(endereco);
+        }
 
-        Endereco enderecoS = new Endereco(2, "ruaErmelinno", 223, "SP", "0987873", "bairro do Limao", clientes);
-        enderecoResponse enderecoResponse = new enderecoResponse("ruaErmelinno", 223, "SP", "0987873", "bairro do Limao", clientes);
-        enderecoRequest enderecoRe = new enderecoRequest(2, "ruaErmelinno", 223, "SP", "0987873", "bairro do Limao", clientes);
+        @Test
+        void deveAtualizarEnderecoComSucesso() {
+            when(repository.findById(2)).thenReturn(Optional.of(endereco));
+            when(repository.save(endereco)).thenReturn(endereco);
+            when(mappers.toDto(endereco)).thenReturn(response);
 
-        when(mappers.toEntity(enderecoRe)).thenReturn(enderecoS);
-        when(repository.save(enderecoS)).thenReturn(enderecoS);
-        when(mappers.toDto(enderecoS)).thenReturn(enderecoResponse);
+            Optional<enderecoResponse> result = service.atualizar(2, request);
 
-        enderecoResponse enderecoResult = service.novo(enderecoRe);
+            assertTrue(result.isPresent());
+            assertEquals("Rua A", result.get().getNomeRua());
+            verify(repository).findById(2);
+            verify(mappers).atualizarEntity(request, endereco);
+            verify(repository).save(endereco);
+            verify(mappers).toDto(endereco);
+        }
 
-        assertEquals("ruaErmelinno", enderecoResult.getNomeRua());
-        assertEquals(223, enderecoResult.getNumero());
+        @Test
+        void deveLancarExcecaoAoAtualizarEnderecoInexistente() {
+            when(repository.findById(99)).thenReturn(Optional.empty());
+
+            assertThrows(RuntimeException.class, () -> service.atualizar(99, request));
+
+            verify(repository).findById(99);
+            verify(mappers, never()).atualizarEntity(any(), any());
+        }
+
+        @Test
+        void deveBuscarEnderecoPorId() {
+            when(repository.findById(2)).thenReturn(Optional.of(endereco));
+            when(mappers.toDto(endereco)).thenReturn(response);
+
+            Optional<enderecoResponse> result = service.buscarPorId(2);
+
+            assertTrue(result.isPresent());
+            assertEquals("Rua A", result.get().getNomeRua());
+            verify(repository).findById(2);
+            verify(mappers).toDto(endereco);
+        }
+
+        @Test
+        void deveDeletarEnderecoExistente() {
+            when(repository.findById(2)).thenReturn(Optional.of(endereco));
+            when(mappers.toDto(endereco)).thenReturn(response);
+
+            service.deletar(2);
+
+            verify(repository).findById(2);
+            verify(repository).deleteById(2);
+        }
+
+        @Test
+        void deveLancarExcecaoAoDeletarEnderecoInexistente() {
+            when(repository.findById(99)).thenReturn(Optional.empty());
+
+            assertThrows(RuntimeException.class, () -> service.deletar(99));
+
+            verify(repository).findById(99);
+            verify(repository, never()).deleteById(anyInt());
+        }
+
+        @Test
+        void deveListarTodosEnderecos() {
+            List<Endereco> enderecos = List.of(endereco);
+            List<enderecoResponse> responses = List.of(response);
+
+            when(repository.findAll()).thenReturn(enderecos);
+            when(mappers.toList(enderecos)).thenReturn(responses);
+
+            List<enderecoResponse> result = service.listarEndereco();
+
+            assertEquals(1, result.size());
+            assertEquals("Rua A", result.get(0).getNomeRua());
+            verify(repository).findAll();
+            verify(mappers).toList(enderecos);
+        }
     }
-
-
-    @Test
-    @DisplayName("Deve atualizar endereço corretamente")
-    void deveAtualizarEndereco() {
-
-        int id = 1;
-
-        Clientes cliente = new Clientes(1, "Nome", "email@teste.com", "senha");
-
-        Endereco enderecoExistente = new Endereco(id, "Rua A", 100, "SP", "12345678", "Bairro X", cliente);
-
-        enderecoRequest request = new enderecoRequest(id, "Rua B", 101, "RJ", "87654321", "Bairro Y", cliente);
-
-        enderecoResponse response = new enderecoResponse("Rua B", 101, "RJ", "87654321", "Bairro Y", cliente);
-
-        when(repository.findById(id)).thenReturn(Optional.of(enderecoExistente));
-
-        doAnswer(invocation -> {
-            enderecoRequest req = invocation.getArgument(0);
-            Endereco end = invocation.getArgument(1);
-
-            end.setNomeRua(req.getNomeRua());
-            end.setNumero(req.getNumero());
-            end.setCep(req.getCep());
-            end.setBairro(req.getBairro());
-
-            return null;
-        }).when(mappers).atualizarEntity(any(enderecoRequest.class), any(Endereco.class));
-
-        when(repository.save(enderecoExistente)).thenReturn(enderecoExistente);
-
-        when(mappers.toDto(enderecoExistente)).thenReturn(response);
-
-        Optional<enderecoResponse> resultado = service.atualizar(id, request);
-
-        assertTrue(resultado.isPresent());
-        assertEquals("Rua B", resultado.get().getNomeRua());
-        assertEquals(101, resultado.get().getNumero());
-        assertEquals("87654321", resultado.get().getCep());
-        assertEquals("Bairro Y", resultado.get().getBairro());
-
-        verify(repository).findById(id);
-        verify(mappers).atualizarEntity(request, enderecoExistente);
-        verify(repository).save(enderecoExistente);
-        verify(mappers).toDto(enderecoExistente);
-    }
-
-    @Test
-    @DisplayName("Buscar Por Id")
-    void buscarPorId() {
-
-
-        int id = 2;
-        Clientes cliente = new Clientes(1, "Nome", "email@teste.com", "senha");
-
-        Endereco enderecoExistente = new Endereco(2, "Rua A", 100, "SP", "12345678", "Bairro X", cliente);
-
-
-        enderecoResponse response = new enderecoResponse("Rua A", 101, "RJ", "87654321", "Bairro Y", cliente);
-
-        when(repository.findById(id)).thenReturn(Optional.of(enderecoExistente));
-        when(mappers.toDto(enderecoExistente)).thenReturn(response);
-
-        Optional<enderecoResponse> result = service.buscarPorId(id);
-
-        assertTrue(result.isPresent());
-        assertEquals("Rua A", result.get().getNomeRua());
-
-        verify(repository).findById(id);
-        verify(mappers).toDto(enderecoExistente);
-    }
-
-    @Test
-    @DisplayName("Deletar Usuario")
-    void deveDeletarEnderecoComSucesso() {
-        int id = 2;
-        Endereco enderecoExistente = new Endereco(id, "Rua A", 100, "SP", "12345678", "Bairro X", null);
-
-        when(repository.findById(id)).thenReturn(Optional.of(enderecoExistente));
-
-        // Act
-        service.deletar(id);
-
-        // Assert
-        verify(repository).findById(id);
-        verify(repository).deleteById(id);
-    }
-    }
-
-
 
