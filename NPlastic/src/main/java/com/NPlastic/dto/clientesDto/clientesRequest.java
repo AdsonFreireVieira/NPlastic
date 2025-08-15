@@ -15,6 +15,8 @@ public class clientesRequest {
 
     private String senha;
 
+    public clientesRequest(int i, String adson, String mail) {
+    }
 
 
     public Integer getId() {
