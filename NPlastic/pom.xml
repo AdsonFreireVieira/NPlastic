@@ -16,60 +16,25 @@
 	<artifactId>NPlastic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>NPlastic</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Projeto NPlastic com Spring Boot, JPA, Flyway e Testcontainers</description>
 
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
-
-		<!-- Testes Spring Boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Testcontainers JUnit 5 -->
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>1.20.4</version> <!-- última versão estável -->
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Testcontainers PostgreSQL -->
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>1.20.4</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Driver PostgreSQL -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
-
-		<!-- Flyway para migrations -->
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-
-		<!-- Spring Boot Web -->
+		<!-- Spring Boot Web e JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Spring Boot JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+
 
 		<!-- PostgreSQL Driver -->
 		<dependency>
@@ -92,7 +57,8 @@
 			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Teste -->
+
+		<!-- Testes Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -102,7 +68,7 @@
 
 	<build>
 		<plugins>
-			<!-- Compilador configurado para MapStruct e Lombok -->
+			<!-- Compilador para MapStruct e Lombok -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -125,7 +91,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- Spring Boot Plugin -->
+			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

@@ -15,7 +15,7 @@ public class clientesRequest {
 
     private String senha;
 
-    public clientesRequest(int i, String adson, String mail) {
+    public clientesRequest(String adson, String mail, String sdqwdwd) {
     }
 
 
