@@ -10,7 +10,6 @@ import java.util.List;
 @Mapper(componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ClientesMapper {
-
     @Mapping(source = "nomeEmpresa", target = "nomeEmpresa")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "senha", target = "senha")
@@ -19,7 +18,6 @@ public interface ClientesMapper {
     clientesResponse toDto(Clientes clientes);
 
     List<clientesResponse> toListDto(List<Clientes> clientesList);
-
     @Mapping(source = "nomeEmpresa", target = "nomeEmpresa", conditionQualifiedByName = "valorNaoNulo")
     @Mapping(source = "email", target = "email", conditionQualifiedByName = "valorNaoNulo")
     @Mapping(source = "senha", target = "senha", conditionQualifiedByName = "valorNaoNulo")
