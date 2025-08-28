@@ -1,7 +1,9 @@
 package com.NPlastic.testeIntegracao.ClienteServiceTest;
 
+import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
+import com.NPlastic.mappers.ClientesMapper;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -13,6 +15,8 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,12 +43,9 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Postgres Container OK")
-    @Order(0)
     void testContainerRodando() {
         assertThat(postgres.isRunning()).isTrue();
     }
-
-
 
     int id = 5;
 
@@ -65,7 +66,34 @@ public class ClienteServiceTest {
 
     }
 
+    @Test
+    @DisplayName("Retorna Lista Clientes")
+    void deveRetornarListaClientes(){
 
+        clientesRequest cliente1 = new clientesRequest();
+
+        cliente1.setNomeEmpresa("Empresa1");
+        cliente1.setEmail("Empresa1@Gmail");
+
+        clientesRequest cliente2 = new clientesRequest();
+
+        cliente2.setNomeEmpresa("Empresa2");
+        cliente2.setEmail("Empresa2@Gmail");
+
+            clienteService.novoCliente(cliente1);
+            clienteService.novoCliente(cliente2);
+
+            List<clientesResponse> responseList = clienteService.listarClientes();
+
+            assertThat(responseList.size()).isEqualTo(2);
+            assertThat(responseList.get(0).getEmail()).isEqualTo("Empresa1@Gmail");
+
+            assertThat(responseList.get(1).getEmail()).isEqualTo("Empresa2@Gmail");
+
+
+
+    }
+    
 }
 
 
