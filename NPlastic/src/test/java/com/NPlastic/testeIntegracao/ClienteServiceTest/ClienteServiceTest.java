@@ -5,6 +5,7 @@ import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.mappers.ClientesMapper;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 public class ClienteServiceTest {
 
+    int id =2;
 
     @Container
     private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14")
@@ -47,8 +50,19 @@ public class ClienteServiceTest {
         assertThat(postgres.isRunning()).isTrue();
     }
 
-    int id = 5;
+   @BeforeEach
+   void setUp(){
 
+        clientesRequest request = new clientesRequest();
+
+        request.setId(id);
+        request.setNomeEmpresa("NLimp");
+        request.setEmail("NLimp@gmail.com");
+        request.setSenha("aaaaa");
+
+        clienteService.novoCliente(request);
+
+   }
     @Autowired
     private clienteServiceImpl clienteService;
 
@@ -93,7 +107,37 @@ public class ClienteServiceTest {
 
 
     }
-    
+    @Test
+    @DisplayName("deve Atualizar")
+    void atualizaCliente(){
+
+
+        clientesRequest request = new clientesRequest();
+
+        request.setId(id);
+        request.setNomeEmpresa("NLimp");
+        request.setEmail("NLimp@gmail.com");
+        request.setSenha("aaaaa");
+
+        clienteService.novoCliente(request);
+
+
+        clientesRequest clienteAtualizar = new clientesRequest();
+
+        clienteAtualizar.setNomeEmpresa("NLimpol");
+        clienteAtualizar.setEmail("NLimpol@Gmail.com");
+
+
+       Optional<clientesResponse>atualizado = clienteService.alterarCliente(clienteAtualizar,id);
+
+
+
+        assertThat(clienteAtualizar).isNotNull();
+        assertThat(clienteAtualizar.getNomeEmpresa()).isEqualTo("NLimpol");
+        assertThat(clienteAtualizar.getEmail()).isEqualTo("NLimpol@Gmail");
+
+    }
+
 }
 
 
