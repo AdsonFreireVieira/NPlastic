@@ -40,7 +40,7 @@ public class ClienteServiceTest {
     void TestarSaveUsuario() {
 
         clientesRequest request = new clientesRequest(1, "NLimp", "NLipm@Gmail", "qsdqwd3dwsd");
-        clientesResponse response = new clientesResponse("NLimp", "NLipm@Gmail", "qsdqwd3dwsd");
+        clientesResponse response = new clientesResponse(1,"NLimp", "NLipm@Gmail", "qsdqwd3dwsd");
         Clientes clientes = new Clientes(1, "NLimp", "NLipm@Gmail", "qsdqwd3dwsd");
         Clientes clientesSalvo = new Clientes(1, "NLimp", "NLipm@Gmail", "qsdqwd3dwsd");
 
@@ -68,7 +68,7 @@ public class ClienteServiceTest {
 
                 Clientes clienteAtualizado = new Clientes(id, "Limpol", "gmail.limpol", "udhdudud");
 
-                clientesResponse response = new clientesResponse("Limpol", "gmail.limpol", "udhdudud");
+                clientesResponse response = new clientesResponse(id,"Limpol", "gmail.limpol", "udhdudud");
 
                 when(repository.findById(id)).thenReturn(Optional.of(clienteExistente));
                 when(repository.save(any(Clientes.class))).thenReturn(clienteAtualizado);
@@ -93,8 +93,8 @@ public class ClienteServiceTest {
         Clientes clientes = new Clientes(1,"NLimp","Nlimp@Gmail.com","sadfrffsd");
         Clientes clientes1 = new Clientes(1,"NLimp","Nlimp@Gmail.com","sadfrffsd");
 
-        clientesResponse response = new clientesResponse("NLimp","Nlimp@Gmail.com","sadfrffsd");
-        clientesResponse response1 = new clientesResponse("NLimp","Nlimp@Gmail.com","sadfrffsd");
+        clientesResponse response = new clientesResponse(1,"NLimp","Nlimp@Gmail.com","sadfrffsd");
+        clientesResponse response1 = new clientesResponse(1,"NLimp","Nlimp@Gmail.com","sadfrffsd");
 
 
                 List<Clientes> listClientes = new ArrayList<>();
@@ -122,7 +122,7 @@ public class ClienteServiceTest {
         int id =1;
         Clientes cliente = new Clientes(1,"NLimp","NLimp@Gmail","wecdcdasd");
 
-        clientesResponse response = new clientesResponse("NLimp","NLimp@Gmail","wedcdccc");
+        clientesResponse response = new clientesResponse(1,"NLimp","NLimp@Gmail","wedcdccc");
 
         when(repository.findById(id)).thenReturn(Optional.of(cliente));
         when(mappers.toDto(cliente)).thenReturn(response);

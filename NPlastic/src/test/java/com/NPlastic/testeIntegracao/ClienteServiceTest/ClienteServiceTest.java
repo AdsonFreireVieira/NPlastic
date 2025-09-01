@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 public class ClienteServiceTest {
 
-    int id =2;
+    int id = 2;
 
     @Container
     private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14")
@@ -50,19 +50,19 @@ public class ClienteServiceTest {
         assertThat(postgres.isRunning()).isTrue();
     }
 
-   @BeforeEach
-   void setUp(){
+    @BeforeEach
+    void setUp() {
 
         clientesRequest request = new clientesRequest();
 
-        request.setId(id);
         request.setNomeEmpresa("NLimp");
         request.setEmail("NLimp@gmail.com");
         request.setSenha("aaaaa");
 
         clienteService.novoCliente(request);
 
-   }
+    }
+
     @Autowired
     private clienteServiceImpl clienteService;
 
@@ -71,7 +71,7 @@ public class ClienteServiceTest {
 
         clientesRequest request = new clientesRequest();
         request.setNomeEmpresa("NLimp");
-    request.setEmail("NLimp@Gmail.com");
+        request.setEmail("NLimp@Gmail.com");
         clientesResponse response = clienteService.novoCliente(request);
 
         assertThat(response).isNotNull();
@@ -82,7 +82,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Retorna Lista Clientes")
-    void deveRetornarListaClientes(){
+    void deveRetornarListaClientes() {
 
         clientesRequest cliente1 = new clientesRequest();
 
@@ -94,74 +94,58 @@ public class ClienteServiceTest {
         cliente2.setNomeEmpresa("Empresa2");
         cliente2.setEmail("Empresa2@Gmail");
 
-            clienteService.novoCliente(cliente1);
-            clienteService.novoCliente(cliente2);
+        clienteService.novoCliente(cliente1);
+        clienteService.novoCliente(cliente2);
 
-            List<clientesResponse> responseList = clienteService.listarClientes();
+        List<clientesResponse> responseList = clienteService.listarClientes();
 
-            assertThat(responseList.size()).isEqualTo(2);
-            assertThat(responseList.get(0).getEmail()).isEqualTo("Empresa1@Gmail");
+        assertThat(responseList.size()).isEqualTo(3);
+        assertThat(responseList.get(1).getEmail()).isEqualTo("Empresa1@Gmail");
 
-            assertThat(responseList.get(1).getEmail()).isEqualTo("Empresa2@Gmail");
-
+        assertThat(responseList.get(2).getEmail()).isEqualTo("Empresa2@Gmail");
 
 
     }
+
     @Test
     @DisplayName("deve Atualizar")
-    void atualizaCliente(){
+    void atualizaCliente() {
 
 
-        clientesRequest request = new clientesRequest();
+        List<clientesResponse> listResponses = clienteService.listarClientes();
 
-        request.setId(id);
-        request.setNomeEmpresa("NLimp");
-        request.setEmail("NLimp@gmail.com");
-        request.setSenha("aaaaa");
-
-        clienteService.novoCliente(request);
+        int idCadastrado = listResponses.get(0).getId();
 
 
-        clientesRequest clienteAtualizar = new clientesRequest();
+        clientesRequest requestAtualizar = new clientesRequest();
 
-        clienteAtualizar.setNomeEmpresa("NLimpol");
-        clienteAtualizar.setEmail("NLimpol@Gmail.com");
-
-
-       Optional<clientesResponse>atualizado = clienteService.alterarCliente(clienteAtualizar,id);
+        requestAtualizar.setNomeEmpresa("NLimpo");
+        requestAtualizar.setEmail("NLimpol@Gmail.com");
 
 
+        Optional<clientesResponse> atualizado = clienteService.alterarCliente(requestAtualizar, idCadastrado);
 
-        assertThat(clienteAtualizar).isNotNull();
-        assertThat(clienteAtualizar.getNomeEmpresa()).isEqualTo("NLimpol");
-        assertThat(clienteAtualizar.getEmail()).isEqualTo("NLimpol@Gmail");
+
+        assertThat(requestAtualizar).isNotNull();
+        assertThat(requestAtualizar.getNomeEmpresa()).isEqualTo("NLimpo");
+        assertThat(requestAtualizar.getEmail()).isEqualTo("NLimpol@Gmail.com");
+
+    }
+
+    @Test
+    @DisplayName("Deletar Usuario")
+    void deletarUsuario(){
+
+        List<clientesResponse> listResponse = clienteService.listarClientes();
+
+        int id = listResponse.get(0).getId();
+
+       String msg= clienteService.deletarCliente(id);
+
+       assertThat("Removido").isEqualTo(msg);
+
+
 
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class clientesResponse {
 
-
+   private Integer id;
     private String nomeEmpresa;
 
     private String email;
@@ -19,6 +19,13 @@ public class clientesResponse {
     private String senha;
 
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNomeEmpresa() {
         return nomeEmpresa;
