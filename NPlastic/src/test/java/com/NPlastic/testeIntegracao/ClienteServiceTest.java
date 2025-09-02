@@ -1,4 +1,4 @@
-package com.NPlastic.testeIntegracao.ClienteServiceTest;
+package com.NPlastic.testeIntegracao;
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;
@@ -26,29 +26,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Testcontainers
-public class ClienteServiceTest {
+public class ClienteServiceTest extends AbstractIntegrationTest {
 
     int id = 2;
 
-    @Container
-    private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14")
-            .withDatabaseName("testdb")
-            .withUsername("user")
-            .withPassword("password");
 
-
-    @DynamicPropertySource
-    static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
-    }
-
-    @Test
-    @DisplayName("Postgres Container OK")
-    void testContainerRodando() {
-        assertThat(postgres.isRunning()).isTrue();
-    }
 
     @BeforeEach
     void setUp() {
