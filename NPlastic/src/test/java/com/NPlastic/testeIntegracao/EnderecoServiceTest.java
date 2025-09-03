@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -24,38 +26,28 @@ public class EnderecoServiceTest extends AbstractIntegrationTest {
 
      @Autowired
     private EnderecoService serviceEndereco;
-      @Autowired
-      private ClientesMapper mapper;
+
      @Autowired
      private ClienteService serviceCliente;
 
     @BeforeEach
     void  setUp(){
 
-        clientesRequest request = new clientesRequest();
+        clientesRequest clientesRe = new clientesRequest();
 
-        request.setNomeEmpresa("CClean");
-        request.setEmail("cclean@gmail.com");
-        request.setSenha("aaaa");
+        clientesRe.setNomeEmpresa("NCleas");
+        clientesRe.setEmail("Cclean@Gmail.com");
+        clientesRe.setSenha("qqqqq");
 
-        serviceCliente.novoCliente(request);
-
-
-    }
-
-    @Test
-    @DisplayName(" criar Novo Endereco")
-    void criarNovoEndereco(){
-
-
-        clientesResponse clientesRe = serviceCliente.listarClientes().get(0);
+        serviceCliente.novoCliente(clientesRe);
+        clientesResponse clientesSalvo = serviceCliente.listarClientes().get(0);
 
         Clientes clientes = new Clientes();
 
-        clientes.setId(clientesRe.getId());
-        clientes.setSenha(clientesRe.getSenha());
-        clientes.setNomeEmpresa(clientesRe.getNomeEmpresa());
-        clientes.setEmail(clientesRe.getEmail());
+        clientes.setId(clientesSalvo.getId());
+        clientes.setSenha(clientesSalvo.getSenha());
+        clientes.setNomeEmpresa(clientesSalvo.getNomeEmpresa());
+        clientes.setEmail(clientesSalvo.getEmail());
 
 
         enderecoRequest enderecoRe = new enderecoRequest();
@@ -67,13 +59,32 @@ public class EnderecoServiceTest extends AbstractIntegrationTest {
         enderecoRe.setNumero(443);
         enderecoRe.setClientes(clientes);
 
-          enderecoResponse endResponse = serviceEndereco.novo(enderecoRe);
-
-        assertThat(endResponse).isNotNull();
-        assertThat(endResponse.getNumero()).isEqualTo(443);
-        assertThat(endResponse.getNomeRua()).isEqualTo("rua Avenida Costa Sul");
+        enderecoResponse endResponse = serviceEndereco.novo(enderecoRe);
 
 
+
+    }
+
+    @Test
+    @DisplayName("Atualiza Endereco")
+    void atualizaEndereco(){
+
+        enderecoResponse  enderecoSalvo = serviceEndereco.listarEndereco().get(0);
+
+   enderecoRequest enderecoRe = new enderecoRequest();
+
+   enderecoRe.setNumero(140);
+   enderecoRe.setCidade("Aguas de Lindoia");
+   enderecoRe.setNomeRua("Mirante Alta");
+
+
+
+   Optional<enderecoResponse> result = serviceEndereco.atualizar(enderecoSalvo.getId(),enderecoRe);
+
+   assertThat(result).isNotNull();
+   assertThat(result.get().getNomeRua()).isEqualTo("Mirante Alta");
+   assertThat(result.get().getCidade()).isEqualTo("Aguas de Lindoia");
+   assertThat(result.get().getNumero()).isEqualTo(140);
     }
 
 

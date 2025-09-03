@@ -45,7 +45,7 @@ public class enderecoTest {
             cliente = new Clientes(1, "Nome", "email@teste.com", "senha");
             endereco = new Endereco(2, "Rua A", 100, "SP", "12345678", "Bairro X", cliente);
             request = new enderecoRequest(2,"Rua A", 100, "SP", "12345678", "Bairro X", cliente);
-            response = new enderecoResponse("Rua A", 100, "SP", "12345678", "Bairro X", cliente);
+            response = new enderecoResponse(1,"Rua A", 100, "SP", "12345678", "Bairro X", cliente);
         }
 
         @Test

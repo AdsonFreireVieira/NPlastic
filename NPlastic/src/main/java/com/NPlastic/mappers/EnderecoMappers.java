@@ -22,6 +22,7 @@ public interface EnderecoMappers {
     @Mapping(source = "clientes", target = "clientes")
     Endereco toEntity(enderecoRequest enderecoRequest);
 
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "nomeRua", target = "nomeRua" )
     @Mapping(source = "numero", target = "numero")
     @Mapping(source = "cidade", target = "cidade")
@@ -30,6 +31,7 @@ public interface EnderecoMappers {
     @Mapping(source = "clientes", target = "clientes")
     enderecoResponse toDto(Endereco endereco);
 
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "nomeRua", target = "nomeRua", conditionQualifiedByName = "valorNaoNulo")
     @Mapping(source = "numero", target = "numero", conditionQualifiedByName = "valorNaoNulo")
     @Mapping(source = "cidade", target = "cidade", conditionQualifiedByName = "valorNaoNulo")
