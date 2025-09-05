@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -85,6 +86,31 @@ public class EnderecoServiceTest extends AbstractIntegrationTest {
    assertThat(result.get().getNomeRua()).isEqualTo("Mirante Alta");
    assertThat(result.get().getCidade()).isEqualTo("Aguas de Lindoia");
    assertThat(result.get().getNumero()).isEqualTo(140);
+    }
+
+    @Test
+    @DisplayName("deveListarEndeeco")
+    void deveListar(){
+
+        int  quantenderecoList = serviceEndereco.listarEndereco().size();
+
+        assertThat(quantenderecoList).isEqualTo(1);
+
+    }
+
+    @Test
+    @DisplayName("deletar Endereco")
+    void deletarEndereco(){
+
+        enderecoResponse enderecoSalvo = serviceEndereco.listarEndereco().get(0);
+
+          serviceEndereco.deletar(enderecoSalvo.getId());
+
+         List<enderecoResponse> enderResult = serviceEndereco.listarEndereco();
+
+         assertThat(enderResult.isEmpty());
+
+
     }
 
 
