@@ -14,20 +14,9 @@ import java.util.List;
 public interface produtoMapper {
 
     produtoMapper INSTANCE = Mappers.getMapper(produtoMapper.class);
-
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "nome", target = "nome")
-    @Mapping(source = "cor", target = "cor")
-    @Mapping(source = "medida", target = "medida")
-    @Mapping(source = "peso", target = "peso")
-    @Mapping(source = "validade", target = "validade")
+    @Mapping(target = "id", source = "id")
     Produto toEntity(produtoRequest produtoRequest);
-
-    @Mapping(source = "nome", target = "nome")
-    @Mapping(source = "cor", target = "cor")
-    @Mapping(source = "medida", target = "medida")
-    @Mapping(source = "peso", target = "peso")
-    @Mapping(source = "validade", target = "validade")
+    @Mapping(target = "id" , source = "id")
     produtoResponse toDto(Produto produto);
 
 

@@ -1,13 +1,18 @@
 package com.NPlastic.dto.produtoDto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 
 public class produtoResponse {
 
+    private Integer id;
 
     private String nome;
 
@@ -25,6 +30,14 @@ public class produtoResponse {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCor() {

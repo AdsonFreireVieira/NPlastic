@@ -10,7 +10,7 @@ public interface produtoService {
 
     produtoResponse cadastrarNovo(produtoRequest produtoRequest);
 
-   Optional< produtoResponse> alterarProduto(produtoRequest produtoRequest , Integer id);
+   Optional< produtoResponse> alterarProduto(produtoRequest produtoRequest , int id);
 
     List<produtoResponse> listarProduto();
 

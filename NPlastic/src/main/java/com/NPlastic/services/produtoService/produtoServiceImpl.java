@@ -30,7 +30,7 @@ public class produtoServiceImpl implements  produtoService{
     }
 
     @Override
-    public Optional<produtoResponse> alterarProduto(produtoRequest produtoRequest, Integer id) {
+    public Optional<produtoResponse> alterarProduto(produtoRequest produtoRequest, int id) {
 
           Produto produto = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Localizado"));
 

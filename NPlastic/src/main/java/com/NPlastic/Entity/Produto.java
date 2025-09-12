@@ -12,7 +12,7 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     @Column
+    @Column
     private Integer id;
 
     @Column

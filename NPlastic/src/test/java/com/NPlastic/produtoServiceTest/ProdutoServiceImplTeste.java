@@ -43,7 +43,7 @@ public class ProdutoServiceImplTeste {
     void deveInserirProduto(){
 
         Produto produto = new Produto(1,"Plastico","Preto","90x110",3.5,"Indeterminada");
-        produtoResponse response = new produtoResponse("Plastico","Preto",3.5,"90x110","Indeterminada");
+        produtoResponse response = new produtoResponse(1,"Plastico","Preto",3.5,"90x110","Indeterminada");
         produtoRequest request = new produtoRequest(1,"Plastico","Preto",3.5,"90x110","Indeterminada");
 
 
@@ -66,7 +66,7 @@ public class ProdutoServiceImplTeste {
         Produto produtoSalvo = new Produto(2, "Plastico", "Preto", "90x110", 3.5, "Indeterminada");
         Produto produto = new Produto(2, "Plastico", "Preto", "90x110", 3.5, "Indeterminada");
 
-        produtoResponse response = new produtoResponse("Plastico", "Preto", 3.5, "90x110", "Indeterminada");
+        produtoResponse response = new produtoResponse(1,"Plastico", "Preto", 3.5, "90x110", "Indeterminada");
         produtoRequest request = new produtoRequest(2, "Plastico", "Preto", 3.5, "90x110", "Indeterminada");
 
         when(repository.findById(id)).thenReturn(Optional.of(produtoSalvo));
@@ -88,8 +88,8 @@ public class ProdutoServiceImplTeste {
 
       List<Produto> listProdutos  =new ArrayList<>();
 
-        produtoResponse response = new produtoResponse("Plastico", "Preto", 3.5, "90x110", "Indeterminada");
-        produtoResponse response1 = new produtoResponse("Plastico", "Preto", 3.5, "90x110", "Indeterminada");
+        produtoResponse response = new produtoResponse(1,"Plastico", "Preto", 3.5, "90x110", "Indeterminada");
+        produtoResponse response1 = new produtoResponse(1,"Plastico", "Preto", 3.5, "90x110", "Indeterminada");
 
         Produto produtoSalvo = new Produto(2, "Plastico", "Preto", "90x110", 3.5, "Indeterminada");
         Produto produto = new Produto(2, "Plastico", "Preto", "90x110", 3.5, "Indeterminada");
@@ -117,7 +117,7 @@ public class ProdutoServiceImplTeste {
         Produto produto = new Produto(2, "Plastico", "Preto", "90x110", 3.5, "Indeterminada");
       int id =2;
 
-        produtoResponse produtoResponse = new produtoResponse( "Plastico", "Preto", 3.5,"90x110", "Indeterminada");
+        produtoResponse produtoResponse = new produtoResponse(1, "Plastico", "Preto", 3.5,"90x110", "Indeterminada");
 
      when(repository.findById(id)).thenReturn(Optional.of(produto));
      when(mappers.toDto(produto)).thenReturn(produtoResponse);
