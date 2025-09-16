@@ -1,5 +1,5 @@
 
-package com.NPlastic.ServicePedidoTest;
+package com.NPlastic.ServicesTestUnitarios.clienteServiceTest.ServicePedidoTest;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;

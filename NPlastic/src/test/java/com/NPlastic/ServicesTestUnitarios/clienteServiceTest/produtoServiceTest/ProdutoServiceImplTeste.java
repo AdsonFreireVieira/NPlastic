@@ -1,4 +1,4 @@
-package com.NPlastic.produtoServiceTest;
+package com.NPlastic.ServicesTestUnitarios.clienteServiceTest.produtoServiceTest;
 
 import com.NPlastic.Entity.Produto;
 import com.NPlastic.Exception.ProdutoException;

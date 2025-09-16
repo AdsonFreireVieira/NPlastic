@@ -1,4 +1,4 @@
-package com.NPlastic.clienteServiceTest;
+package com.NPlastic.ServicesTestUnitarios.clienteServiceTest;
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;

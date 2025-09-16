@@ -1,4 +1,4 @@
-package com.NPlastic.enderecoServiceTest;
+package com.NPlastic.ServicesTestUnitarios.clienteServiceTest.enderecoServiceTest;
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.Entity.Endereco;

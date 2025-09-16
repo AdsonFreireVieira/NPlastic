@@ -1,6 +1,8 @@
 package com.NPlastic.testeIntegracao;
 
 import com.NPlastic.Entity.Clientes;
+import com.NPlastic.Entity.Itens_Pedido;
+import com.NPlastic.dto.Itens_PedidoDto.itens_PedidoRequest;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
@@ -22,6 +24,19 @@ public class PedidoServiceTest extends AbstractIntegrationTest{
 
     @BeforeEach
    void Setup(){
+
+        produtoRequest produtoR = new produtoRequest();
+
+        produtoR.setNome("Plastico");
+        produtoR.setValidade("Indeterminado");
+        produtoR.setCor("Azul");
+        produtoR.setMedida("100");
+
+        produtoService.cadastrarNovo(produtoR);
+
+        itens_PedidoRequest itensRequest = new itens_PedidoRequest();
+
+        itensRequest.setProduto();
 
         clientesRequest clienteRe = new clientesRequest();
 
