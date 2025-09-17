@@ -2,14 +2,26 @@ package com.NPlastic.testeIntegracao;
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.Entity.Itens_Pedido;
+import com.NPlastic.Entity.Produto;
+import com.NPlastic.dto.Itens_PedidoDto.Itens_PedidoResponse;
 import com.NPlastic.dto.Itens_PedidoDto.itens_PedidoRequest;
+import com.NPlastic.dto.PedidoDto.PedidoRequest;
+import com.NPlastic.dto.PedidoDto.pedidoResponse;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.NPlastic.services.clienteService.clienteServiceImpl;
 import com.NPlastic.services.pedidoService.pedidoServiceImpl;
 import com.NPlastic.services.produtoService.produtoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PedidoServiceTest extends AbstractIntegrationTest{
 
@@ -25,35 +37,57 @@ public class PedidoServiceTest extends AbstractIntegrationTest{
     @BeforeEach
    void Setup(){
 
-        produtoRequest produtoR = new produtoRequest();
+        Clientes clientes = new Clientes();
 
-        produtoR.setNome("Plastico");
-        produtoR.setValidade("Indeterminado");
-        produtoR.setCor("Azul");
-        produtoR.setMedida("100");
+        clientes.setEmail("Cclean@Hotmail.com");
+        clientes.setNomeEmpresa("CClean");
 
-        produtoService.cadastrarNovo(produtoR);
+        Produto produto = new Produto();
+        produto.setNome("Plastico");
+        produto.setValidade("Indeterminado");
+        produto.setCor("Azul");
+        produto.setMedida("100");
 
-        itens_PedidoRequest itensRequest = new itens_PedidoRequest();
 
-        itensRequest.setProduto();
 
-        clientesRequest clienteRe = new clientesRequest();
+        Itens_Pedido itens = new Itens_Pedido();
+        Itens_Pedido itens1 = new Itens_Pedido();
 
-        clienteRe.setNomeEmpresa("Cclean ");
-        clienteRe.setEmail("Clean@Gmail.com");
+        itens.setProduto(produto);
+        itens.setQuantidade(5);
 
-        serviceCliente.novoCliente(clienteRe);
+        itens1.setProduto(produto);
+        itens1.setQuantidade(3);
 
-        produtoRequest produtoRe = new produtoRequest();
-        produtoRe.setMedida("75 X 105");
-        produtoRe.setCor("Amarelo");
-        produtoRe.setPeso(4.200);
-        produtoRe.setValidade("Indeterminado");
-        produtoRe.setNome("Plastico");
+        List<Itens_Pedido> itensList = new ArrayList<>();
 
-        produtoService.cadastrarNovo(produtoRe);
+        itensList.add(itens);
+        itensList.add(itens1);
 
+
+
+
+        PedidoRequest pedidoRequest = new PedidoRequest();
+
+        pedidoRequest.setItens(itensList);
+        pedidoRequest.setClientes(clientes);
+        pedidoRequest.setValorTotal(0);
+        pedidoRequest.setQuantidadeItensTotal(5);
+
+    servicePedido.cadastrarNovo(pedidoRequest);
+
+
+
+
+    }
+
+    @Test
+    @DisplayName("ListaPedido")
+    void BuscarPedidos(){
+
+        List<pedidoResponse> listPedidosResponse = servicePedido.listarPedido();
+
+        assertThat(listPedidosResponse).isNotNull();
 
 
     }
