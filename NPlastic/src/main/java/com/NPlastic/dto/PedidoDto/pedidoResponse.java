@@ -8,6 +8,7 @@ import java.util.List;
 
 public class pedidoResponse {
 
+    private Integer id;
     private Date data;
 
     private double valorTotal;
@@ -49,6 +50,14 @@ public class pedidoResponse {
 
     public void setItens(List<Itens_Pedido> itens) {
         this.itens = itens;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Clientes getClientes() {

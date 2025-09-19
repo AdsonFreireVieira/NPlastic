@@ -1,6 +1,10 @@
 package com.NPlastic.testeIntegracao;
 
+import com.NPlastic.dto.produtoDto.produtoRequest;
+import com.NPlastic.services.clienteService.clienteServiceImpl;
+import com.NPlastic.services.produtoService.produtoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
