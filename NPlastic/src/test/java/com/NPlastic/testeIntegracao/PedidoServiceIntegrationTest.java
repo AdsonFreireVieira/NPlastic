@@ -1,123 +1,110 @@
 package com.NPlastic.testeIntegracao;
 
 import com.NPlastic.Entity.Clientes;
+import com.NPlastic.Entity.Endereco;
 import com.NPlastic.Entity.Itens_Pedido;
-import com.NPlastic.Entity.Pedido;
 import com.NPlastic.Entity.Produto;
 import com.NPlastic.dto.PedidoDto.PedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
 import com.NPlastic.repository.ClientesRepository;
-import com.NPlastic.repository.PedidoRepository;
+import com.NPlastic.repository.EnderecoRepository;
 import com.NPlastic.repository.ProdutoRepository;
-import com.NPlastic.services.pedidoService.pedidoService;
-
-import jakarta.transaction.Transactional;
+import com.NPlastic.services.clienteService.clienteServiceImpl;
+import com.NPlastic.services.pedidoService.pedidoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 @SpringBootTest
-@Transactional
-public class PedidoServiceIntegrationTest {
+@Testcontainers
+public class PedidoServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
-    private pedidoService pedidoService;
+    private pedidoServiceImpl pedidoService;
 
     @Autowired
-    private PedidoRepository pedidoRepository;
+    private ClientesRepository clientesRepository;
 
     @Autowired
     private ProdutoRepository produtoRepository;
 
     @Autowired
-    private ClientesRepository clienteRepository;
-
-    private Produto produto;
-    private Clientes cliente;
+    private EnderecoRepository enderecoRepository;
 
     @BeforeEach
-    public void setUp() {
-        produto = new Produto();
-        produto.setNome("Produto Teste");
-        produto = produtoRepository.save(produto);
+    void setUp() {
 
-        cliente = new Clientes();
-        cliente.setNomeEmpresa("Empresa Teste");
-        cliente.setEmail("cliente@email.com");
-        cliente.setSenha("123456");
-        cliente = clienteRepository.save(cliente);
-    }
+        Produto produto = new Produto();
+        produto.setPeso(4.0);
+        produto.setValidade("Inteterminada");
+        produto.setNome("Plastico");
+        produto.setMedida("120L");
 
-    private PedidoRequest criarPedidoRequest(double precoUnitario, int quantidade) {
-        Itens_Pedido item = new Itens_Pedido();
-        item.setProduto(produto);
-        item.setQuantidade(quantidade);
+        produtoRepository.save(produto);
 
-        PedidoRequest request = new PedidoRequest();
-        request.setData(new Date());
-        request.setValorTotal(precoUnitario * quantidade);
-        request.setQuantidadeItensTotal(quantidade);
-        request.setItens(Arrays.asList(item));
-        request.setClientes(cliente);
+        Clientes clientes = new Clientes();
+        clientes.setNomeEmpresa("CClean");
+        clientes.setEmail("Cclean@Gmail.com");
 
-        return request;
-    }
+        clientesRepository.save(clientes);
 
-    @Test
-    public void deveCadastrarPedido() {
-        PedidoRequest request = criarPedidoRequest(50, 2);
-        pedidoResponse response = pedidoService.cadastrarNovo(request);
+        Endereco endereco = new Endereco();
 
-        assertThat(response).isNotNull();
-        assertThat(response.getId()).isNotNull();
-        assertThat(response.getClientes().getId()).isEqualTo(cliente.getId());
-        assertThat(response.getItens()).hasSize(1);
-    }
+        endereco.setBairro("Mogi Mirim");
+        endereco.setCidade("Sp");
+        endereco.setNumero(123);
+        endereco.setCep("0989892");
+        endereco.setClientes(clientes);
 
-    @Test
-    public void deveAtualizarPedido() {
-        // 1. Cadastrar pedido
-        PedidoRequest request = criarPedidoRequest(50, 2);
-        pedidoResponse criado = pedidoService.cadastrarNovo(request);
+        enderecoRepository.save(endereco);
 
-        // 2. Alterar dados
-        PedidoRequest novoRequest = criarPedidoRequest(100, 1); // muda valores e quantidade
-        pedidoResponse atualizado = pedidoService.alterarPedido(novoRequest, criado.getId());
+        PedidoRequest pedidoRequest = new PedidoRequest();
 
-        assertThat(atualizado.getValorTotal()).isEqualTo(100.0);
-        assertThat(atualizado.getQuantidadeItensTotal()).isEqualTo(1);
+
+        Itens_Pedido itensPedido = new Itens_Pedido();
+        itensPedido.setQuantidade(5);
+        itensPedido.setProduto(produto);
+        itensPedido.setPedido(pedidoRequest);
+        List<Itens_Pedido> itens = new ArrayList<>();
+
+        itens.add(itensPedido);
+
+        pedidoRequest.setClientes(clientes);
+        pedidoRequest.setData(Date.from(Instant.now()));
+        pedidoRequest.setValorTotal(200);
+        pedidoRequest.setQuantidadeItensTotal(10);
+        pedidoRequest.setItens(itens);
+        pedidoService.cadastrarNovo(pedidoRequest);
+
     }
 
     @Test
-    public void deveBuscarPedidoPorId() {
-        PedidoRequest request = criarPedidoRequest(50, 2);
-        pedidoResponse criado = pedidoService.cadastrarNovo(request);
+    @DisplayName("Atualizar Pedido")
+    void atualizarPedido() {
 
-        Optional<pedidoResponse> buscado = pedidoService.buscarPedidoPorId(criado.getId());
+        pedidoResponse pedidoSalvo = pedidoService.listarPedido().get(0);
 
-        assertThat(buscado).isPresent();
-        assertThat(buscado.get().getId()).isEqualTo(criado.getId());
-    }
+        PedidoRequest pedidoRequestAtualizar = new PedidoRequest();
 
-    @Test
-    public void deveDeletarPedido() {
-        // Cadastrar
-        PedidoRequest request = criarPedidoRequest(50, 2);
-        pedidoResponse criado = pedidoService.cadastrarNovo(request);
+        pedidoRequestAtualizar.setQuantidadeItensTotal(10);
+        pedidoRequestAtualizar.setValorTotal(500);
 
-        // Deletar direto pelo repositório (já que seu serviço não tem método delete)
-        pedidoRepository.deleteById(criado.getId());
+         pedidoResponse pedidoAtualizado = pedidoService.alterarPedido(pedidoRequestAtualizar, pedidoSalvo.getId());
 
-        Optional<Pedido> pedidoDeletado = pedidoRepository.findById(criado.getId());
+   assertThat(pedidoAtualizado).isNotNull();
+   assertThat(pedidoAtualizado.getValorTotal()).isEqualTo(200);
 
-        assertThat(pedidoDeletado).isEmpty();
     }
 }

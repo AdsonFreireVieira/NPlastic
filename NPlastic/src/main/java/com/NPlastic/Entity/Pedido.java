@@ -23,7 +23,7 @@ public class Pedido {
     @Column
     private int quantidadeItensTotal;
 
-    @OneToMany(mappedBy ="pedido", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy ="pedido",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Itens_Pedido> itens;
 
     @ManyToOne

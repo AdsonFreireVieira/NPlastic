@@ -23,6 +23,7 @@ public interface PedidoMappers {
 
  Pedido toEntity(PedidoRequest pedidoRequest);
 
+    @Mapping(source="id",target = "id")
     @Mapping(source="data",target = "data")
     @Mapping(source="valorTotal",target = "valorTotal")
     @Mapping(source="quantidadeItensTotal",target = "quantidadeItensTotal")

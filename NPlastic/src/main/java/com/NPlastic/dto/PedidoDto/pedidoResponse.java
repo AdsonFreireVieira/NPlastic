@@ -9,6 +9,7 @@ import java.util.List;
 public class pedidoResponse {
 
     private Integer id;
+
     private Date data;
 
     private double valorTotal;
