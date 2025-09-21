@@ -2,6 +2,8 @@ package com.NPlastic.ServicesTestUnitarios.clienteServiceTest.enderecoServiceTes
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.Entity.Endereco;
+import com.NPlastic.dto.clientesDto.clientesRequest;
+import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
 import com.NPlastic.mappers.EnderecoMappers;
@@ -43,9 +45,9 @@ public class enderecoTest {
         @BeforeEach
         void setUp() {
             cliente = new Clientes(1, "Nome", "email@teste.com", "senha");
-            endereco = new Endereco(2, "Rua A", 100, "SP", "12345678", "Bairro X", cliente);
-            request = new enderecoRequest(2,"Rua A", 100, "SP", "12345678", "Bairro X", cliente);
-            response = new enderecoResponse(1,"Rua A", 100, "SP", "12345678", "Bairro X", cliente);
+            endereco = new Endereco(2, "Rua A", 100, "SP", "12345678", "Bairro X",cliente);
+            request = new enderecoRequest(2,"Rua A", 100, "SP", "12345678", "Bairro X",new clientesRequest());
+            response = new enderecoResponse(1,"Rua A", 100, "SP", "12345678", "Bairro X",new clientesResponse());
         }
 
         @Test

@@ -1,6 +1,7 @@
 package com.NPlastic.dto.enderecoDto;
 
 import com.NPlastic.Entity.Clientes;
+import com.NPlastic.dto.clientesDto.clientesRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,7 @@ public class enderecoRequest {
 
     private String bairro;
 
-    private Clientes clientes;
-
+    private clientesRequest clienteRequest;
 
 
     public Integer getId() {
@@ -74,11 +74,11 @@ public class enderecoRequest {
         this.bairro = bairro;
     }
 
-    public Clientes getClientes() {
-        return clientes;
+    public clientesRequest getClientesRequest() {
+        return clienteRequest;
     }
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public void setClientesRequest(clientesRequest clientesRequest) {
+        this.clienteRequest = clientesRequest;
     }
 }

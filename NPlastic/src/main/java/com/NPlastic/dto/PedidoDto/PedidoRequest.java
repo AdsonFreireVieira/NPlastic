@@ -3,10 +3,20 @@ package com.NPlastic.dto.PedidoDto;
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
+import com.NPlastic.dto.Itens_PedidoDto.itens_PedidoRequest;
+import com.NPlastic.dto.clientesDto.clientesRequest;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class PedidoRequest {
 
@@ -18,55 +28,7 @@ public class PedidoRequest {
 
     private int quantidadeItensTotal;
 
-    private List<Itens_Pedido> itens;
+    private List<itens_PedidoRequest> itensPedidoRequests;
 
-    private Clientes clientes;
-
-    public List<Itens_Pedido> getItens() {
-        return itens;
-    }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public double getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
-    public int getQuantidadeItensTotal() {
-        return quantidadeItensTotal;
-    }
-
-    public void setQuantidadeItensTotal(int quantidadeItensTotal) {
-        this.quantidadeItensTotal = quantidadeItensTotal;
-    }
-
-    public void setItens(List<Itens_Pedido> itens) {
-        this.itens = itens;
-    }
-
-    public Clientes getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
-    }
+    private clientesRequest clientesRequest;
 }
