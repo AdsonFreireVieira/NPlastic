@@ -1,5 +1,6 @@
 package com.NPlastic.Entity;
 
+import com.NPlastic.dto.clientesDto.clientesRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

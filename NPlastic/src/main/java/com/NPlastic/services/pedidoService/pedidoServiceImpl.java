@@ -4,7 +4,7 @@ import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
 import com.NPlastic.dto.PedidoDto.PedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
-import com.NPlastic.mappers.PedidoMappers;
+import com.NPlastic.mappers.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,10 @@ import java.util.Optional;
 public class pedidoServiceImpl implements  pedidoService{
 
     private final PedidoRepository pedidoRepository;
-    private final PedidoMappers  pedidoMappers;
+    private final PedidoMapper pedidoMappers;
 
 
-    public pedidoServiceImpl(PedidoRepository pedidoRepository, PedidoMappers pedidoMappers) {
+    public pedidoServiceImpl(PedidoRepository pedidoRepository, PedidoMapper pedidoMappers) {
         this.pedidoRepository = pedidoRepository;
         this.pedidoMappers = pedidoMappers;
     }

@@ -1,5 +1,6 @@
 package com.NPlastic.Entity;
 
+import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
@@ -17,7 +18,7 @@ public class Itens_Pedido {
 
     @ManyToOne
     @JoinColumn(name ="produto_id")
-    private Produto produto;
+    private produtoRequest produtoRequest;
 
     @ManyToOne
     @JoinColumn(name = "pedido")
@@ -40,12 +41,12 @@ public class Itens_Pedido {
         this.quantidade = quantidade;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public produtoRequest getProdutoRequest() {
+        return produtoRequest;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutoRequest(produtoRequest produtoRequest) {
+        this.produtoRequest = produtoRequest;
     }
 
     public Pedido getPedido() {

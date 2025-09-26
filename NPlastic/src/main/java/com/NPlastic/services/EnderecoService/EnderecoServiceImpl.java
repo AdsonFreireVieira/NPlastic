@@ -3,10 +3,8 @@ package com.NPlastic.services.EnderecoService;
 import com.NPlastic.Entity.Endereco;
 import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
-import com.NPlastic.mappers.EnderecoMappers;
+import com.NPlastic.mappers.EnderecoMapper;
 import com.NPlastic.repository.EnderecoRepository;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +15,9 @@ public class EnderecoServiceImpl  implements  EnderecoService {
 
     private final EnderecoRepository repository;
 
-    private final EnderecoMappers enderecoMappers;
+    private final EnderecoMapper enderecoMappers;
 
-    public EnderecoServiceImpl(EnderecoRepository repository, EnderecoMappers enderecoMappers) {
+    public EnderecoServiceImpl(EnderecoRepository repository, EnderecoMapper enderecoMappers) {
         this.repository = repository;
         this.enderecoMappers = enderecoMappers;
     }

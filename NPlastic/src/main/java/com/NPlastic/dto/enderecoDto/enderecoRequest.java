@@ -1,9 +1,5 @@
 package com.NPlastic.dto.enderecoDto;
-
-import com.NPlastic.Entity.Clientes;
 import com.NPlastic.dto.clientesDto.clientesRequest;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

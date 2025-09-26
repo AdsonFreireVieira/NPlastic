@@ -15,7 +15,6 @@ public class clienteServiceImpl implements ClienteService {
 
   private final ClientesRepository clientesRepository;
 
-  private final ClientesMapper clientesMapper;
 
     public clienteServiceImpl(ClientesRepository clientesRepository, ClientesMapper clientesMapper) {
         this.clientesRepository = clientesRepository;

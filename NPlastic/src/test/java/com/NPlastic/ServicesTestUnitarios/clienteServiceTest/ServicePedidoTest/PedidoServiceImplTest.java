@@ -12,7 +12,7 @@ import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Pedido;
 import com.NPlastic.dto.PedidoDto.PedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
-import com.NPlastic.mappers.PedidoMappers;
+import com.NPlastic.mappers.PedidoMapper;
 import com.NPlastic.repository.PedidoRepository;
 import com.NPlastic.services.pedidoService.pedidoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +27,7 @@ public class PedidoServiceImplTest {
     private PedidoRepository pedidoRepository;
 
     @Mock
-    private PedidoMappers pedidoMappers;
+    private PedidoMapper pedidoMappers;
 
     @InjectMocks
     private pedidoServiceImpl service;

@@ -6,6 +6,7 @@ import com.NPlastic.Entity.Itens_Pedido;
 import com.NPlastic.Entity.Produto;
 import com.NPlastic.dto.PedidoDto.PedidoRequest;
 import com.NPlastic.dto.PedidoDto.pedidoResponse;
+import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.repository.ClientesRepository;
 import com.NPlastic.repository.EnderecoRepository;
 import com.NPlastic.repository.ProdutoRepository;
@@ -66,7 +67,6 @@ public class PedidoServiceIntegrationTest extends AbstractIntegrationTest {
         endereco.setCidade("Sp");
         endereco.setNumero(123);
         endereco.setCep("0989892");
-        endereco.setClientes(clientes);
 
         enderecoRepository.save(endereco);
 
@@ -75,7 +75,7 @@ public class PedidoServiceIntegrationTest extends AbstractIntegrationTest {
 
         Itens_Pedido itensPedido = new Itens_Pedido();
         itensPedido.setQuantidade(5);
-        itensPedido.setProduto(produto);
+        itensPedido.setProdutoRequest(produto);
         itensPedido.setPedido(pedidoRequest);
         List<Itens_Pedido> itens = new ArrayList<>();
 

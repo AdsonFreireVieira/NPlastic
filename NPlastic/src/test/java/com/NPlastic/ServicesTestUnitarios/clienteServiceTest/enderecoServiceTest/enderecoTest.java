@@ -6,12 +6,10 @@ import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
-import com.NPlastic.mappers.EnderecoMappers;
+import com.NPlastic.mappers.EnderecoMapper;
 import com.NPlastic.repository.EnderecoRepository;
 import com.NPlastic.services.EnderecoService.EnderecoServiceImpl;
-import org.hibernate.internal.util.collections.CollectionHelper;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,7 +30,7 @@ public class enderecoTest {
         private EnderecoRepository repository;
 
         @Mock
-        private EnderecoMappers mappers;
+        private EnderecoMapper mappers;
 
         @InjectMocks
         private EnderecoServiceImpl service;

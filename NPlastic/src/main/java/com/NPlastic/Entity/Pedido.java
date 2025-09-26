@@ -1,5 +1,7 @@
 package com.NPlastic.Entity;
 
+import com.NPlastic.dto.Itens_PedidoDto.itens_PedidoRequest;
+import com.NPlastic.dto.clientesDto.clientesRequest;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -23,12 +25,11 @@ public class Pedido {
     @Column
     private int quantidadeItensTotal;
 
-    @OneToMany(mappedBy ="pedido",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Itens_Pedido> itens;
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<itens_PedidoRequest> itensRequest;
 
     @ManyToOne
-    private Clientes clientes;
-
+    private clientesRequest clienteRequests;
 
     public Integer getId() {
         return id;
@@ -62,19 +63,19 @@ public class Pedido {
         this.quantidadeItensTotal = quantidadeItensTotal;
     }
 
-    public List<Itens_Pedido> getItens() {
-        return itens;
+    public List<itens_PedidoRequest> getItensRequest() {
+        return itensRequest;
     }
 
-    public void setItens(List<Itens_Pedido> itens) {
-        this.itens = itens;
+    public void setItensRequest(List<itens_PedidoRequest> itensRequest) {
+        this.itensRequest = itensRequest;
     }
 
-    public Clientes getClientes() {
-        return clientes;
+    public clientesRequest getClienteRequests() {
+        return clienteRequests;
     }
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public void setClienteRequests(clientesRequest clienteRequests) {
+        this.clienteRequests = clienteRequests;
     }
 }
