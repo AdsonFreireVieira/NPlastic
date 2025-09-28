@@ -1,6 +1,7 @@
 package com.NPlastic.ServicesTestUnitarios.clienteServiceTest;
 
 import com.NPlastic.Entity.Clientes;
+import com.NPlastic.Mappers.ClienteMapper;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.mappers.ClientesMapper;
@@ -30,7 +31,7 @@ public class ClienteServiceTest {
     private clienteServiceImpl service;
 
     @Mock
-    private ClientesMapper mappers;
+    private ClienteMapper mappers;
 
     @Mock
     private ClientesRepository repository;

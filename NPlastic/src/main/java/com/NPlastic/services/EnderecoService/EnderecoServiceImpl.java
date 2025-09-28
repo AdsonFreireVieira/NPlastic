@@ -1,9 +1,9 @@
 package com.NPlastic.services.EnderecoService;
 
 import com.NPlastic.Entity.Endereco;
+import com.NPlastic.Mappers.EnderecoMapper;
 import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
-import com.NPlastic.mappers.EnderecoMapper;
 import com.NPlastic.repository.EnderecoRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ import java.util.Optional;
 public class EnderecoServiceImpl  implements  EnderecoService {
 
     private final EnderecoRepository repository;
-
     private final EnderecoMapper enderecoMappers;
+
 
     public EnderecoServiceImpl(EnderecoRepository repository, EnderecoMapper enderecoMappers) {
         this.repository = repository;
@@ -35,7 +35,7 @@ public class EnderecoServiceImpl  implements  EnderecoService {
 
     Endereco endereco =repository.findById(id).orElseThrow(()-> new RuntimeException("Nao Encontrado"));
 
-    enderecoMappers.atualizarEntity(request, endereco);
+   // enderecoMappers.atualizarEntity(request, endereco);
 
    Endereco enderecoAtualizado = repository.save(endereco);
 
@@ -62,7 +62,7 @@ public class EnderecoServiceImpl  implements  EnderecoService {
     @Override
     public List<enderecoResponse> listarEndereco() {
 
-        return enderecoMappers.toList((List<Endereco>) repository.findAll());
+        return enderecoMappers.convertList((List<Endereco>) repository.findAll());
     }
 
 }

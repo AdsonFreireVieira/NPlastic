@@ -1,9 +1,9 @@
 package com.NPlastic.services.produtoService;
 
 import com.NPlastic.Entity.Produto;
+import com.NPlastic.Mappers.ProdutoMapper;
 import com.NPlastic.dto.produtoDto.produtoRequest;
 import com.NPlastic.dto.produtoDto.produtoResponse;
-import com.NPlastic.mappers.produtoMapper;
 import com.NPlastic.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,9 @@ import java.util.Optional;
 public class produtoServiceImpl implements  produtoService{
 
     private final ProdutoRepository produtoRepository;
-    private final produtoMapper produtoMappers;
+    private final ProdutoMapper produtoMappers;
 
-    public produtoServiceImpl(ProdutoRepository produtoRepository, produtoMapper produtoMappers) {
+    public produtoServiceImpl(ProdutoRepository produtoRepository, ProdutoMapper produtoMappers) {
         this.produtoRepository = produtoRepository;
         this.produtoMappers = produtoMappers;
     }
@@ -34,14 +34,14 @@ public class produtoServiceImpl implements  produtoService{
 
           Produto produto = produtoRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Localizado"));
 
-         produtoMappers.atualizarProduto(produtoRequest,produto);
+        // produtoMappers.atualizarProduto(produtoRequest,produto);
          produtoRepository.save(produto);
         return Optional.of(produtoMappers.toDto(produto));
     }
 
     @Override
     public List<produtoResponse> listarProduto() {
-        return produtoMappers.toList((List<Produto>) produtoRepository.findAll());
+        return produtoMappers.toListResponse((List<Produto>) produtoRepository.findAll());
     }
 
     @Override

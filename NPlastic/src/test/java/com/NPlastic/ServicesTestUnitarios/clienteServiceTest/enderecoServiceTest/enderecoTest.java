@@ -2,11 +2,11 @@ package com.NPlastic.ServicesTestUnitarios.clienteServiceTest.enderecoServiceTes
 
 import com.NPlastic.Entity.Clientes;
 import com.NPlastic.Entity.Endereco;
+import com.NPlastic.Mappers.EnderecoMapper;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
 import com.NPlastic.dto.enderecoDto.enderecoRequest;
 import com.NPlastic.dto.enderecoDto.enderecoResponse;
-import com.NPlastic.mappers.EnderecoMapper;
 import com.NPlastic.repository.EnderecoRepository;
 import com.NPlastic.services.EnderecoService.EnderecoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;

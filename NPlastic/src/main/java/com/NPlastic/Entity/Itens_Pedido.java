@@ -18,7 +18,7 @@ public class Itens_Pedido {
 
     @ManyToOne
     @JoinColumn(name ="produto_id")
-    private produtoRequest produtoRequest;
+    private  Produto produto;
 
     @ManyToOne
     @JoinColumn(name = "pedido")
@@ -41,12 +41,12 @@ public class Itens_Pedido {
         this.quantidade = quantidade;
     }
 
-    public produtoRequest getProdutoRequest() {
-        return produtoRequest;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutoRequest(produtoRequest produtoRequest) {
-        this.produtoRequest = produtoRequest;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Pedido getPedido() {

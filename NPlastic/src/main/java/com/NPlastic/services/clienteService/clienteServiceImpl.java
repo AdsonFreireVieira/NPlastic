@@ -1,9 +1,9 @@
 package com.NPlastic.services.clienteService;
 
 import com.NPlastic.Entity.Clientes;
+import com.NPlastic.Mappers.ClienteMapper;
 import com.NPlastic.dto.clientesDto.clientesRequest;
 import com.NPlastic.dto.clientesDto.clientesResponse;
-import com.NPlastic.mappers.ClientesMapper;
 import com.NPlastic.repository.ClientesRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,19 +15,21 @@ public class clienteServiceImpl implements ClienteService {
 
   private final ClientesRepository clientesRepository;
 
+  private final ClienteMapper clienteMapper;
 
-    public clienteServiceImpl(ClientesRepository clientesRepository, ClientesMapper clientesMapper) {
+
+    public clienteServiceImpl(ClientesRepository clientesRepository, ClienteMapper clienteMapper) {
         this.clientesRepository = clientesRepository;
-        this.clientesMapper = clientesMapper;
+        this.clienteMapper = clienteMapper;
     }
 
     @Override
     public clientesResponse novoCliente(clientesRequest clienteRequest) {
 
 
-            Clientes cliente = clientesMapper.toEntity(clienteRequest);
+            Clientes cliente = clienteMapper.toEntity(clienteRequest);
 
-            return clientesMapper.toDto(clientesRepository.save(cliente));
+            return clienteMapper.toDTo(clientesRepository.save(cliente));
 
 
     }
@@ -38,22 +40,21 @@ public class clienteServiceImpl implements ClienteService {
         Clientes cliente = clientesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Não localizado"));
 
-        clientesMapper.atualizarCliente(clientesRequest, cliente);
 
         Clientes clienteAtualizado = clientesRepository.save(cliente);
 
-        return Optional.of(clientesMapper.toDto(clienteAtualizado));
+        return Optional.of(clienteMapper.toDTo(clienteAtualizado));
 
     }
 
     @Override
     public List<clientesResponse> listarClientes() {
-        return clientesMapper.toListDto((List<Clientes>) clientesRepository.findAll());
+        return clienteMapper.toList((List<Clientes>) clientesRepository.findAll());
     }
 
     @Override
     public Optional<clientesResponse> buscarPorId(int id) {
-        return clientesRepository.findById(id).map(clientesMapper::toDto);
+        return clientesRepository.findById(id).map(clienteMapper::toDTo);
 
     }
 
