@@ -1,4 +1,6 @@
 package com.NPlastic.entity;
 
-public class ProducaoExtrusao {
+public class ProducaoExtrusao extends  ProducaoAbstract {
+
+
 }
