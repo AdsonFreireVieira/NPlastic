@@ -20,6 +20,9 @@ public class Produtos {
     private String cor;
 
     @Column
+    private String classificacao;
+
+    @Column
     private String unidades;
 
     @Column
@@ -30,7 +33,6 @@ public class Produtos {
     private double peso;
 
 
-
     public Integer getId() {
         return id;
     }
@@ -39,6 +41,13 @@ public class Produtos {
         this.id = id;
     }
 
+    public String getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(String classificacao) {
+        this.classificacao = classificacao;
+    }
 
     public String getNome() {
         return nome;
