@@ -29,17 +29,7 @@ public class Produtos {
     @Column
     private double peso;
 
-    @Column
-    private String etiqueta;
 
-    @Column
-    private int quantidadePacote;
-
-    @Column
-    private double kiloTonelada;
-
-    @Column
-    private int quantidadeEntoque;
 
     public Integer getId() {
         return id;
@@ -49,13 +39,6 @@ public class Produtos {
         this.id = id;
     }
 
-    public int getQuantidadeEntoque() {
-        return quantidadeEntoque;
-    }
-
-    public void setQuantidadeEntoque(int quantidadeEntoque) {
-        this.quantidadeEntoque = quantidadeEntoque;
-    }
 
     public String getNome() {
         return nome;
@@ -105,27 +88,5 @@ public class Produtos {
         this.peso = peso;
     }
 
-    public String getEtiqueta() {
-        return etiqueta;
-    }
 
-    public void setEtiqueta(String etiqueta) {
-        this.etiqueta = etiqueta;
-    }
-
-    public int getQuantidadePacote() {
-        return quantidadePacote;
-    }
-
-    public void setQuantidadePacote(int quantidadePacote) {
-        this.quantidadePacote = quantidadePacote;
-    }
-
-    public double getKiloTonelada() {
-        return kiloTonelada;
-    }
-
-    public void setKiloTonelada(double kiloTonelada) {
-        this.kiloTonelada = kiloTonelada;
-    }
 }
