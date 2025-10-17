@@ -1,9 +1,10 @@
 package com.NPlastic.services.produtoservice;
 
 import com.NPlastic.entity.Produtos;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ProdutoImpl implements ProdutoServices{
 
 

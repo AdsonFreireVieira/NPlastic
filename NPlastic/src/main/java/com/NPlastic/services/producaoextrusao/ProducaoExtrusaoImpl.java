@@ -1,9 +1,10 @@
 package com.NPlastic.services.producaoextrusao;
 
 import com.NPlastic.entity.ProducaoExtrusao;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ProducaoExtrusaoImpl implements ProducaoExtrusaoI{
 
     @Override

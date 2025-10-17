@@ -1,8 +1,11 @@
 package com.NPlastic.services.producaoestoque;
 
 import com.NPlastic.entity.Estoque;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+@Service
 
 public class EstoqueImpl implements ProducaoEstoqueI
 {

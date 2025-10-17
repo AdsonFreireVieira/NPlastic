@@ -1,9 +1,10 @@
 package com.NPlastic.services.producaocortesolda;
 
 import com.NPlastic.entity.ProducaoCorte;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ProducaoCorteSoldaImpl implements ProducaoCorteSoldaI {
     @Override
     public ProducaoCorte criarProducaoCorteSolda(ProducaoCorte producaoCorte) {
