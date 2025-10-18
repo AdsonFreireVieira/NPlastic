@@ -1,0 +1,4 @@
+package com.NPlastic.dto.producaoextrusao;
+
+public class ProducaoExtrusaoResponse {
+}
