@@ -1,4 +1,4 @@
 package com.NPlastic.dto.produtodto;
 
-public class ProdutoResponse {
+public class ProdutosRequest {
 }

@@ -1,5 +1,7 @@
 package com.NPlastic.services.producaocortesolda;
 
+import com.NPlastic.dto.producaocortesolda.ProducaoCorteeSoldaRequest;
+import com.NPlastic.dto.producaocortesolda.ProducaoCorteeSoldaResponse;
 import com.NPlastic.entity.ProducaoCorte;
 import org.springframework.stereotype.Service;
 
@@ -7,25 +9,25 @@ import java.util.List;
 @Service
 public class ProducaoCorteSoldaImpl implements ProducaoCorteSoldaI {
 
-    private final ProducaoC
+
 
     @Override
-    public ProducaoCorte criarProducaoCorteSolda(ProducaoCorte producaoCorte) {
+    public ProducaoCorteeSoldaResponse criarProducaoCorteSolda(ProducaoCorteeSoldaRequest producaoCorteeSoldaRequest) {
         return null;
     }
 
     @Override
-    public ProducaoCorte atualizarProducaoCorteSolda(ProducaoCorte producaoCorte) {
+    public ProducaoCorteeSoldaResponse atualizarProducaoCorteSolda(ProducaoCorteeSoldaRequest producaoCorteeSoldaRequest) {
         return null;
     }
 
     @Override
-    public ProducaoCorte buscarProdutoCorteSolda(int id) {
+    public ProducaoCorteeSoldaResponse buscarProdutoCorteSolda(int id) {
         return null;
     }
 
     @Override
-    public List<ProducaoCorte> listarProdutoCorteSolda() {
+    public List<ProducaoCorteeSoldaResponse> listarProdutoCorteSolda() {
         return null;
     }
 

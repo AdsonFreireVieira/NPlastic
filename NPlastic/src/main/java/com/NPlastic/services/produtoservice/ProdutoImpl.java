@@ -1,5 +1,7 @@
 package com.NPlastic.services.produtoservice;
 
+import com.NPlastic.dto.produtodto.ProdutosRequest;
+import com.NPlastic.dto.produtodto.ProdutosResponse;
 import com.NPlastic.entity.Produtos;
 import com.NPlastic.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,7 @@ import java.util.List;
 @Service
 
 
-public class ProdutoImpl implements ProdutoServices{
+public class ProdutoImpl implements ProdutosServices {
 
     private final ProdutoRepository produtoRepository;
 
@@ -17,23 +19,23 @@ public class ProdutoImpl implements ProdutoServices{
     }
 
     @Override
-    public Produtos criarProduto(Produtos produtos) {
+    public ProdutosResponse criarProduto(ProdutosRequest produtosRequest) {
 
-        return produtoRepository.save(produtos);
-    }
-
-    @Override
-    public Produtos atualizarProduto(Produtos produtos) {
         return null;
     }
 
     @Override
-    public Produtos buscarPorId(int id) {
+    public ProdutosResponse atualizarProduto(ProdutosRequest produtosRequest) {
         return null;
     }
 
     @Override
-    public List<Produtos> listarProdutos() {
+    public ProdutosResponse buscarPorId(int id) {
+        return null;
+    }
+
+    @Override
+    public List<ProdutosResponse> listarProdutos() {
         return List.of();
     }
 

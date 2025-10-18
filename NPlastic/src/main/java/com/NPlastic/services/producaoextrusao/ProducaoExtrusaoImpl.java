@@ -1,5 +1,7 @@
 package com.NPlastic.services.producaoextrusao;
 
+import com.NPlastic.dto.producaoextrusao.ProducaoExtrusaoRequest;
+import com.NPlastic.dto.producaoextrusao.ProducaoExtrusaoResponse;
 import com.NPlastic.entity.ProducaoExtrusao;
 import org.springframework.stereotype.Service;
 
@@ -8,22 +10,22 @@ import java.util.List;
 public class ProducaoExtrusaoImpl implements ProducaoExtrusaoI{
 
     @Override
-    public ProducaoExtrusao criarProdutoExtrusao(ProducaoExtrusao producaoExtrusao) {
+    public ProducaoExtrusaoResponse criarProdutoExtrusao(ProducaoExtrusaoRequest producaoExtrusaoRequest) {
         return null;
     }
 
     @Override
-    public ProducaoExtrusao atualizarProdutoExtrusao(ProducaoExtrusao producaoExtrusao) {
+    public ProducaoExtrusaoResponse atualizarProdutoExtrusao(ProducaoExtrusaoRequest producaoExtrusaoRequest) {
         return null;
     }
 
     @Override
-    public ProducaoExtrusao buscarPorId(int id) {
+    public ProducaoExtrusaoResponse buscarPorId(int id) {
         return null;
     }
 
     @Override
-    public List<ProducaoExtrusao> listarProducaoExtrusao() {
+    public List<ProducaoExtrusaoResponse> listarProducaoExtrusao() {
         return List.of();
     }
 

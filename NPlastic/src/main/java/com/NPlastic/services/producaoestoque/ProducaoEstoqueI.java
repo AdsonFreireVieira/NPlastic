@@ -1,17 +1,19 @@
 package com.NPlastic.services.producaoestoque;
 
+import com.NPlastic.dto.estoquedto.EstoqueRequest;
+import com.NPlastic.dto.estoquedto.EstoqueResponse;
 import com.NPlastic.entity.Estoque;
 
 import java.util.List;
 
 public interface ProducaoEstoqueI {
 
-    Estoque criarEstoque(Estoque estoque);
+    EstoqueResponse criarEstoque(EstoqueRequest estoqueRequest);
 
-    Estoque atualizarEstoque(Estoque estoque);
+    EstoqueResponse atualizarEstoque(EstoqueRequest estoqueRequest);
 
-    Estoque buscarPorId(int id );
+    EstoqueResponse buscarPorId(int id );
 
-    List<Estoque> listarEstoque();
+    List<EstoqueResponse> listarEstoque();
 
 }

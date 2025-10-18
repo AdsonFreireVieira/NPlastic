@@ -1,18 +1,20 @@
 package com.NPlastic.services.producaocortesolda;
 
+import com.NPlastic.dto.producaocortesolda.ProducaoCorteeSoldaRequest;
+import com.NPlastic.dto.producaocortesolda.ProducaoCorteeSoldaResponse;
 import com.NPlastic.entity.ProducaoCorte;
 
 import java.util.List;
 
 public interface ProducaoCorteSoldaI {
 
-    ProducaoCorte criarProducaoCorteSolda(ProducaoCorte producaoCorte);
+    ProducaoCorteeSoldaResponse criarProducaoCorteSolda(ProducaoCorteeSoldaRequest producaoCorteeSoldaRequest);
 
-    ProducaoCorte atualizarProducaoCorteSolda(ProducaoCorte producaoCorte);
+    ProducaoCorteeSoldaResponse atualizarProducaoCorteSolda(ProducaoCorteeSoldaRequest producaoCorteeSoldaRequest);
 
-    ProducaoCorte buscarProdutoCorteSolda(int id);
+    ProducaoCorteeSoldaResponse buscarProdutoCorteSolda(int id);
 
-   List<ProducaoCorte> listarProdutoCorteSolda();
+   List<ProducaoCorteeSoldaResponse> listarProdutoCorteSolda();
 
     String deletarProducaoCorteSolda(int id);
 }
