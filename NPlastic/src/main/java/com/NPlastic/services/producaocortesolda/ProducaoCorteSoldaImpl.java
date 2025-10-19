@@ -8,6 +8,8 @@ import com.NPlastic.repository.ProducaoCorteSoldaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProducaoCorteSoldaImpl implements ProducaoCorteSoldaI {
 
@@ -28,8 +30,15 @@ public class ProducaoCorteSoldaImpl implements ProducaoCorteSoldaI {
     }
 
     @Override
-    public ProducaoCorteeSoldaResponse atualizarProducaoCorteSolda(int id,ProducaoCorteeSoldaRequest producaoCorteeSoldaRequest) {
-        return null;
+    public Optional<ProducaoCorteeSoldaResponse> atualizarProducaoCorteSolda(int id, ProducaoCorteeSoldaRequest producaoCorteeSoldaRequest) {
+
+        ProducaoCorteSolda producaoCorteSoldaBanco = producaoCorteSoldaRepository.findById(id).orElseThrow(()->new RuntimeException("Nao foi Possivel Atualizar"));
+
+        ProducaoCorteSolda producaoCorteSoldaAtualizar = producaoCorteSoldaMappers.toEntity(producaoCorteeSoldaRequest);
+
+        producaoCorteSoldaBanco.setQuantidade(producaoCorteSoldaAtualizar.getQuantidade());
+
+        return  Optional.ofNullable( producaoCorteSoldaMappers.toDto(producaoCorteSoldaRepository.save(producaoCorteSoldaBanco)));
     }
 
     @Override
