@@ -3,7 +3,7 @@ package com.NPlastic.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class ProducaoCorte {
+public class ProducaoCorteSolda {
 
     @Id
     @Column

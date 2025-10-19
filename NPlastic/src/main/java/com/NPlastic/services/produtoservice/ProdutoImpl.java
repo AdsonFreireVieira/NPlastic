@@ -3,6 +3,7 @@ package com.NPlastic.services.produtoservice;
 import com.NPlastic.dto.produtodto.ProdutosRequest;
 import com.NPlastic.dto.produtodto.ProdutosResponse;
 import com.NPlastic.entity.Produtos;
+import com.NPlastic.mappers.ProdutoMappers;
 import com.NPlastic.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,19 +14,22 @@ import java.util.List;
 public class ProdutoImpl implements ProdutosServices {
 
     private final ProdutoRepository produtoRepository;
+    private final ProdutoMappers produtoMappers;
 
-    public ProdutoImpl(ProdutoRepository produtoRepository) {
+    public ProdutoImpl(ProdutoRepository produtoRepository,ProdutoMappers produtoMappers) {
         this.produtoRepository = produtoRepository;
+        this.produtoMappers = produtoMappers;
     }
 
     @Override
     public ProdutosResponse criarProduto(ProdutosRequest produtosRequest) {
 
-        return null;
+         Produtos produtos = produtoMappers.toEntity(produtosRequest);
+        return produtoMappers.toDto(produtos);
     }
 
     @Override
-    public ProdutosResponse atualizarProduto(ProdutosRequest produtosRequest) {
+    public ProdutosResponse atualizarProduto(int id ,ProdutosRequest produtosRequest) {
         return null;
     }
 
@@ -36,7 +40,8 @@ public class ProdutoImpl implements ProdutosServices {
 
     @Override
     public List<ProdutosResponse> listarProdutos() {
-        return List.of();
+
+        return produtoMappers.listConverttoDto((List<Produtos>)produtoRepository.findAll());
     }
 
     @Override

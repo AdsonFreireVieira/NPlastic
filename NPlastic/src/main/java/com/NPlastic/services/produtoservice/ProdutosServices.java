@@ -9,7 +9,7 @@ public interface ProdutosServices {
 
      ProdutosResponse criarProduto(ProdutosRequest produtosRequest);
 
-     ProdutosResponse atualizarProduto(ProdutosRequest produtosRequests);
+     ProdutosResponse atualizarProduto(int id,ProdutosRequest produtosRequests);
 
      ProdutosResponse buscarPorId(int id);
 

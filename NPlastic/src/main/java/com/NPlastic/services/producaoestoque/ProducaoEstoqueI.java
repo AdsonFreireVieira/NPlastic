@@ -10,7 +10,7 @@ public interface ProducaoEstoqueI {
 
     EstoqueResponse criarEstoque(EstoqueRequest estoqueRequest);
 
-    EstoqueResponse atualizarEstoque(EstoqueRequest estoqueRequest);
+    EstoqueResponse atualizarEstoque(int id,EstoqueRequest estoqueRequest);
 
     EstoqueResponse buscarPorId(int id );
 
