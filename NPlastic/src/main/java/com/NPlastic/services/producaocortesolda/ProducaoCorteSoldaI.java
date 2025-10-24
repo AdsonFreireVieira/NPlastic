@@ -12,7 +12,7 @@ public interface ProducaoCorteSoldaI {
 
    Optional<ProducaoCorteeSoldaResponse> atualizarProducaoCorteSolda(int id, ProducaoCorteeSoldaRequest producaoCorteeSoldaRequest);
 
-    ProducaoCorteeSoldaResponse buscarProdutoCorteSolda(int id);
+   ProducaoCorteeSoldaResponse buscarProdutoCorteSolda(int id);
 
    List<ProducaoCorteeSoldaResponse> listarProdutoCorteSolda();
 

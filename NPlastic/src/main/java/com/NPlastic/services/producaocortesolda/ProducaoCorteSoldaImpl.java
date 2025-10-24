@@ -43,7 +43,10 @@ public class ProducaoCorteSoldaImpl implements ProducaoCorteSoldaI {
 
     @Override
     public ProducaoCorteeSoldaResponse buscarProdutoCorteSolda(int id) {
-        return null;
+
+         ProducaoCorteSolda entity =producaoCorteSoldaRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Encontrado"));
+
+         return producaoCorteSoldaMappers.toDto(entity);
     }
 
     @Override
@@ -53,6 +56,16 @@ public class ProducaoCorteSoldaImpl implements ProducaoCorteSoldaI {
 
     @Override
     public String deletarProducaoCorteSolda(int id) {
-        return "";
+
+        ProducaoCorteSolda producaoCorteSolda = producaoCorteSoldaRepository.findById(id).orElseThrow(() -> new RuntimeException(" NaomLocalizado"));
+
+        if (producaoCorteSolda == null) {
+            return "Nao Localizado";
+        } else {
+            producaoCorteSoldaRepository.deleteById(id);
+
+            return "Removido";
+
+        }
     }
 }

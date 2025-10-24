@@ -31,14 +31,29 @@ public class EstoqueImpl implements ProducaoEstoqueI {
 
     @Override
     public EstoqueResponse atualizarEstoque(int id,EstoqueRequest estoqueRequest) {
-        return null;
+
+        Estoque estoque= estoqueRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localizado"));
+
+        estoque.setQuantidade(estoqueRequest.getQuantidade());
+
+        estoqueRepository.save(estoque);
+
+
+
+        return mappers.toDto(estoque);
     }
 
     @Override
     public EstoqueResponse buscarPorId(int id) {
+
+        Estoque estoque = estoqueRepository.findById(id).orElseThrow(() -> new RuntimeException("Nao Encontrado"));
+
+        if (estoque == null) {
+            return mappers.toDto(estoque);
+
+        }
         return null;
     }
-
     @Override
     public List<EstoqueResponse> listarEstoque() {
 

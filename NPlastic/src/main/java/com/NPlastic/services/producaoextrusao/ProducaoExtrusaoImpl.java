@@ -8,6 +8,7 @@ import com.NPlastic.mappers.ProdutoMappers;
 import com.NPlastic.repository.ProducaoExtrusaoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.EmptyStackException;
 import java.util.List;
 @Service
 public class ProducaoExtrusaoImpl implements ProducaoExtrusaoI{
@@ -31,12 +32,19 @@ public class ProducaoExtrusaoImpl implements ProducaoExtrusaoI{
 
     @Override
     public ProducaoExtrusaoResponse atualizarProdutoExtrusao(int id,ProducaoExtrusaoRequest producaoExtrusaoRequest) {
-        return null;
+
+        ProducaoExtrusao producaoExtrusao = producaoExtrusaoRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Localizado"));
+
+        producaoExtrusao.setKilograma(producaoExtrusaoRequest.getKilograma());
+
+        return producaoExtrusaoMappers.toDto(producaoExtrusaoRepository.save(producaoExtrusao));
     }
 
     @Override
     public ProducaoExtrusaoResponse buscarPorId(int id) {
-        return null;
+
+        ProducaoExtrusao producaoExtrusao = producaoExtrusaoRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localizado"));
+        return producaoExtrusaoMappers.toDto(producaoExtrusao);
     }
 
     @Override
@@ -46,6 +54,9 @@ public class ProducaoExtrusaoImpl implements ProducaoExtrusaoI{
 
     @Override
     public String deletarProducaoExtrusao(int id) {
-        return "";
+        ProducaoExtrusao producaoExtrusao = producaoExtrusaoRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localicado"));
+          if(producaoExtrusao != null)
+              producaoExtrusaoRepository.deleteById(id);
+        return "Removido";
     }
 }

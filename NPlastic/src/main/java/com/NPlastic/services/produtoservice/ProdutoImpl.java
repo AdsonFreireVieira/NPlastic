@@ -25,17 +25,28 @@ public class ProdutoImpl implements ProdutosServices {
     public ProdutosResponse criarProduto(ProdutosRequest produtosRequest) {
 
          Produtos produtos = produtoMappers.toEntity(produtosRequest);
-        return produtoMappers.toDto(produtos);
+        return produtoMappers.toDto(produtoRepository.save(produtos));
     }
 
     @Override
     public ProdutosResponse atualizarProduto(int id ,ProdutosRequest produtosRequest) {
-        return null;
-    }
 
+
+        Produtos produtos = produtoRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localizado"));
+        produtos.setClassificacao(produtosRequest.getClassificacao());
+        produtos.setCor(produtosRequest.getCor());
+        produtos.setLitros(produtosRequest.getLitros());
+        produtos.setNome(produtosRequest.getNome());
+        produtos.setUnidades(produtosRequest.getUnidades());
+        produtos.setMedida(produtosRequest.getMedida());
+
+         return produtoMappers.toDto(produtoRepository.save(produtos));
+    }
     @Override
     public ProdutosResponse buscarPorId(int id) {
-        return null;
+
+        Produtos produtos = produtoRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localizado"));
+        return produtoMappers.toDto(produtos);
     }
 
     @Override
@@ -46,6 +57,10 @@ public class ProdutoImpl implements ProdutosServices {
 
     @Override
     public String deletarProduto(int id) {
-        return "";
+
+        Produtos produtos = produtoRepository.findById(id).orElseThrow(()->new RuntimeException("Nao Localizado"));
+          if(produtos != null)
+              produtoRepository.deleteById(id);
+        return "Removido";
     }
 }
