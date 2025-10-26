@@ -42,7 +42,7 @@ public class ProducaoCorteSoldaImpl implements ProducaoCorteSoldaI {
     }
 
     @Override
-    public ProducaoCorteeSoldaResponse buscarProdutoCorteSolda(int id) {
+    public ProducaoCorteeSoldaResponse buscarProducaoCorteSolda(int id) {
 
          ProducaoCorteSolda entity =producaoCorteSoldaRepository.findById(id).orElseThrow(()-> new RuntimeException("Nao Encontrado"));
 
