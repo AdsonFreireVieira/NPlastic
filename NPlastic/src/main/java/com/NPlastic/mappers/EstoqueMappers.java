@@ -1,5 +1,6 @@
 package com.NPlastic.mappers;
 
+import ch.qos.logback.core.model.ComponentModel;
 import com.NPlastic.dto.estoquedto.EstoqueRequest;
 import com.NPlastic.dto.estoquedto.EstoqueResponse;
 import com.NPlastic.entity.Estoque;
@@ -8,7 +9,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface EstoqueMappers {
 
 

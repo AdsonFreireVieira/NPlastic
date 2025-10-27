@@ -10,7 +10,8 @@ public class ProducaoExtrusao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "produto_id",nullable = false)
     private Produtos produtos;
 
     @Column

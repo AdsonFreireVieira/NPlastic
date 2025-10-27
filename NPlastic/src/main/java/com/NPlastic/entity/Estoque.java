@@ -11,10 +11,11 @@ public class Estoque {
     private Integer id;
 
     @Column
-    private  Produtos produto;
-
-    @Column
     private  int quantidade;
+
+    @ManyToOne
+    @JoinColumn(name = "produto_id",nullable = false)
+    private Produtos produtos;
 
     public Integer getId() {
         return id;
@@ -24,19 +25,19 @@ public class Estoque {
         this.id = id;
     }
 
-    public Produtos getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produtos produto) {
-        this.produto = produto;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Produtos getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Produtos produtos) {
+        this.produtos = produtos;
     }
 }
