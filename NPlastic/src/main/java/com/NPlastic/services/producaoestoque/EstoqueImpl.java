@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 
-public class EstoqueImpl implements ProducaoEstoqueI {
+public class EstoqueImpl implements EstoqueServiceImpl {
 
     private final EstoqueMappers mappers;
     private final EstoqueRepository estoqueRepository;

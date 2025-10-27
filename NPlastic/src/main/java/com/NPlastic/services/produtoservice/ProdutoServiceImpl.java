@@ -11,12 +11,12 @@ import java.util.List;
 @Service
 
 
-public class ProdutoImpl implements ProdutosServices {
+public class ProdutoServiceImpl implements ProdutosServices {
 
     private final ProdutoRepository produtoRepository;
     private final ProdutoMappers produtoMappers;
 
-    public ProdutoImpl(ProdutoRepository produtoRepository,ProdutoMappers produtoMappers) {
+    public ProdutoServiceImpl(ProdutoRepository produtoRepository, ProdutoMappers produtoMappers) {
         this.produtoRepository = produtoRepository;
         this.produtoMappers = produtoMappers;
     }
