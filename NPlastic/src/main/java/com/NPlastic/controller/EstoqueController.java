@@ -30,7 +30,7 @@ public class EstoqueController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<EstoqueResponse> atualizarEstoque(@RequestParam int id, @RequestBody EstoqueRequest request) {
+    ResponseEntity<EstoqueResponse> atualizarEstoque(@PathVariable int id, @RequestBody EstoqueRequest request) {
 
         request.setId(id);
         service.atualizarEstoque(id, request);
@@ -44,7 +44,7 @@ public class EstoqueController {
       return   ResponseEntity.ok(service.listarEstoque());
     }
     @GetMapping("/{id}")
-    ResponseEntity<EstoqueResponse> buscarPorId(@RequestParam int id){
+    ResponseEntity<EstoqueResponse> buscarPorId(@PathVariable int id){
 
         EstoqueResponse response = service.buscarPorId(id);
 

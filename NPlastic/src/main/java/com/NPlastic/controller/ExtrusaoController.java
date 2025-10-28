@@ -39,8 +39,8 @@ public class ExtrusaoController {
         return  ResponseEntity.ok(producaoService.listarProducaoExtrusao());
     }
 
-    @PutMapping
-    ResponseEntity<ProducaoExtrusaoResponse> atualizarProducaoExtrusao(int id , @RequestBody ProducaoExtrusaoRequest request) {
+    @PutMapping("/{id}")
+    ResponseEntity<ProducaoExtrusaoResponse> atualizarProducaoExtrusao(@PathVariable int id , @RequestBody ProducaoExtrusaoRequest request) {
 
         if (request != null) {
             ProducaoExtrusaoResponse response = producaoService.atualizarProdutoExtrusao(id, request);
@@ -50,7 +50,7 @@ public class ExtrusaoController {
         return ResponseEntity.notFound().build();
     }
     @GetMapping("/{id}")
-    ResponseEntity<ProducaoExtrusaoResponse> buscarPorId(@RequestParam int id){
+    ResponseEntity<ProducaoExtrusaoResponse> buscarPorId(@PathVariable int id){
 
             ProducaoExtrusaoResponse response = producaoService.buscarPorId(id);
 
@@ -58,7 +58,7 @@ public class ExtrusaoController {
     }
     @DeleteMapping("/{id}")
 
-    String deletar(@RequestParam  int id){
+    String deletar(@PathVariable  int id){
 
         String response = producaoService.deletarProducaoExtrusao(id);
 

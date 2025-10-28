@@ -35,7 +35,7 @@ public class ProdutoController {
 
     }
     @PutMapping("/{id}")
-    ResponseEntity<ProdutosResponse> atualizarProduto(@RequestParam int id , @RequestBody ProdutosRequest request){
+    ResponseEntity<ProdutosResponse> atualizarProduto(@PathVariable int id , @RequestBody ProdutosRequest request){
 
         request.setId(id);
 
@@ -45,14 +45,14 @@ public class ProdutoController {
 
     }
     @GetMapping("/{id}")
-    ResponseEntity<ProdutosResponse> bucarPorid(@RequestParam int id){
+    ResponseEntity<ProdutosResponse> bucarPorid(@PathVariable int id){
 
         ProdutosResponse produtosResponse = service.buscarPorId(id);
 
         return ResponseEntity.ok(produtosResponse);
     }
   @DeleteMapping("/{id}")
-     String deletarProduto(@RequestParam int id){
+     String deletarProduto(@PathVariable  int id){
 
         ProdutosResponse produtosResponse = service.buscarPorId(id);
 

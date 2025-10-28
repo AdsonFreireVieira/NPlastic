@@ -47,13 +47,13 @@ public class ProducaoCorteSoldaController {
         return ResponseEntity.notFound().build();
     }
     @GetMapping("/{id}")
-    ResponseEntity<ProducaoCorteeSoldaResponse> buscarPorid(@RequestParam int id){
+    ResponseEntity<ProducaoCorteeSoldaResponse> buscarPorid(@PathVariable int id){
 
         return  ResponseEntity.ok(service.buscarProducaoCorteSolda(id));
     }
     @DeleteMapping("/{id}")
 
-    String deletarProducao (@RequestParam int id){
+    String deletarProducao (@PathVariable int id){
 
         ProducaoCorteeSoldaResponse producaoCorteeSoldaResponse = service.buscarProducaoCorteSolda(id);
 
